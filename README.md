@@ -9,31 +9,31 @@ My solutions to SoftUni's DB problems:
   <tr>
     <td valign="top">
       
-### Stacks and Queues      
+### Databases Introduction     
 1. []()
 
-### Multidimensional Arrays      
+### CRUD      
 1. []()
 
-### Sets and Dictionaries Advanced
+### Table Relations
 1. []()
 
-### Streams, Files and Directories
+### Built-in Functions
 1. []()
 
-### Functional Programming
+### Subqueries and Joins
 1. []()
       
-### Defining Classes
+### Indices and Data Aggregation
 1. []()
       
-### Generics
+### Functions and Stored Procedures
 1. []()
       
-### Iterators and Comparators
+### Triggers and Transactions
 1. []()
       
-### Basic Algorithms
+### Exam Preparation
 1. []()
     </td>    
     <td valign="top">
