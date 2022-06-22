@@ -1,4 +1,4 @@
-CREATE TABLE Minions
+﻿CREATE TABLE Minions
 (
 	Id int PRIMARY KEY,
 	[Name] nvarchar(50),

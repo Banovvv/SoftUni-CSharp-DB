@@ -1,1 +1,1 @@
-CREATE DATABASE Minions
+﻿CREATE DATABASE Minions
