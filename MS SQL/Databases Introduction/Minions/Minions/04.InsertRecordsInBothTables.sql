@@ -1,4 +1,4 @@
-﻿INSERT INTO Towns
+INSERT INTO Towns
 	VALUES (1, 'Sofia'),
 		   (2, 'Plovdiv'),
 		   (3, 'Varna');
