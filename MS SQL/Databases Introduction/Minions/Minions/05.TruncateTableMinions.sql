@@ -1,1 +1,1 @@
-TRUNCATE TABLE Minions
+TRUNCATE TABLE [dbo].[Minions]
