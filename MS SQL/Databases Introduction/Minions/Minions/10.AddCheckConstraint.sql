@@ -1,0 +1,1 @@
+ALTER TABLE [dbo].[Users] ADD CHECK (DATALENGTH([Password]) >= 5)
