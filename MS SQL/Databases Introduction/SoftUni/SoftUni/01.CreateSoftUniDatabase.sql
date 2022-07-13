@@ -1,4 +1,4 @@
---CREATE DATABASE SoftUni
+CREATE DATABASE SoftUni
 
 CREATE TABLE [dbo].[Towns]
 (
