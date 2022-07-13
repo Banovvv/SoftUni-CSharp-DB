@@ -103,6 +103,12 @@
           <AssociatedConnUserName />
           <FullPath>14.CarRentalDatabase.sql</FullPath>
         </FileNode>
+        <FileNode Name="15.HotelDatabase.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-0NU5223\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-0NU5223\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>15.HotelDatabase.sql</FullPath>
+        </FileNode>
       </Items>
     </LogicalFolder>
     <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">

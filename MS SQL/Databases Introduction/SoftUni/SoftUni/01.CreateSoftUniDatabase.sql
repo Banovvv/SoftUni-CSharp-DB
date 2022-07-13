@@ -1,0 +1,33 @@
+--CREATE DATABASE SoftUni
+
+CREATE TABLE [dbo].[Towns]
+(
+	Id INT IDENTITY(1,1) PRIMARY KEY,
+	[Name] NVARCHAR(50) NOT NULL
+)
+
+CREATE TABLE [dbo].[Addresses]
+(
+	Id INT IDENTITY(1,1) PRIMARY KEY,
+	AddressText NVARCHAR(50) NOT NULL,
+	TownId INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Towns](Id)
+)
+
+CREATE TABLE [dbo].[Departments]
+(
+	Id INT IDENTITY(1,1) PRIMARY KEY,
+	[Name] NVARCHAR(50) NOT NULL
+)
+
+CREATE TABLE [dbo].[Employees]
+(
+	Id INT IDENTITY(1,1) PRIMARY KEY,
+	FirstName NVARCHAR(50) NOT NULL,
+	MiddleName NVARCHAR(50),
+	LastName NVARCHAR(50) NOT NULL,
+	JobTitle NVARCHAR(50) NOT NULL,
+	DepartmentId INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Departments](Id),
+	HireDate DATE,
+	Salary DECIMAL NOT NULL,
+	AddressId INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Addresses](Id)
+)
