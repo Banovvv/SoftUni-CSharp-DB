@@ -1,0 +1,77 @@
+CREATE DATABASE Hotel
+
+CREATE TABLE [dbo].[Employees]
+(
+	Id INT IDENTITY (1, 1) PRIMARY KEY,
+	FirstName NVARCHAR(25) NOT NULL,
+	LastName NVARCHAR(25) NOT NULL,
+	Title NVARCHAR(25) NOT NULL,
+	Notes NVARCHAR(150)
+)
+
+CREATE TABLE [dbo].[Customers]
+(
+	AccountNumber NVARCHAR(20) NOT NULL PRIMARY KEY,
+	FirstName NVARCHAR(25) NOT NULL,
+	LastName NVARCHAR(25) NOT NULL,
+	PhoneNumber NVARCHAR(15) NOT NULL,
+	EmergencyName NVARCHAR(25) NOT NULL,
+	EmergencyNumber NVARCHAR(15) NOT NULL,
+	Notes NVARCHAR(150)
+)
+
+CREATE TABLE [dbo].[RoomStatus]
+(
+	RoomStatus NVARCHAR(150) NOT NULL PRIMARY KEY,
+	Notes NVARCHAR(150)
+)
+
+CREATE TABLE [dbo].[RoomTypes]
+(
+	RoomType NVARCHAR(150) NOT NULL PRIMARY KEY,
+	Notes NVARCHAR(150)
+)
+
+CREATE TABLE [dbo].[BedTypes]
+(
+	BedType NVARCHAR(150) NOT NULL PRIMARY KEY,
+	Notes NVARCHAR(150)
+)
+
+CREATE TABLE [dbo].[Rooms]
+(
+	RoomNumber INT NOT NULL PRIMARY KEY,
+	RoomType NVARCHAR(150) NOT NULL,
+	BedType NVARCHAR(150) NOT NULL,
+	Rate DECIMAL NOT NULL,
+	RoomStatus NVARCHAR(150) NOT NULL,
+	Notes NVARCHAR(150)
+)
+
+CREATE TABLE [dbo].[Payments]
+(
+	Id INT IDENTITY (1, 1) PRIMARY KEY,
+	EmployeeId INT NOT NULL,
+	PaymentDate DATE NOT NULL,
+	AccountNumber NVARCHAR(20) NOT NULL,
+	FirstDateOccupied DATE,
+	LastDateOccupied DATE,
+	TotalDays INT,
+	AmountCharged DECIMAL,
+	TaxRate DECIMAL,
+	TaxAmount DECIMAL,
+	PaymentTotal DECIMAL,
+	Notes NVARCHAR(150)
+)
+
+CREATE TABLE [dbo].[Occupancies]
+(
+	Id INT IDENTITY (1, 1) PRIMARY KEY,
+	EmployeeId INT NOT NULL,
+	DateOccupied DATE,
+	AccountNumber  NVARCHAR(20) NOT NULL,
+	RoomNumber INT NOT NULL,
+	RateApplied DECIMAL,
+	PhoneCharge DECIMAL,
+	Notes NVARCHAR(150)
+)
