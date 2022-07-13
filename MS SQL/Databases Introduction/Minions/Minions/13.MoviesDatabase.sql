@@ -27,7 +27,7 @@ CREATE TABLE [dbo].[Movies]
 	Title NVARCHAR(50),
 	DirectorId INT NOT NULL,
 	CopyrightYear INT,
-	[Length] INT NOT NULL,
+	[Length] TIME NOT NULL,
 	GenreId INT NOT NULL,	
 	CategoryId INT NOT NULL,	
 	Rating INT CHECK (Rating > 0 AND Rating <=10),	

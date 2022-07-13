@@ -1,4 +1,4 @@
-ALTER TABLE [dbo].[Minions] ADD TownId int
+ALTER TABLE [dbo].[Minions] ADD TownId INT
 
 ALTER TABLE [dbo].[Minions]
 ADD CONSTRAINT FK_Minions_Towns

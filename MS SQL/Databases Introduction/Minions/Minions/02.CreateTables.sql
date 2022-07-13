@@ -1,12 +1,12 @@
 CREATE TABLE [dbo].[Minions]
 (
-	Id int PRIMARY KEY,
-	[Name] nvarchar(50),
-	Age int
+	Id INT PRIMARY KEY,
+	[Name] NVARCHAR(50),
+	Age INT
 )
 
 CREATE TABLE [dbo].[Towns]
 (
-	Id int PRIMARY KEY,
-	[Name] nvarchar(50),
+	Id INT PRIMARY KEY,
+	[Name] NVARCHAR(50),
 )
