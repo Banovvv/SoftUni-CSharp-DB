@@ -1,4 +1,4 @@
---CREATE DATABASE University
+CREATE DATABASE University
 
 CREATE TABLE [dbo].[Subjects]
 (
@@ -27,7 +27,7 @@ CREATE TABLE [dbo].[Agenda]
 
 	PRIMARY KEY (StudentID, SubjectID)
 )
-
+ 
 CREATE TABLE [dbo].[Payments]
 (
 	PaymentID INT IDENTITY(10000, 1) PRIMARY KEY,
