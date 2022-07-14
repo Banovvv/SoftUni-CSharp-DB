@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# SQL Server Management Studio Solution File, Format Version 18.00
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "OnlineStoreDatabase", "OnlineStoreDatabase\OnlineStoreDatabase.ssmssqlproj", "{C5F55326-F4D8-470E-8296-8741364BD366}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5F55326-F4D8-470E-8296-8741364BD366}.Default|Default.ActiveCfg = Default
+		{0FDDEB7C-06C2-44A1-B185-6404EEDE38CB}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6E6A06FB-C9A3-4162-8914-319A2AD79507}
+	EndGlobalSection
+EndGlobal
