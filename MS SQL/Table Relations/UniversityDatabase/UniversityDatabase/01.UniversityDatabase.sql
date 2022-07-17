@@ -15,7 +15,7 @@ CREATE TABLE [dbo].[Majors]
 CREATE TABLE [dbo].[Students]
 (
 	StudentID INT IDENTITY(1, 1) PRIMARY KEY,
-	StudentNumber INT NOT NULL,
+	StudentNumber INT NOT NULL UNIQUE,
 	StudentName NVARCHAR(50) NOT NULL,
 	MajodID INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Majors](MajorID)
 )

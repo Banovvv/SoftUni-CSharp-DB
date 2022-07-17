@@ -13,7 +13,7 @@ CREATE TABLE [dbo].[Categories]
 CREATE TABLE [dbo].[Cars]
 (
 	Id INT IDENTITY(1, 1) PRIMARY KEY,
-	PlateNumber NVARCHAR(20),
+	PlateNumber NVARCHAR(20) UNIQUE,
 	Manufacturer NVARCHAR(20),
 	Model NVARCHAR(20),
 	CarYear DATE,
@@ -38,7 +38,7 @@ CREATE TABLE [dbo].[RentalOrders]
 	Id INT IDENTITY(1, 1) PRIMARY KEY,
 	EmployeeId INT NOT NULL CHECK (EmployeeId > 0),
 	CustomerId INT NOT NULL CHECK (CustomerId > 0),
-	CarId INT NOT NULL CHECK (CarId > 0),
+	CarId INT NOT NULL CHECK (CarId > 0) UNIQUE,
 	TankLevel INT CHECK (TankLevel >= 0 AND TankLevel <= 10),
 	KilometrageStart INT NOT NULL,
 	KilometrageEnd INT NOT NULL,	
