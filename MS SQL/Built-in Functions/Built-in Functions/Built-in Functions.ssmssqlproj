@@ -97,6 +97,42 @@
           <AssociatedConnUserName />
           <FullPath>13.MixOfPeakAndRiverNames.sql</FullPath>
         </FileNode>
+        <FileNode Name="14.GamesFrom2011And2012Year.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-0NU5223\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-0NU5223\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>14.GamesFrom2011And2012Year.sql</FullPath>
+        </FileNode>
+        <FileNode Name="15.UserEmailProviders.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-0NU5223\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-0NU5223\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>15.UserEmailProviders.sql</FullPath>
+        </FileNode>
+        <FileNode Name="16.GetUsersWithIPAdressLikePattern.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-0NU5223\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-0NU5223\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>16.GetUsersWithIPAdressLikePattern.sql</FullPath>
+        </FileNode>
+        <FileNode Name="17.ShowAllGamesWithDurationAndPartOfTheDay.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-0NU5223\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-0NU5223\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>17.ShowAllGamesWithDurationAndPartOfTheDay.sql</FullPath>
+        </FileNode>
+        <FileNode Name="18.DateFunctionsQueriesOrdersTable.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-0NU5223\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-0NU5223\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>18.DateFunctionsQueriesOrdersTable.sql</FullPath>
+        </FileNode>
+        <FileNode Name="19.DateFunctionsQueriesPeopleTable.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-0NU5223\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-0NU5223\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>19.DateFunctionsQueriesPeopleTable.sql</FullPath>
+        </FileNode>
       </Items>
     </LogicalFolder>
     <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
