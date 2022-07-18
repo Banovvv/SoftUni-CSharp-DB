@@ -3,7 +3,10 @@ SELECT TOP(5)
 	[dbo].[Employees].[JobTitle],
 	[dbo].[Employees].[AddressID],
 	[dbo].[Addresses].[AddressText] 
-FROM [dbo].[Employees]
-INNER JOIN [dbo].[Addresses]
-	ON [dbo].[Addresses].[AddressID] = [dbo].[Employees].[AddressID]
-ORDER BY [dbo].[Addresses].[AddressID] ASC
+FROM
+	[dbo].[Employees]
+INNER JOIN
+	[dbo].[Addresses]
+		ON [dbo].[Addresses].[AddressID] = [dbo].[Employees].[AddressID]
+ORDER BY
+	[dbo].[Addresses].[AddressID] ASC
