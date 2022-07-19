@@ -1,3 +1,7 @@
-SELECT TOP(5) [FirstName], [LastName]
-FROM [dbo].[Employees]
-ORDER BY Salary DESC
+SELECT TOP(5)
+	[dbo].[Employees].[FirstName],
+	[dbo].[Employees].[LastName]
+FROM
+	[dbo].[Employees]
+ORDER BY
+	[dbo].[Employees].[Salary] DESC

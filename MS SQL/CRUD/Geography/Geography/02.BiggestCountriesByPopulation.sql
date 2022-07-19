@@ -1,4 +1,10 @@
-SELECT TOP(30) [CountryName], [Population]
-FROM [dbo].[Countries]
-WHERE ContinentCode = 'EU'
-ORDER BY [Population] DESC, CountryName ASC
+SELECT TOP(30)
+	[dbo].[Countries].[CountryName],
+	[dbo].[Countries].[Population]
+FROM
+	[dbo].[Countries]
+WHERE
+	[dbo].[Countries].[ContinentCode] = 'EU'
+ORDER BY
+	[dbo].[Countries].[Population] DESC,
+	[dbo].[Countries].[CountryName] ASC

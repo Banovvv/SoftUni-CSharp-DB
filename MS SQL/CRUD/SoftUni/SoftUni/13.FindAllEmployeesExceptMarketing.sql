@@ -1,3 +1,7 @@
-SELECT [FirstName], [LastName]
-FROM [dbo].[Employees]
-WHERE DepartmentID <> 4
+SELECT
+	[dbo].[Employees].[FirstName],
+	[dbo].[Employees].[LastName]
+FROM
+	[dbo].[Employees]
+WHERE
+	[dbo].[Employees].[DepartmentID] <> 4

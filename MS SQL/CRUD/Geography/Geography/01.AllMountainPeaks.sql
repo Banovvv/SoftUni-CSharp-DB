@@ -1,2 +1,6 @@
-SELECT [PeakName] FROM [dbo].[Peaks]
-ORDER BY PeakName ASC
+SELECT
+	[dbo].[Peaks].[PeakName]
+FROM
+	[dbo].[Peaks]
+ORDER BY
+	[dbo].[Peaks].[PeakName] ASC

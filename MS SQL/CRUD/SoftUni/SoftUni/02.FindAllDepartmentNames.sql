@@ -1,1 +1,4 @@
-SELECT [Name] FROM [dbo].[Departments]
+SELECT
+	[dbo].[Departments].[Name]
+FROM
+	[dbo].[Departments]

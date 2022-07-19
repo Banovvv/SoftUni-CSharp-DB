@@ -1,3 +1,6 @@
-CREATE VIEW [V_EmployeeNameJobTitle] AS
-SELECT CONCAT([FirstName], ISNULL(' ' + [MiddleName], '') , ' ', [LastName], ' ') AS 'Full Name' , [JobTitle]
+CREATE VIEW
+	[V_EmployeeNameJobTitle] AS
+SELECT
+	CONCAT([dbo].[Employees].[FirstName], ISNULL(' ' + [dbo].[Employees].[MiddleName], ''), ' ', [dbo].[Employees].[LastName], ' ') AS 'Full Name',
+	[dbo].[Employees].[JobTitle]
 FROM [dbo].[Employees]

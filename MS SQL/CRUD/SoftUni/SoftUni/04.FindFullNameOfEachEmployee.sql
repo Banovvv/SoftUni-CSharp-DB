@@ -1,1 +1,6 @@
-SELECT [FirstName], [MiddleName], [LastName] FROM [dbo].[Employees]
+SELECT
+	[dbo].[Employees].[FirstName],
+	[dbo].[Employees].[MiddleName],
+	[dbo].[Employees].[LastName]
+FROM
+	[dbo].[Employees]

@@ -1,1 +1,4 @@
-SELECT DISTINCT [Salary] FROM [dbo].[Employees]
+SELECT DISTINCT
+	[dbo].[Employees].[Salary]
+FROM
+	[dbo].[Employees]

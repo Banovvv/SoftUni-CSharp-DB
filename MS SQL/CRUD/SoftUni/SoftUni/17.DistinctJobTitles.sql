@@ -1,2 +1,4 @@
-SELECT DISTINCT [JobTitle]
-FROM [dbo].[Employees]
+SELECT DISTINCT
+	[dbo].[Employees].[JobTitle]
+FROM
+	[dbo].[Employees]

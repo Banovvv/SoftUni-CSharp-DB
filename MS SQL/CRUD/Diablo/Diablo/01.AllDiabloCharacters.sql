@@ -1,2 +1,5 @@
-SELECT * FROM [dbo].[Characters]
-ORDER BY [Name] ASC
+SELECT *
+FROM
+	[dbo].[Characters]
+ORDER BY
+	[dbo].[Characters].[Name] ASC

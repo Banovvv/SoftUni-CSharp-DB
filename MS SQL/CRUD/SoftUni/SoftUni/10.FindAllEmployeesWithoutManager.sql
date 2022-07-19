@@ -1,3 +1,7 @@
-SELECT [FirstName], [LastName]
-FROM [dbo].[Employees]
-WHERE ManagerID IS NULL
+SELECT
+	[dbo].[Employees].[FirstName],
+	[dbo].[Employees].[LastName]
+FROM
+	[dbo].[Employees]
+WHERE
+	[dbo].[Employees].[ManagerID] IS NULL
