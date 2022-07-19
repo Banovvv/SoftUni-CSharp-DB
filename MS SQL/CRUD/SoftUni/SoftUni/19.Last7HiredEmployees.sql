@@ -1,3 +1,8 @@
-SELECT TOP(7) [FirstName], [LastName], [HireDate]
-FROM [dbo].[Employees]
-ORDER BY HireDate DESC
+SELECT TOP(7)
+	[dbo].[Employees].[FirstName],
+	[dbo].[Employees].[LastName],
+	[dbo].[Employees].[HireDate]
+FROM
+	[dbo].[Employees]
+ORDER BY
+	[dbo].[Employees].[HireDate] DESC

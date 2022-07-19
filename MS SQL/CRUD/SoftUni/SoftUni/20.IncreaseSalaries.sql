@@ -1,5 +1,15 @@
-UPDATE [dbo].[Employees]
-SET Salary = Salary * 1.12
-WHERE DepartmentID in (1, 2, 4)
+UPDATE
+	[dbo].[Employees]
+SET
+	[dbo].[Employees].[Salary] = dbo].[Employees].[Salary] * 1.12
+WHERE
+	[dbo].[Employees].[DepartmentID] in (1, 2, 4)
 
-SELECT [Salary] FROM [dbo].[Employees]
+
+
+
+
+SELECT
+	[Salary]
+FROM
+	[dbo].[Employees]
