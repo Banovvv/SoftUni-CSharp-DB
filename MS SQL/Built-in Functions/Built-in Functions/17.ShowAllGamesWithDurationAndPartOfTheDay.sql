@@ -10,5 +10,9 @@ SELECT [Name],
 		WHEN [Duration] > 6 THEN 'Long'
 		WHEN [Duration] IS NULL THEN 'Extra Long'
 	END AS [Duration In Words]
-FROM [dbo].[Games]
-ORDER BY [Name] ASC, [Duration In Words] ASC, [Part of the Day] ASC
+FROM
+	[dbo].[Games]
+ORDER BY
+	[Name] ASC,
+	[Duration In Words] ASC,
+	[Part of the Day] ASC

@@ -1,6 +1,11 @@
-SELECT [TownID], [Name]
-FROM [dbo].[Towns]
-WHERE [Name] NOT LIKE ('R%')
-AND [Name] NOT LIKE ('B%')
-AND [Name] NOT LIKE ('D%')
-ORDER BY [Name] ASC
+SELECT
+	[TownID],
+	[Name]
+FROM
+	[dbo].[Towns]
+WHERE
+	[Name] NOT LIKE ('R%') AND
+	[Name] NOT LIKE ('B%') AND
+	[Name] NOT LIKE ('D%')
+ORDER BY
+	[Name] ASC

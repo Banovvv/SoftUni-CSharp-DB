@@ -28,4 +28,5 @@ SELECT
 	DATEDIFF(MONTH, [Birthdate], SYSDATETIME()) AS [Age in Months],
 	DATEDIFF(DAY, [Birthdate], SYSDATETIME()) AS [Age in Days],
 	DATEDIFF(MINUTE, [Birthdate], SYSDATETIME()) AS [Age in Minutes]
-FROM [dbo].[People]
+FROM
+	[dbo].[People]
