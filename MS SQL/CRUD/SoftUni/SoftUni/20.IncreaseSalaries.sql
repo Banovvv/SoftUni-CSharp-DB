@@ -10,6 +10,6 @@ WHERE
 
 
 SELECT
-	[Salary]
+	[dbo].[Employees].[Salary]
 FROM
 	[dbo].[Employees]
