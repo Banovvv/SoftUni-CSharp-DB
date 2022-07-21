@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # SQL Server Management Studio Solution File, Format Version 18.00
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "06. Indices-and-Data-Aggregation", "06. Indices-and-Data-Aggregation\06. Indices-and-Data-Aggregation.ssmssqlproj", "{7A9547A2-505C-4171-AD58-4203A19273AC}"
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Indices-and-Data-Aggregation", "Indices-and-Data-Aggregation\Indices-and-Data-Aggregation.ssmssqlproj", "{7A9547A2-505C-4171-AD58-4203A19273AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
