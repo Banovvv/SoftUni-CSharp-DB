@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# SQL Server Management Studio Solution File, Format Version 18.00
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "06. Indices-and-Data-Aggregation", "06. Indices-and-Data-Aggregation\06. Indices-and-Data-Aggregation.ssmssqlproj", "{7A9547A2-505C-4171-AD58-4203A19273AC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A9547A2-505C-4171-AD58-4203A19273AC}.Default|Default.ActiveCfg = Default
+		{236B784F-EC20-40A6-ADED-4D5F48EA4CE6}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {090825D8-7F0C-47D5-9997-A51A7203CB13}
+	EndGlobalSection
+EndGlobal
