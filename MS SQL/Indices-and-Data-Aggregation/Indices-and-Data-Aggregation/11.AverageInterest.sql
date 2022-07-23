@@ -11,4 +11,4 @@ GROUP BY
 	[WizzardDeposits].[IsDepositExpired]
 ORDER BY
 	[WizzardDeposits].[DepositGroup] DESC,
-	[WizzardDeposits].[IsDepositExpired]
+	[WizzardDeposits].[IsDepositExpired] ASC
