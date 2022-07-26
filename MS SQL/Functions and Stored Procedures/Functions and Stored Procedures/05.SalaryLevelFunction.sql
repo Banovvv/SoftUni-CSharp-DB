@@ -1,4 +1,5 @@
-CREATE FUNCTION [ufn_GetSalaryLevel] (@salary DECIMAL(18,4))
+CREATE FUNCTION
+	[ufn_GetSalaryLevel] (@salary DECIMAL(18,4))
 RETURNS VARCHAR(10)
 AS
 BEGIN
