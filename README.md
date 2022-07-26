@@ -251,7 +251,7 @@ My solutions to SoftUni's DB problems:
     </td>    
     <td valign="top">
       
-### Inheritance
+### Entity Framework Introduction
 1. []()
 2. []()
 3. []()
@@ -277,7 +277,7 @@ My solutions to SoftUni's DB problems:
 23. []()
 24. []()
 25. []()
-### Encapsulation
+### Entity Relations
 1. []()
 2. []()
 3. []()
@@ -303,7 +303,7 @@ My solutions to SoftUni's DB problems:
 23. []()
 24. []()
 25. []()
-### Interfaces and Abstraction
+### LINQ
 1. []()
 2. []()
 3. []()
@@ -329,7 +329,7 @@ My solutions to SoftUni's DB problems:
 23. []()
 24. []()
 25. []()
-### Polymorphism
+### Advanced Querying
 1. []()
 2. []()
 3. []()
@@ -355,7 +355,7 @@ My solutions to SoftUni's DB problems:
 23. []()
 24. []()
 25. []()
-### Exceptions and Error Handling
+### JavaScript Object Notation - JSON
 1. []()
 2. []()
 3. []()
@@ -381,7 +381,7 @@ My solutions to SoftUni's DB problems:
 23. []()
 24. []()
 25. []()
-### Reflection and Attributes
+### Extensible Markup Language - XML
 1. []()
 2. []()
 3. []()
@@ -407,7 +407,7 @@ My solutions to SoftUni's DB problems:
 23. []()
 24. []()
 25. []()
-### Unit Testing
+### Code-First
 1. []()   
 2. []()
 3. []()
@@ -433,32 +433,7 @@ My solutions to SoftUni's DB problems:
 23. []()
 24. []()
 25. []()
-### Mocking and Test Driven Development
-1. []()
-2. []()
-3. []()
-4. []()
-5. []()
-6. []()
-7. []()
-8. []()
-9. []()
-10. []()
-11. []()
-12. []()
-13. []()
-14. []()
-15. []()
-16. []()
-17. []()
-18. []()
-19. []()
-20. []()
-21. []()
-22. []()
-23. []()
-24. []()
-25. []()
+
  
     </td>
   </tr>
