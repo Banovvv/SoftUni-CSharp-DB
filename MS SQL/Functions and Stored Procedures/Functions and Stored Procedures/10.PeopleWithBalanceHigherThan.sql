@@ -1,4 +1,5 @@
-CREATE PROCEDURE usp_GetHoldersWithBalanceHigherThan(@balance decimal(18, 4)) AS
+CREATE PROCEDURE
+	usp_GetHoldersWithBalanceHigherThan(@balance decimal(18, 4)) AS
 SELECT
 	[dbo].[AccountHolders].[FirstName],
 	[dbo].[AccountHolders].[LastName]
