@@ -1,5 +1,5 @@
-CREATE PROCEDURE usp_GetEmployeesWithSalaryAbove35000
-AS
+CREATE PROCEDURE
+	usp_GetEmployeesWithSalaryAbove35000 AS
 SELECT
 	[dbo].[Employees].[FirstName],
 	[dbo].[Employees].[LastName]

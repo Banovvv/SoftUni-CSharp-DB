@@ -1,5 +1,5 @@
-CREATE PROCEDURE usp_GetTownsStartingWith(@string VARCHAR(15))
-AS
+CREATE PROCEDURE
+	usp_GetTownsStartingWith(@string VARCHAR(15)) AS
 SELECT
 	[dbo].[Towns].[Name] AS [Town]
 FROM
