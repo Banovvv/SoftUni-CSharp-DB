@@ -20,7 +20,10 @@ namespace _02.DatabaseFirst
                 //Console.WriteLine(GetEmployeesWithSalaryOver50000(context));
 
                 // 04.Employees from Research and Development
-                Console.WriteLine(GetEmployeesFromResearchAndDevelopment(context));
+                //Console.WriteLine(GetEmployeesFromResearchAndDevelopment(context));
+
+                // 05.Adding a New Address and Updating Employee
+                Console.WriteLine(AddNewAddressToEmployee(context));
             }
         }
 
@@ -72,8 +75,8 @@ namespace _02.DatabaseFirst
         public static string GetEmployeesFromResearchAndDevelopment(SoftUniContext context)
         {
             var employees = context.Employees
-                .Where(x=>x.Department.Name == "Research and Development")
-                .Select(x=> new
+                .Where(x => x.Department.Name == "Research and Development")
+                .Select(x => new
                 {
                     FirstName = x.FirstName,
                     LastName = x.LastName,
@@ -89,6 +92,37 @@ namespace _02.DatabaseFirst
             foreach (var employee in employees)
             {
                 sb.AppendLine($"{employee.FirstName} {employee.LastName} from {employee.DepartmentName} - ${employee.Salary:F2}");
+            }
+
+            return sb.ToString().Trim();
+        }
+
+        public static string AddNewAddressToEmployee(SoftUniContext context)
+        {
+            Address newAddress = new Address
+            {
+                AddressText = "Vitoshka 15",
+                TownId = 4
+            };
+
+            Employee employee = context.Employees.Where(x => x.LastName == "Nakov").FirstOrDefault();
+
+            if (employee == null)
+            {
+                throw new ArgumentNullException("No such employee!");
+            }
+
+            employee.Address = newAddress;
+
+            context.SaveChanges();
+
+            var addresses = context.Employees.OrderByDescending(x => x.AddressId).Take(10).Select(e => e.Address.AddressText).ToList();
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var address in addresses)
+            {
+                sb.AppendLine(address);
             }
 
             return sb.ToString().Trim();
