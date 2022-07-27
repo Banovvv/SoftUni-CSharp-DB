@@ -14,7 +14,10 @@ namespace _02.DatabaseFirst
             using (var context = new SoftUniContext())
             {
                 // 02.Employees Full Information
-                Console.WriteLine(GetEmployeesFullInformation(context)); ;
+                //Console.WriteLine(GetEmployeesFullInformation(context));
+
+                // 03.Employees with Salary Over 50 000
+                Console.WriteLine(GetEmployeesWithSalaryOver50000(context));
             }
         }
 
@@ -27,6 +30,20 @@ namespace _02.DatabaseFirst
             foreach (var employee in employees)
             {
                 sb.AppendLine($"{employee.FirstName} {employee.LastName} {employee.MiddleName} {employee.JobTitle} {employee.Salary:F2}");
+            }
+
+            return sb.ToString().Trim();
+        }
+
+        public static string GetEmployeesWithSalaryOver50000(SoftUniContext context)
+        {
+            IReadOnlyCollection<Employee> employees = context.Employees.Where(x => x.Salary > 50000).OrderBy(x => x.FirstName).ToList();
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var employee in employees)
+            {
+                sb.AppendLine($"{employee.FirstName} - {employee.Salary:F2}");
             }
 
             return sb.ToString().Trim();
