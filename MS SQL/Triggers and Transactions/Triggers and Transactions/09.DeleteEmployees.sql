@@ -29,3 +29,10 @@ CREATE TRIGGER
 			[Deleted]
     END
 GO
+
+DELETE
+	[dbo].[Employees]
+WHERE
+	[dbo].[Employees].[EmployeeID] = 293
+
+SELECT * FROM [dbo].[DeletedEmployees]
