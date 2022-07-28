@@ -39,7 +39,10 @@ namespace _02.DatabaseFirst
                 //Console.WriteLine(GetDepartmentsWithMoreThan5Employees(context));
 
                 // 10.Find Latest 10 Projects
-                Console.WriteLine(GetLatestProjects(context));
+                //Console.WriteLine(GetLatestProjects(context));
+
+                // 11.Increase Salaries
+                Console.WriteLine(IncreaseSalaries(context));
             }
         }
 
@@ -280,6 +283,31 @@ namespace _02.DatabaseFirst
                 sb.AppendLine(project.Name);
                 sb.AppendLine(project.Description);
                 sb.AppendLine(project.StartDate.ToString("M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture));
+            }
+
+            return sb.ToString().Trim();
+        }
+
+        public static string IncreaseSalaries(SoftUniContext context)
+        {
+            var employees = context.Employees
+                .Where(x => new string[] { "Engineering", "Tool Design", "Marketing", "Information Services" }.Contains(x.Department.Name))
+                .OrderBy(x => x.FirstName)
+                .ThenBy(x => x.LastName)
+                .ToList();
+
+            foreach (var employee in employees)
+            {
+                employee.Salary *= 1.12M;
+            }
+
+            context.SaveChanges();
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var employee in employees)
+            {
+                sb.AppendLine($"{employee.FirstName} {employee.LastName} (${employee.Salary:F2})");
             }
 
             return sb.ToString().Trim();
