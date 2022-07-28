@@ -14,41 +14,44 @@ namespace _02.DatabaseFirst
         {
             using (var context = new SoftUniContext())
             {
-                // 02.Employees Full Information
+                // 03.Employees Full Information
                 //Console.WriteLine(GetEmployeesFullInformation(context));
 
-                // 03.Employees with Salary Over 50 000
+                // 04.Employees with Salary Over 50 000
                 //Console.WriteLine(GetEmployeesWithSalaryOver50000(context));
 
-                // 04.Employees from Research and Development
+                // 05.Employees from Research and Development
                 //Console.WriteLine(GetEmployeesFromResearchAndDevelopment(context));
 
-                // 05.Adding a New Address and Updating Employee
+                // 06.Adding a New Address and Updating Employee
                 //Console.WriteLine(AddNewAddressToEmployee(context));
 
-                // 06.Employees and Projects
+                // 07.Employees and Projects
                 //Console.WriteLine(GetEmployeesInPeriod(context));
 
-                // 07.Addresses by Town
+                // 08.Addresses by Town
                 //Console.WriteLine(GetAddressesByTown(context));
 
-                // 08.Employee 147
+                // 09.Employee 147
                 //Console.WriteLine(GetEmployee147(context));
 
-                // 09.Departments with More Than 5 Employees
+                // 10.Departments with More Than 5 Employees
                 //Console.WriteLine(GetDepartmentsWithMoreThan5Employees(context));
 
-                // 10.Find Latest 10 Projects
+                // 11.Find Latest 10 Projects
                 //Console.WriteLine(GetLatestProjects(context));
 
-                // 11.Increase Salaries
+                // 12.Increase Salaries
                 //Console.WriteLine(IncreaseSalaries(context));
 
-                // 12.Find Employees by First Name Starting with "Sa"
+                // 13.Find Employees by First Name Starting with "Sa"
                 //Console.WriteLine(GetEmployeesByFirstNameStartingWithSa(context));
 
-                // 13.Delete Project by Id
-                Console.WriteLine(DeleteProjectById(context));
+                // 14.Delete Project by Id
+                //Console.WriteLine(DeleteProjectById(context));
+
+                // 15.Remove Town
+                Console.WriteLine(RemoveTown(context));
             }
         }
 
@@ -376,6 +379,41 @@ namespace _02.DatabaseFirst
             }
 
             return sb.ToString().Trim();
+        }
+
+        public static string RemoveTown(SoftUniContext context)
+        {
+            string townName = "Seattle";
+
+            var townToDelete = context.Towns
+                .Where(x => x.Name == townName)
+                .FirstOrDefault();
+
+            var addressessToDelete = context.Addresses
+                .Where(x => x.TownId == townToDelete.TownId)
+                .ToList();
+
+            var employees = context.Employees
+                .Where(x => addressessToDelete.Select(a => a.AddressId).ToList().Contains((int)x.AddressId))
+                .ToList();
+
+            foreach(var employee in employees)
+            {
+                employee.AddressId = null;
+            }
+
+            string result = $"{addressessToDelete.Count} addresses in {townName} were deleted";
+
+            foreach(var address in addressessToDelete)
+            {
+                context.Addresses.Remove(address);
+            }
+
+            context.Towns.Remove(townToDelete);
+
+            context.SaveChanges();
+
+            return result;
         }
     }
 }
