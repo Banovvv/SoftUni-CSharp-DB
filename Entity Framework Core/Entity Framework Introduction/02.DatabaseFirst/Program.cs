@@ -45,7 +45,10 @@ namespace _02.DatabaseFirst
                 //Console.WriteLine(IncreaseSalaries(context));
 
                 // 12.Find Employees by First Name Starting with "Sa"
-                Console.WriteLine(GetEmployeesByFirstNameStartingWithSa(context));
+                //Console.WriteLine(GetEmployeesByFirstNameStartingWithSa(context));
+
+                // 13.Delete Project by Id
+                Console.WriteLine(DeleteProjectById(context));
             }
         }
 
@@ -335,6 +338,41 @@ namespace _02.DatabaseFirst
             foreach (var employee in employees)
             {
                 sb.AppendLine($"{employee.FullName} - {employee.JobTitle} - (${employee.Salary:F2})");
+            }
+
+            return sb.ToString().Trim();
+        }
+
+        public static string DeleteProjectById(SoftUniContext context)
+        {
+
+            var projectToDelete = context.Projects
+                .Where(x => x.ProjectId == 2)
+                .FirstOrDefault();
+
+            var employeeProjectsToDelete = context.EmployeesProjects
+                .Where(x => x.ProjectId == 2)
+                .ToList();
+
+            foreach (var employeeProject in employeeProjectsToDelete)
+            {
+                context.EmployeesProjects.Remove(employeeProject);
+            }
+
+            context.Projects.Remove(projectToDelete);
+
+            context.SaveChanges();
+
+            var projects = context.Projects
+                .Select(x => x.Name)
+                .Take(10)
+                .ToList();
+
+            var sb = new StringBuilder();
+
+            foreach (var project in projects)
+            {
+                sb.AppendLine($"{project}");
             }
 
             return sb.ToString().Trim();
