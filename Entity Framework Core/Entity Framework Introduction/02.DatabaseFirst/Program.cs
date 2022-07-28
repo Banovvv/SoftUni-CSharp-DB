@@ -42,7 +42,10 @@ namespace _02.DatabaseFirst
                 //Console.WriteLine(GetLatestProjects(context));
 
                 // 11.Increase Salaries
-                Console.WriteLine(IncreaseSalaries(context));
+                //Console.WriteLine(IncreaseSalaries(context));
+
+                // 12.Find Employees by First Name Starting with "Sa"
+                Console.WriteLine(GetEmployeesByFirstNameStartingWithSa(context));
             }
         }
 
@@ -308,6 +311,30 @@ namespace _02.DatabaseFirst
             foreach (var employee in employees)
             {
                 sb.AppendLine($"{employee.FirstName} {employee.LastName} (${employee.Salary:F2})");
+            }
+
+            return sb.ToString().Trim();
+        }
+
+        public static string GetEmployeesByFirstNameStartingWithSa(SoftUniContext context)
+        {
+            var employees = context.Employees
+                .Where(x => x.FirstName.ToLower().StartsWith("sa"))
+                .OrderBy(x => x.FirstName)
+                .ThenBy(x => x.LastName)
+                .Select(x => new
+                {
+                    FullName = x.FirstName + " " + x.LastName,
+                    x.JobTitle,
+                    x.Salary
+                })
+                .ToList();
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var employee in employees)
+            {
+                sb.AppendLine($"{employee.FullName} - {employee.JobTitle} - (${employee.Salary:F2})");
             }
 
             return sb.ToString().Trim();
