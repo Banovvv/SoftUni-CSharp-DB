@@ -23,7 +23,10 @@ namespace _02.DatabaseFirst
                 //Console.WriteLine(GetEmployeesFromResearchAndDevelopment(context));
 
                 // 05.Adding a New Address and Updating Employee
-                Console.WriteLine(AddNewAddressToEmployee(context));
+                //Console.WriteLine(AddNewAddressToEmployee(context));
+
+                // 06.Employees and Projects
+                Console.WriteLine(GetEmployeesInPeriod(context));
             }
         }
 
@@ -123,6 +126,24 @@ namespace _02.DatabaseFirst
             foreach (var address in addresses)
             {
                 sb.AppendLine(address);
+            }
+
+            return sb.ToString().Trim();
+        }
+
+        public static string GetEmployeesInPeriod(SoftUniContext context)
+        {
+            var projectIDs = context.Projects.Where(x => x.StartDate.Year >= 2001 && x.StartDate.Year <= 2003).Select(x => x.ProjectId).ToList();
+            var employeeIDs = context.EmployeesProjects.Where(x => projectIDs.Contains(x.ProjectId)).Select(x => x.EmployeeId).ToList();
+            var employees = context.Employees.Where(x => employeeIDs.Contains(x.EmployeeId)).Take(10).ToList();
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var employee in employees)
+            {
+                var manager = context.Employees.Where(x => x.EmployeeId == employee.ManagerId).FirstOrDefault();
+                sb.AppendLine($"{employee.FirstName} {employee.LastName} - Manager: {manager.FirstName} {manager.LastName}");
+                sb.AppendLine();
             }
 
             return sb.ToString().Trim();
