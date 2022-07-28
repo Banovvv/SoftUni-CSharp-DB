@@ -2,6 +2,7 @@
 using _02.DatabaseFirst.Data.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -35,7 +36,10 @@ namespace _02.DatabaseFirst
                 //Console.WriteLine(GetEmployee147(context));
 
                 // 09.Departments with More Than 5 Employees
-                Console.WriteLine(GetDepartmentsWithMoreThan5Employees(context));
+                //Console.WriteLine(GetDepartmentsWithMoreThan5Employees(context));
+
+                // 10.Find Latest 10 Projects
+                Console.WriteLine(GetLatestProjects(context));
             }
         }
 
@@ -157,7 +161,7 @@ namespace _02.DatabaseFirst
 
                 foreach (var project in employeeProjects)
                 {
-                    sb.AppendLine($"--{project.Name} - {project.StartDate.ToString("M/d/yyyy h:mm:ss tt")} - {(project.EndDate != null ? project.StartDate.ToString("M/d/yyyy h:mm:ss tt") : "not finished")}");
+                    sb.AppendLine($"--{project.Name} - {project.StartDate.ToString("M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture)} - {(project.EndDate != null ? project.StartDate.ToString("M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture) : "not finished")}");
                 }
             }
 
@@ -246,10 +250,36 @@ namespace _02.DatabaseFirst
             {
                 sb.AppendLine($"{department.DepartmentName} - {department.ManagerFullName}");
 
-                foreach(var employee in department.Employees)
+                foreach (var employee in department.Employees)
                 {
                     sb.AppendLine($"{employee.EmployeeFullName} - {employee.JobTitle}");
                 }
+            }
+
+            return sb.ToString().Trim();
+        }
+
+        public static string GetLatestProjects(SoftUniContext context)
+        {
+            var projects = context.Projects
+                .OrderByDescending(x => x.StartDate)
+                .Take(10)
+                .OrderBy(x => x.Name)
+                .Select(x => new
+                {
+                    x.Name,
+                    x.Description,
+                    x.StartDate
+                })
+                .ToList();
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var project in projects)
+            {
+                sb.AppendLine(project.Name);
+                sb.AppendLine(project.Description);
+                sb.AppendLine(project.StartDate.ToString("M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture));
             }
 
             return sb.ToString().Trim();
