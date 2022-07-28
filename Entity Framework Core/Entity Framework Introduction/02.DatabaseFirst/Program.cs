@@ -26,7 +26,10 @@ namespace _02.DatabaseFirst
                 //Console.WriteLine(AddNewAddressToEmployee(context));
 
                 // 06.Employees and Projects
-                Console.WriteLine(GetEmployeesInPeriod(context));
+                //Console.WriteLine(GetEmployeesInPeriod(context));
+
+                // 07.Addresses by Town
+                Console.WriteLine(GetAddressesByTown(context));
             }
         }
 
@@ -153,6 +156,30 @@ namespace _02.DatabaseFirst
             }
 
             return sb.ToString().Trim();
+        }
+
+        public static string GetAddressesByTown(SoftUniContext context)
+        {
+            var addressess = context.Addresses
+                .OrderByDescending(x => x.Employees.Count)
+                .ThenBy(x => x.Town.Name)
+                .ThenBy(x => x.AddressText)
+                .Select(x=> new
+                {
+                    AddressText = x.AddressText,
+                    TownName = x.Town.Name,
+                    EmployeeCount = x.Employees.Count
+                })
+                .Take(10).ToList();
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var address in addressess)
+            {
+                sb.AppendLine($"{address.AddressText}, {address.TownName} - {address.EmployeeCount} employees");
+            }
+
+            return sb.ToString().Trim();            
         }
     }
 }
