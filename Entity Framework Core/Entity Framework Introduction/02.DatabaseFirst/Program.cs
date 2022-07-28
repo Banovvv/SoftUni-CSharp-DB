@@ -29,7 +29,10 @@ namespace _02.DatabaseFirst
                 //Console.WriteLine(GetEmployeesInPeriod(context));
 
                 // 07.Addresses by Town
-                Console.WriteLine(GetAddressesByTown(context));
+                //Console.WriteLine(GetAddressesByTown(context));
+
+                // 08.Employee 147
+                Console.WriteLine(GetEmployee147(context));
             }
         }
 
@@ -164,7 +167,7 @@ namespace _02.DatabaseFirst
                 .OrderByDescending(x => x.Employees.Count)
                 .ThenBy(x => x.Town.Name)
                 .ThenBy(x => x.AddressText)
-                .Select(x=> new
+                .Select(x => new
                 {
                     AddressText = x.AddressText,
                     TownName = x.Town.Name,
@@ -179,7 +182,37 @@ namespace _02.DatabaseFirst
                 sb.AppendLine($"{address.AddressText}, {address.TownName} - {address.EmployeeCount} employees");
             }
 
-            return sb.ToString().Trim();            
+            return sb.ToString().Trim();
+        }
+
+        public static string GetEmployee147(SoftUniContext context)
+        {
+            var employee = context.Employees
+                .Where(x => x.EmployeeId == 147)
+                .Select(x => new
+                {
+                    x.FirstName,
+                    x.LastName,
+                    x.JobTitle,
+                    Projects = context.Projects
+                    .Where(p => p.EmployeesProjects
+                        .Where(ep => ep.EmployeeId == x.EmployeeId)
+                    .Select(ep => ep.ProjectId)
+                    .Contains(p.ProjectId))
+                    .OrderBy(p=>p.Name).ToList()
+                })
+                .FirstOrDefault();
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"{employee.FirstName} {employee.LastName} - {employee.JobTitle}");
+
+            foreach(var project in employee.Projects)
+            {
+                sb.AppendLine($"{project.Name}");
+            }
+
+            return sb.ToString().Trim();
         }
     }
 }
