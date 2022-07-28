@@ -202,31 +202,19 @@ My solutions to SoftUni's DB problems:
     <td valign="top">
       
 ### Entity Framework Introduction
-1. []()
-2. []()
-3. []()
-4. []()
-5. []()
-6. []()
-7. []()
-8. []()
-9. []()
-10. []()
-11. []()
-12. []()
-13. []()
-14. []()
-15. []()
-16. []()
-17. []()
-18. []()
-19. []()
-20. []()
-21. []()
-22. []()
-23. []()
-24. []()
-25. []()
+3. [Employees Full Information](https://github.com/Banovvv/SoftUni-CSharp-DB/blob/f94d9b9a1c037e69c6fff7213f825a39ff84b229/Entity%20Framework%20Core/Entity%20Framework%20Introduction/02.DatabaseFirst/Program.cs#L58)
+4. [Employees with Salary Over 50 000](https://github.com/Banovvv/SoftUni-CSharp-DB/blob/f94d9b9a1c037e69c6fff7213f825a39ff84b229/Entity%20Framework%20Core/Entity%20Framework%20Introduction/02.DatabaseFirst/Program.cs#L82)
+5. [Employees from Research and Development](https://github.com/Banovvv/SoftUni-CSharp-DB/blob/f94d9b9a1c037e69c6fff7213f825a39ff84b229/Entity%20Framework%20Core/Entity%20Framework%20Introduction/02.DatabaseFirst/Program.cs#L103)
+6. [Adding a New Address and Updating Employee](https://github.com/Banovvv/SoftUni-CSharp-DB/blob/f94d9b9a1c037e69c6fff7213f825a39ff84b229/Entity%20Framework%20Core/Entity%20Framework%20Introduction/02.DatabaseFirst/Program.cs#L128)
+7. [Employees and Projects](https://github.com/Banovvv/SoftUni-CSharp-DB/blob/f94d9b9a1c037e69c6fff7213f825a39ff84b229/Entity%20Framework%20Core/Entity%20Framework%20Introduction/02.DatabaseFirst/Program.cs#L159)
+8. [Addresses by Town](https://github.com/Banovvv/SoftUni-CSharp-DB/blob/f94d9b9a1c037e69c6fff7213f825a39ff84b229/Entity%20Framework%20Core/Entity%20Framework%20Introduction/02.DatabaseFirst/Program.cs#L183)
+9. [Employee 147](https://github.com/Banovvv/SoftUni-CSharp-DB/blob/f94d9b9a1c037e69c6fff7213f825a39ff84b229/Entity%20Framework%20Core/Entity%20Framework%20Introduction/02.DatabaseFirst/Program.cs#L207)
+10. [Departments with More Than 5 Employees](https://github.com/Banovvv/SoftUni-CSharp-DB/blob/f94d9b9a1c037e69c6fff7213f825a39ff84b229/Entity%20Framework%20Core/Entity%20Framework%20Introduction/02.DatabaseFirst/Program.cs#L237)
+11. [Find Latest 10 Projects](https://github.com/Banovvv/SoftUni-CSharp-DB/blob/f94d9b9a1c037e69c6fff7213f825a39ff84b229/Entity%20Framework%20Core/Entity%20Framework%20Introduction/02.DatabaseFirst/Program.cs#L274)
+12. [Increase Salaries](https://github.com/Banovvv/SoftUni-CSharp-DB/blob/f94d9b9a1c037e69c6fff7213f825a39ff84b229/Entity%20Framework%20Core/Entity%20Framework%20Introduction/02.DatabaseFirst/Program.cs#L300)
+13. [Find Employees by First Name Starting with "Sa"](https://github.com/Banovvv/SoftUni-CSharp-DB/blob/f94d9b9a1c037e69c6fff7213f825a39ff84b229/Entity%20Framework%20Core/Entity%20Framework%20Introduction/02.DatabaseFirst/Program.cs#L325)
+14. [Delete Project by Id](https://github.com/Banovvv/SoftUni-CSharp-DB/blob/f94d9b9a1c037e69c6fff7213f825a39ff84b229/Entity%20Framework%20Core/Entity%20Framework%20Introduction/02.DatabaseFirst/Program.cs#L349)
+15. [Remove Town](https://github.com/Banovvv/SoftUni-CSharp-DB/blob/f94d9b9a1c037e69c6fff7213f825a39ff84b229/Entity%20Framework%20Core/Entity%20Framework%20Introduction/02.DatabaseFirst/Program.cs#L384)
 ### Entity Relations
 1. []()
 2. []()
@@ -383,7 +371,6 @@ My solutions to SoftUni's DB problems:
 23. []()
 24. []()
 25. []()
-
  
     </td>
   </tr>
