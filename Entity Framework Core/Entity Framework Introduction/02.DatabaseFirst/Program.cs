@@ -142,8 +142,14 @@ namespace _02.DatabaseFirst
             foreach (var employee in employees)
             {
                 var manager = context.Employees.Where(x => x.EmployeeId == employee.ManagerId).FirstOrDefault();
+                var employeeProjectIDs = context.EmployeesProjects.Where(x => x.EmployeeId == employee.EmployeeId).Select(x => x.ProjectId).ToList();
+                var employeeProjects = context.Projects.Where(x => employeeProjectIDs.Contains(x.ProjectId)).ToList();
                 sb.AppendLine($"{employee.FirstName} {employee.LastName} - Manager: {manager.FirstName} {manager.LastName}");
-                sb.AppendLine();
+
+                foreach (var project in employeeProjects)
+                {
+                    sb.AppendLine($"--{project.Name} - {project.StartDate.ToString("M/d/yyyy h:mm:ss tt")} - {(project.EndDate != null ? project.StartDate.ToString("M/d/yyyy h:mm:ss tt") : "not finished")}");
+                }
             }
 
             return sb.ToString().Trim();
