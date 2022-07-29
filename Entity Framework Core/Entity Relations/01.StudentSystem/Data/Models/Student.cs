@@ -13,9 +13,9 @@ namespace P01_StudentSystem.Data.Models
         // (up to 100 characters, unicode)
         public string Name { get; set; }
         // (exactly 10 characters, not unicode, not required)
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
         public DateTime RegisteredOn { get; set; }
         // (not required)
-        public DateTime Birthday { get; set; }
+        public DateTime? Birthday { get; set; }
     }
 }
