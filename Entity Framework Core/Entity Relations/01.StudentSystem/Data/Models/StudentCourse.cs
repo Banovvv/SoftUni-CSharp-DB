@@ -4,7 +4,7 @@ using System.Text;
 
 namespace P01_StudentSystem.Data.Models
 {
-    internal class StudentCourse
+    public class StudentCourse
     {
     }
 }
