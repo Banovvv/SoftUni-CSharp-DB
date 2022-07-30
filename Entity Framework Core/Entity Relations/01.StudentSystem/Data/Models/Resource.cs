@@ -1,4 +1,5 @@
 ﻿using _01.StudentSystem.Data.Models.Enum;
+using System.ComponentModel.DataAnnotations;
 
 namespace P01_StudentSystem.Data.Models
 {
@@ -11,6 +12,7 @@ namespace P01_StudentSystem.Data.Models
 
         public int ResourceId { get; set; }
         //  (up to 50 characters, unicode)
+        [MaxLength(50)]
         public string Name { get; set; }
         // (not unicode)
         public string Url { get; set; }

@@ -4,7 +4,13 @@ using System.Text;
 
 namespace P01_StudentSystem.Data.Models
 {
-    internal class Homework
+    public class Homework
     {
+        public Homework()
+        {
+
+        }
+
+        public int HomeworkId { get; set; }
     }
 }
