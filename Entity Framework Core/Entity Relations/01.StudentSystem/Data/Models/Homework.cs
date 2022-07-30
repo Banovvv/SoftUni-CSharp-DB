@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace P01_StudentSystem.Data.Models
 {
@@ -12,5 +10,12 @@ namespace P01_StudentSystem.Data.Models
         }
 
         public int Id { get; set; }
+        // (string, linking to a file, not unicode)
+        public string Content { get; set; }
+        // (enum – can be Application, Pdf or Zip)
+        public string ContentType { get; set; }
+        public DateTime SubmissionTime { get; set; }
+        public int StudentId { get; set; }
+        public int CourseId { get; set; }
     }
 }

@@ -10,7 +10,6 @@ namespace P01_StudentSystem.Data.Models
 
         }
 
-        [Required]
         public int Id { get; set; }
         // (up to 80 characters, unicode)
         [Required]
