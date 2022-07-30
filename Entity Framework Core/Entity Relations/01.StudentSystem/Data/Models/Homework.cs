@@ -11,6 +11,6 @@ namespace P01_StudentSystem.Data.Models
 
         }
 
-        public int HomeworkId { get; set; }
+        public int Id { get; set; }
     }
 }

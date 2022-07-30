@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace P01_StudentSystem.Data.Models
 {
@@ -9,11 +10,15 @@ namespace P01_StudentSystem.Data.Models
 
         }
 
-        public int StudentId { get; set; }
+        public int Id { get; set; }
         // (up to 100 characters, unicode)
+        [Required]
+        [MaxLength(100)]
         public string Name { get; set; }
         // (exactly 10 characters, not unicode, not required)
-        public string? PhoneNumber { get; set; }
+        [StringLength(10)]
+        public string PhoneNumber { get; set; }
+        [Required]
         public DateTime RegisteredOn { get; set; }
         // (not required)
         public DateTime? Birthday { get; set; }

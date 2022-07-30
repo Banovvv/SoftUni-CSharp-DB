@@ -11,7 +11,7 @@ namespace P01_StudentSystem.Data.Models
         }
 
         [Required]
-        public int CourseId { get; set; }
+        public int Id { get; set; }
         // (up to 80 characters, unicode)
         [Required]
         [MaxLength(80)]

@@ -10,7 +10,7 @@ namespace P01_StudentSystem.Data.Models
 
         }
 
-        public int ResourceId { get; set; }
+        public int Id { get; set; }
         //  (up to 50 characters, unicode)
         [MaxLength(50)]
         public string Name { get; set; }
