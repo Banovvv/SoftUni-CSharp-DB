@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace P01_StudentSystem.Data.Models
@@ -7,7 +8,9 @@ namespace P01_StudentSystem.Data.Models
     {
         public Course()
         {
-
+            StudentsEnrolled = new HashSet<Student>();
+            Resources = new HashSet<Resource>();
+            HomeworkSubmissions = new HashSet<Homework>();
         }
 
         public int Id { get; set; }
@@ -23,5 +26,8 @@ namespace P01_StudentSystem.Data.Models
         public DateTime EndDate { get; set; }
         [Required]
         public decimal Price { get; set; }
+        public ICollection<Student> StudentsEnrolled { get; set; }
+        public ICollection<Resource> Resources { get; set; }
+        public ICollection<Homework> HomeworkSubmissions { get; set; }
     }
 }
