@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _01.StudentSystem.Data.Models.Enum;
+using System;
 
 namespace P01_StudentSystem.Data.Models
 {
@@ -13,7 +14,7 @@ namespace P01_StudentSystem.Data.Models
         // (string, linking to a file, not unicode)
         public string Content { get; set; }
         // (enum – can be Application, Pdf or Zip)
-        public string ContentType { get; set; }
+        public ContentType ContentType { get; set; }
         public DateTime SubmissionTime { get; set; }
         public int StudentId { get; set; }
         public int CourseId { get; set; }
