@@ -4,6 +4,11 @@ namespace P03_FootballBetting.Data.Models
 {
     public class User
     {
+        public User()
+        {
+            Bets = new HashSet<Bet>();
+        }
+
         public int UserId { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }

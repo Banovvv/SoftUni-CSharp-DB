@@ -5,6 +5,12 @@ namespace P03_FootballBetting.Data.Models
 {
     public class Game
     {
+        public Game()
+        {
+            PlayerStatistics = new HashSet<Player>();
+            Bets = new HashSet<Bet>();
+        }
+
         public int GameId { get; set; }
         public int HomeTeamId { get; set; }
         public int AwayTeamId { get; set; }
@@ -16,6 +22,9 @@ namespace P03_FootballBetting.Data.Models
         public double DrawBetRate { get; set; }
         // Enum?
         public int Result { get; set; }
+
+        public Team HomeTeam { get; set; }
+        public Team AwayTeam { get; set; }
 
         public ICollection<Player> PlayerStatistics { get; set; }
         public ICollection<Bet> Bets { get; set; }

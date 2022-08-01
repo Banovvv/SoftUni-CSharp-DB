@@ -5,6 +5,11 @@ namespace P03_FootballBetting.Data
 {
     public class FootballBettingContext : DbContext
     {
+        public FootballBettingContext()
+        {
+
+        }
+
         public DbSet<Bet> Bets { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Country> Countries { get; set; }
