@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace P03_FootballBetting.Data.Models
 {
@@ -15,5 +16,8 @@ namespace P03_FootballBetting.Data.Models
         public double DrawBetRate { get; set; }
         // Enum?
         public int Result { get; set; }
+
+        public ICollection<Player> PlayerStatistics { get; set; }
+        public ICollection<Bet> Bets { get; set; }
     }
 }

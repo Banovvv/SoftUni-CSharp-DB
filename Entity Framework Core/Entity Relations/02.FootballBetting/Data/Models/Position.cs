@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace P03_FootballBetting.Data.Models
 {
@@ -8,5 +6,7 @@ namespace P03_FootballBetting.Data.Models
     {
         public int PositionId { get; set; }
         public string Name { get; set; }
+
+        public ICollection<Player> Players { get; set; }
     }
 }
