@@ -19,5 +19,7 @@ namespace P01_StudentSystem.Data.Models
         // (enum – can be Video, Presentation, Document or Other)
         public ResourceType ResourceType { get; set; }
         public int CourseId { get; set; }
+
+        public virtual Course Course { get; set; }
     }
 }

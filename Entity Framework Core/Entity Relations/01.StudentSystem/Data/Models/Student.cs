@@ -24,7 +24,8 @@ namespace P01_StudentSystem.Data.Models
         public DateTime RegisteredOn { get; set; }
         // (not required)
         public DateTime? Birthday { get; set; }
-        public ICollection<Course> CourseEnrollments { get; set; }
-        public ICollection<Homework> HomeworkSubmissions { get; set; }
+
+        public virtual ICollection<Course> CourseEnrollments { get; set; }
+        public virtual ICollection<Homework> HomeworkSubmissions { get; set; }
     }
 }
