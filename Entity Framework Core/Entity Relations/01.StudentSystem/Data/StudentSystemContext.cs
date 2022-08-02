@@ -7,7 +7,7 @@ namespace P01_StudentSystem.Data
     {
         public StudentSystemContext()
         {
-                
+
         }
 
         public StudentSystemContext(DbContextOptions options) : base(options)
@@ -22,12 +22,22 @@ namespace P01_StudentSystem.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=StudentSystem;Integrated Security=true;");
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=StudentSystem;Integrated Security=true;");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Course>(course =>
+            {
+                course
+                    .HasKey(c => c.Id);
 
+                course
+                    .Property(c => c.Name);
+            });
         }
 
     }
