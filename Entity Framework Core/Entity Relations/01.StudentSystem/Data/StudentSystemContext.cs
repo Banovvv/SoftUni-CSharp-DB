@@ -5,7 +5,12 @@ namespace P01_StudentSystem.Data
 {
     public class StudentSystemContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public StudentSystemContext()
+        {
+                
+        }
+
+        public StudentSystemContext(DbContextOptions options) : base(options)
         {
 
         }
@@ -14,5 +19,16 @@ namespace P01_StudentSystem.Data
         public DbSet<Homework> Homeworks { get; set; }
         public DbSet<Resource> Resources { get; set; }
         public DbSet<Student> Students { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=StudentSystem;Integrated Security=true;");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+        }
+
     }
 }
