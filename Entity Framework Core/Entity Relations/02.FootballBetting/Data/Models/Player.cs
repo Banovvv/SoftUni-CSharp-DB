@@ -16,9 +16,9 @@ namespace P03_FootballBetting.Data.Models
         public int PositionId { get; set; }
         public bool IsInjured { get; set; }
 
-        public Team Team { get; set; }
-        public Position Position { get; set; }
+        public virtual Team Team { get; set; }
+        public virtual Position Position { get; set; }
 
-        public ICollection<Game> PlayerStatistics { get; set; }
+        public virtual ICollection<Game> PlayerStatistics { get; set; }
     }
 }

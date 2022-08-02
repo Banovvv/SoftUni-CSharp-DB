@@ -16,6 +16,6 @@ namespace P03_FootballBetting.Data.Models
         public string Name { get; set; }
         public decimal Amount { get; set; }
 
-        public ICollection<Bet> Bets { get; set; }
+        public virtual ICollection<Bet> Bets { get; set; }
     }
 }

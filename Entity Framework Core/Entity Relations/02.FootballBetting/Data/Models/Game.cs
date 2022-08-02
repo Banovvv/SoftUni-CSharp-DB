@@ -23,10 +23,10 @@ namespace P03_FootballBetting.Data.Models
         // Enum?
         public int Result { get; set; }
 
-        public Team HomeTeam { get; set; }
-        public Team AwayTeam { get; set; }
+        public virtual Team HomeTeam { get; set; }
+        public virtual Team AwayTeam { get; set; }
 
-        public ICollection<Player> PlayerStatistics { get; set; }
-        public ICollection<Bet> Bets { get; set; }
+        public virtual ICollection<Player> PlayerStatistics { get; set; }
+        public virtual ICollection<Bet> Bets { get; set; }
     }
 }

@@ -13,6 +13,6 @@ namespace P03_FootballBetting.Data.Models
         public string Name { get; set; }
         public int CountryId { get; set; }
 
-        public ICollection<Team> Teams { get; set; }
+        public virtual ICollection<Team> Teams { get; set; }
     }
 }

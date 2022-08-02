@@ -8,7 +8,7 @@
         public int Assists { get; set; }
         public int MinutesPlayed { get; set; }
 
-        public Game Game { get; set; }
-        public Player Player { get; set; }
+        public virtual Game Game { get; set; }
+        public virtual Player Player { get; set; }
     }
 }
