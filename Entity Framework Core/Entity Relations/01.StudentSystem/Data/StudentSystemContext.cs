@@ -24,7 +24,7 @@ namespace P01_StudentSystem.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=StudentSystem;Integrated Security=true;");
+                //optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=StudentSystem;Integrated Security=true;");
             }
         }
 
@@ -36,7 +36,9 @@ namespace P01_StudentSystem.Data
                     .HasKey(c => c.Id);
 
                 course
-                    .Property(c => c.Name);
+                    .Property(c => c.Description)
+                    .IsRequired(false)
+                    .IsUnicode(true);
             });
         }
 
