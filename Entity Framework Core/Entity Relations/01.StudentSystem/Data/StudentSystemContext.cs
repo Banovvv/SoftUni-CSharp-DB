@@ -40,6 +40,21 @@ namespace P01_StudentSystem.Data
                     .IsRequired(false)
                     .IsUnicode(true);
             });
+
+            modelBuilder.Entity<Student>(student =>
+            {
+                student
+                    .HasKey(s => s.Id);
+
+                student
+                    .Property(s=>s.Name)
+                    .IsUnicode(true);
+
+                student
+                    .Property(s => s.PhoneNumber)
+                    .IsRequired(false)
+                    .IsUnicode(false);
+            });
         }
 
     }
