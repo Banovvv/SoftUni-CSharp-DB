@@ -52,6 +52,7 @@ namespace P01_StudentSystem.Data
 
                 student
                     .Property(s => s.PhoneNumber)
+                    .IsFixedLength(true)
                     .IsRequired(false)
                     .IsUnicode(false);
             });
