@@ -10,6 +10,11 @@ namespace P03_FootballBetting.Data
 
         }
 
+        public FootballBettingContext(DbContextOptions options) : base(options)
+        {
+
+        }
+
         public DbSet<Bet> Bets { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Country> Countries { get; set; }
@@ -20,5 +25,13 @@ namespace P03_FootballBetting.Data
         public DbSet<Team> Teams { get; set; }
         public DbSet<Town> Towns { get; set; }
         public DbSet<User> Users { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=FootbalBetting;Integrated Security=true;");
+            }
+        }
     }
 }
