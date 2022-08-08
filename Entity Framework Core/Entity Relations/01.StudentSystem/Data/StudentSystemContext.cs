@@ -35,7 +35,7 @@ namespace P01_StudentSystem.Data
                 course
                     .HasKey(c => c.Id);
 
-                course
+                course 
                     .Property(c => c.Description)
                     .IsRequired(false)
                     .IsUnicode(true);
