@@ -33,10 +33,10 @@ namespace P01_StudentSystem.Data
             modelBuilder.Entity<Course>(course =>
             {
                 course
-                    .HasKey(c => c.Id);
+                    .HasKey(x => x.Id);
 
                 course 
-                    .Property(c => c.Description)
+                    .Property(x => x.Description)
                     .IsRequired(false)
                     .IsUnicode(true);
             });
@@ -44,16 +44,27 @@ namespace P01_StudentSystem.Data
             modelBuilder.Entity<Student>(student =>
             {
                 student
-                    .HasKey(s => s.Id);
+                    .HasKey(x => x.Id);
 
                 student
-                    .Property(s=>s.Name)
+                    .Property(x=>x.Name)
                     .IsUnicode(true);
 
                 student
-                    .Property(s => s.PhoneNumber)
+                    .Property(x => x.PhoneNumber)
                     .IsFixedLength(true)
                     .IsRequired(false)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Resource>(resource =>
+            {
+                resource
+                    .Property(x => x.Name)
+                    .IsUnicode(false);
+
+                resource
+                    .Property(x => x.Url)
                     .IsUnicode(false);
             });
         }
