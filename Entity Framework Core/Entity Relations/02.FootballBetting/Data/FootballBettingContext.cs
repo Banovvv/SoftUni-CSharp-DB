@@ -33,5 +33,10 @@ namespace P03_FootballBetting.Data
                 optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=FootbalBetting;Integrated Security=true;");
             }
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+        }
     }
 }

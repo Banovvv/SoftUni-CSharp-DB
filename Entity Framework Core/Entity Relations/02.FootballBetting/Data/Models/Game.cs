@@ -20,7 +20,6 @@ namespace P03_FootballBetting.Data.Models
         public double HomeTeamBetRate { get; set; }
         public double AwayTeamBetRate { get; set; }
         public double DrawBetRate { get; set; }
-        // Enum?
         public int Result { get; set; }
 
         public virtual Team HomeTeam { get; set; }
