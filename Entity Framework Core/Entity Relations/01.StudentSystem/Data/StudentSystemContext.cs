@@ -67,6 +67,13 @@ namespace P01_StudentSystem.Data
                     .Property(x => x.Url)
                     .IsUnicode(false);
             });
+
+            modelBuilder.Entity<Homework>(homework =>
+            {
+                homework
+                    .Property(x => x.Content)
+                    .IsUnicode(false);
+            });
         }
 
     }
