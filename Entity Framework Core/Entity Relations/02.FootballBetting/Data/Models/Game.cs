@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using P03_FootballBetting.Data.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace P03_FootballBetting.Data.Models
 {
@@ -20,11 +22,14 @@ namespace P03_FootballBetting.Data.Models
         public double DrawBetRate { get; set; }
         public int Result { get; set; }
 
-
-        public int HomeTeamId { get; set; }
+        
+        public int? HomeTeamId { get; set; }
+        [InverseProperty(nameof(Team.HomeGames))]
         public virtual Team HomeTeam { get; set; }
 
-        public int AwayTeamId { get; set; }
+        
+        public int? AwayTeamId { get; set; }
+        [InverseProperty(nameof(Team.AwayGames))]
         public virtual Team AwayTeam { get; set; }
 
         public virtual ICollection<Player> PlayerStatistics { get; set; }

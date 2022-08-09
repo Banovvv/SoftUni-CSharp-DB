@@ -110,6 +110,9 @@ namespace P03_FootballBetting.Data
                 user.Property(x => x.Balance)
                     .HasDefaultValue(0);
             });
+
+            modelBuilder.Entity<PlayerStatistic>()
+                .HasKey(x => new { x.PlayerId, x.GameId });
         }
     }
 }
