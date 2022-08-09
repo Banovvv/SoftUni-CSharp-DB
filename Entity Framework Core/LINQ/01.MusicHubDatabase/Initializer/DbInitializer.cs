@@ -7,8 +7,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Microsoft.EntityFrameworkCore;
 
-using Data;
-using Data.Models;
+using MusicHub.Data;
+using MusicHub.Data.Models;
 
 namespace MusicHub.Initializer
 {
