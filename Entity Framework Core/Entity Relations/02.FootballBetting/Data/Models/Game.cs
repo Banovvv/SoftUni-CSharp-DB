@@ -12,8 +12,6 @@ namespace P03_FootballBetting.Data.Models
         }
 
         public int GameId { get; set; }
-        public int HomeTeamId { get; set; }
-        public int AwayTeamId { get; set; }
         public int HomeTeamGoals { get; set; }
         public int AwayTeamGoals { get; set; }
         public DateTime DateTime { get; set; }
@@ -22,7 +20,11 @@ namespace P03_FootballBetting.Data.Models
         public double DrawBetRate { get; set; }
         public int Result { get; set; }
 
+
+        public int HomeTeamId { get; set; }
         public virtual Team HomeTeam { get; set; }
+
+        public int AwayTeamId { get; set; }
         public virtual Team AwayTeam { get; set; }
 
         public virtual ICollection<Player> PlayerStatistics { get; set; }

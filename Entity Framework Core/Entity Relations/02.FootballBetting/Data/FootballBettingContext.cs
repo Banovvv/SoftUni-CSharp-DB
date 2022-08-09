@@ -36,6 +36,12 @@ namespace P03_FootballBetting.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Bet>(bet =>
+            {
+                bet.Property(x => x.Prediction)
+                    .IsRequired();
+            });
+
             modelBuilder.Entity<Color>(color =>
             {
                 color.Property(x => x.Name)
@@ -66,7 +72,43 @@ namespace P03_FootballBetting.Data
 
             modelBuilder.Entity<Team>(team =>
             {
+                team.Property(x => x.Name)
+                    .IsRequired()
+                    .IsUnicode(true);
 
+                team.Property(x => x.Initials)
+                    .IsRequired()
+                    .HasMaxLength(3)
+                    .IsUnicode(true);
+            });
+
+            modelBuilder.Entity<Town>(town =>
+            {
+                town.Property(x => x.Name)
+                    .IsRequired()
+                    .IsUnicode(true);
+            });
+
+            modelBuilder.Entity<User>(user =>
+            {
+                user.Property(x => x.Username)
+                    .IsRequired()
+                    .IsUnicode(true);
+
+                user.Property(x => x.Password)
+                    .IsRequired()
+                    .IsUnicode(true);
+
+                user.Property(x => x.Name)
+                    .IsRequired()
+                    .IsUnicode(true);
+
+                user.Property(x => x.Email)
+                    .IsRequired()
+                    .IsUnicode(true);
+
+                user.Property(x => x.Balance)
+                    .HasDefaultValue(0);
             });
         }
     }
