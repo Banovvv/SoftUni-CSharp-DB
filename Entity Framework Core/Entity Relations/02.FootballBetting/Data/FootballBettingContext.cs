@@ -36,7 +36,12 @@ namespace P03_FootballBetting.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<Color>(color =>
+            {
+                color.Property(x => x.Name)
+                    .IsRequired()
+                    .IsUnicode(true);
+            });
         }
     }
 }
