@@ -42,6 +42,27 @@ namespace P03_FootballBetting.Data
                     .IsRequired()
                     .IsUnicode(true);
             });
+
+            modelBuilder.Entity<Country>(country =>
+            {
+                country.Property(x => x.Name)
+                    .IsRequired()
+                    .IsUnicode(true);
+            });
+
+            modelBuilder.Entity<Player>(player =>
+            {
+                player.Property(x => x.Name)
+                    .IsRequired()
+                    .IsUnicode(true);
+            });
+
+            modelBuilder.Entity<Position>(position =>
+            {
+                position.Property(x => x.Name)
+                    .IsRequired()
+                    .IsUnicode(true);
+            });
         }
     }
 }
