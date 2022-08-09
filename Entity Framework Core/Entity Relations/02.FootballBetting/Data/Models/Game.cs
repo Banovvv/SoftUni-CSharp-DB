@@ -9,7 +9,6 @@ namespace P03_FootballBetting.Data.Models
     {
         public Game()
         {
-            PlayerStatistics = new HashSet<Player>();
             Bets = new HashSet<Bet>();
         }
 
@@ -32,7 +31,6 @@ namespace P03_FootballBetting.Data.Models
         [InverseProperty(nameof(Team.AwayGames))]
         public virtual Team AwayTeam { get; set; }
 
-        public virtual ICollection<Player> PlayerStatistics { get; set; }
         public virtual ICollection<Bet> Bets { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace P03_FootballBetting.Data.Models
     {
         public Player()
         {
-            PlayerStatistics = new HashSet<Game>();
+
         }
 
         public int PlayerId { get; set; }
@@ -21,7 +21,5 @@ namespace P03_FootballBetting.Data.Models
 
         public int PositionId { get; set; }
         public virtual Position Position { get; set; }
-
-        public virtual ICollection<Game> PlayerStatistics { get; set; }
     }
 }
