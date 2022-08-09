@@ -11,6 +11,9 @@ namespace MusicHub.Data.Models
         public DateTime ReleaseDate { get; set; }
         public decimal Price => Songs.Sum(x => x.Price);
 
+        public int ProducerId { get; set; }
+        public virtual Producer Producer { get; set; }
+
         public virtual ICollection<Song> Songs { get; set; }
     }
 }
