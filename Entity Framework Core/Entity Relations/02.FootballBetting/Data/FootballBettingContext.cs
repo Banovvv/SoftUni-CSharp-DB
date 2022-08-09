@@ -63,6 +63,11 @@ namespace P03_FootballBetting.Data
                     .IsRequired()
                     .IsUnicode(true);
             });
+
+            modelBuilder.Entity<Team>(team =>
+            {
+
+            });
         }
     }
 }
