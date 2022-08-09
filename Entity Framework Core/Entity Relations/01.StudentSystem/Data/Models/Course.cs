@@ -8,10 +8,9 @@ namespace P01_StudentSystem.Data.Models
     {
         public Course()
         {
-            StudentsEnrolled = new HashSet<Student>();
+            StudentsEnrolled = new HashSet<StudentCourse>();
             Resources = new HashSet<Resource>();
             HomeworkSubmissions = new HashSet<Homework>();
-            StudentCourses = new HashSet<StudentCourse>();
         }
 
         public int Id { get; set; }
@@ -28,9 +27,8 @@ namespace P01_StudentSystem.Data.Models
         [Required]
         public decimal Price { get; set; }
 
-        public virtual ICollection<Student> StudentsEnrolled { get; set; }
+        public virtual ICollection<StudentCourse> StudentsEnrolled { get; set; }
         public virtual ICollection<Resource> Resources { get; set; }
         public virtual ICollection<Homework> HomeworkSubmissions { get; set; }
-        public virtual ICollection<StudentCourse> Students { get; set; }
     }
 }
