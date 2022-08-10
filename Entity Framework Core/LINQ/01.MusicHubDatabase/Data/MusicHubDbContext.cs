@@ -9,8 +9,7 @@ namespace MusicHub.Data
         {
         }
 
-        public MusicHubDbContext(DbContextOptions options)
-            : base(options)
+        public MusicHubDbContext(DbContextOptions options) : base(options)
         {
         }
 
@@ -25,14 +24,36 @@ namespace MusicHub.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder
-                    .UseSqlServer(Configuration.ConnectionString);
+                optionsBuilder.UseSqlServer(Configuration.ConnectionString);
             }
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Song>(song =>
+            {
+                song.Property(x => x.Name)
+                    .HasMaxLength(20)
+                    .IsRequired()
+                    .IsUnicode(false);
 
+                song.Property(x => x.Duration)
+                    .IsRequired();
+
+                song.Property(x => x.CreateOn)
+                    .IsRequired();
+
+                song.Property(x => x.Genre)
+                    .IsRequired();
+            });
+
+            builder.Entity<Album>(album =>
+            {
+                album.Property(x => x.Name)
+                    .HasMaxLength(40)
+                    .IsRequired()
+                    .IsUnicode(false);
+            });
         }
     }
 }
