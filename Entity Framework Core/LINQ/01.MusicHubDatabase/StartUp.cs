@@ -8,12 +8,12 @@ namespace MusicHub
     {
         public static void Main(string[] args)
         {
-            MusicHubDbContext context =
-                new MusicHubDbContext();
+            using (MusicHubDbContext context = new MusicHubDbContext())
+            {
+                DbInitializer.ResetDatabase(context);
 
-            DbInitializer.ResetDatabase(context);
-
-            //Test your solutions here
+                //Test your solutions here
+            }
         }
 
         public static string ExportAlbumsInfo(MusicHubDbContext context, int producerId)

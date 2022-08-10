@@ -1,7 +1,8 @@
-﻿namespace MusicHub.Data
-{
-    using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MusicHub.Data.Models;
 
+namespace MusicHub.Data
+{
     public class MusicHubDbContext : DbContext
     {
         public MusicHubDbContext()
@@ -12,6 +13,13 @@
             : base(options)
         {
         }
+
+        public virtual DbSet<Song> Songs { get; set; }
+        public virtual DbSet<Album> Albums { get; set; }
+        public virtual DbSet<Performer> Performsers { get; set; }
+        public virtual DbSet<Producer> Producers { get; set; }
+        public virtual DbSet<Writer> Writers { get; set; }
+        public virtual DbSet<SongPerformer> SongsPerformers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -24,7 +32,7 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            
+
         }
     }
 }
