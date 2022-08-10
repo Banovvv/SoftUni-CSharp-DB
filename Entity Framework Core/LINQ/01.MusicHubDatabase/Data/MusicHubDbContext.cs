@@ -67,6 +67,28 @@ namespace MusicHub.Data
                     .IsRequired(true)
                     .IsUnicode(false);
             });
+
+            builder.Entity<Producer>(producer =>
+            {
+                producer.Property(x => x.Name)
+                    .HasMaxLength(30)
+                    .IsRequired(true)
+                    .IsUnicode(false);
+            });
+
+            builder.Entity<Writer>(writer =>
+            {
+                writer.Property(x => x.Name)
+                    .HasMaxLength(20)
+                    .IsRequired(true)
+                    .IsUnicode(false);
+            });
+
+            builder.Entity<SongPerformer>(songPerformer =>
+            {
+                songPerformer
+                    .HasKey(x => new { x.SongId, x.PerformerId });
+            });
         }
     }
 }
