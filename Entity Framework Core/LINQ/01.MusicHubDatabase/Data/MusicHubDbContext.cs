@@ -54,6 +54,19 @@ namespace MusicHub.Data
                     .IsRequired()
                     .IsUnicode(false);
             });
+
+            builder.Entity<Performer>(performer =>
+            {
+                performer.Property(x => x.FirstName)
+                    .HasMaxLength(20)
+                    .IsRequired(true)
+                    .IsUnicode(false);
+
+                performer.Property(x => x.LastName)
+                    .HasMaxLength(20)
+                    .IsRequired(true)
+                    .IsUnicode(false);
+            });
         }
     }
 }
