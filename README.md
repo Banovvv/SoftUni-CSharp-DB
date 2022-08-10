@@ -173,8 +173,8 @@ My solutions to SoftUni's DB problems:
 14. [Delete Project by Id](https://github.com/Banovvv/SoftUni-CSharp-DB/blob/f94d9b9a1c037e69c6fff7213f825a39ff84b229/Entity%20Framework%20Core/Entity%20Framework%20Introduction/02.DatabaseFirst/Program.cs#L349)
 15. [Remove Town](https://github.com/Banovvv/SoftUni-CSharp-DB/blob/f94d9b9a1c037e69c6fff7213f825a39ff84b229/Entity%20Framework%20Core/Entity%20Framework%20Introduction/02.DatabaseFirst/Program.cs#L384)
 ### Entity Relations
-1. [Student System]()
-3. [Football Betting]()
+1. [Student System](https://github.com/Banovvv/SoftUni-CSharp-DB/tree/master/Entity%20Framework%20Core/Entity%20Relations/01.StudentSystem)
+3. [Football Betting](https://github.com/Banovvv/SoftUni-CSharp-DB/tree/master/Entity%20Framework%20Core/Entity%20Relations/02.FootballBetting)
 ### LINQ
 1. []()
 2. []()
