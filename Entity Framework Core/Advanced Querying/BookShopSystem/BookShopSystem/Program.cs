@@ -19,7 +19,10 @@ namespace BookShopSystem
                 //Console.WriteLine(GetBooksByAgeRestriction(context, "miNor"));
 
                 // 3. Golden Books
-                Console.WriteLine(GetGoldenBooks(context));
+                //Console.WriteLine(GetGoldenBooks(context));
+
+                // 4. Books by Price
+                Console.WriteLine(GetBooksByPrice(context));
             }
         }
 
@@ -56,6 +59,26 @@ namespace BookShopSystem
             foreach(var book in books)
             {
                 sb.AppendLine(book);
+            }
+
+            return sb.ToString().Trim();
+        }
+        public static string GetBooksByPrice(BookShopContext context)
+        {
+            var books = context.Books.Where(x => x.Price >= 40)
+                .Select(x => new
+                {
+                    x.Title,
+                    x.Price
+                })
+                .OrderByDescending(x=>x.Price)
+                .ToList();
+
+            StringBuilder sb = new StringBuilder();
+            
+            foreach (var book in books)
+            {
+                sb.AppendLine($"{book.Title} - ${book.Price:F2}");
             }
 
             return sb.ToString().Trim();
