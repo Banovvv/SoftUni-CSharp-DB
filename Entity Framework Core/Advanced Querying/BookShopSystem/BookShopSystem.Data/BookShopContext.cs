@@ -16,6 +16,7 @@ namespace BookShopSystem.Data
         }
 
         public virtual DbSet<Author> Authors { get; set; }
+        public virtual DbSet<Book> Books { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -37,6 +38,19 @@ namespace BookShopSystem.Data
                 author.Property(x => x.LastName)
                     .IsRequired(true)
                     .HasMaxLength(50)
+                    .IsUnicode(true);
+            });
+
+            modelBuilder.Entity<Book>(book =>
+            {
+                book.Property(x => x.Title)
+                    .IsRequired(true)
+                    .HasMaxLength(50)
+                    .IsUnicode(true);
+
+                book.Property(x => x.Description)
+                    .IsRequired(true)
+                    .HasMaxLength(100)
                     .IsUnicode(true);
             });
         }
