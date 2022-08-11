@@ -14,4 +14,8 @@
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BookShopSystem.Models\BookShopSystem.Models.csproj" />
+  </ItemGroup>
+
 </Project>
