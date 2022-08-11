@@ -176,12 +176,11 @@ My solutions to SoftUni's DB problems:
 1. [Student System](https://github.com/Banovvv/SoftUni-CSharp-DB/tree/master/Entity%20Framework%20Core/Entity%20Relations/01.StudentSystem)
 3. [Football Betting](https://github.com/Banovvv/SoftUni-CSharp-DB/tree/master/Entity%20Framework%20Core/Entity%20Relations/02.FootballBetting)
 ### LINQ
-1. []()
-2. []()
-3. []()
+1. [MusicHub Database](https://github.com/Banovvv/SoftUni-CSharp-DB/tree/master/Entity%20Framework%20Core/LINQ/01.MusicHubDatabase)
+2. [Albums Info](https://github.com/Banovvv/SoftUni-CSharp-DB/blob/db21ae906a804facf4e37092699df0e1a59fda0e/Entity%20Framework%20Core/LINQ/01.MusicHubDatabase/StartUp.cs#L24)
+3. [Songs Above Duration](https://github.com/Banovvv/SoftUni-CSharp-DB/blob/db21ae906a804facf4e37092699df0e1a59fda0e/Entity%20Framework%20Core/LINQ/01.MusicHubDatabase/StartUp.cs#L76)
 ### Advanced Querying
-1. []()
-2. []()
+2. [Age Restriction]()
 3. []()
 4. []()
 5. []()
@@ -195,6 +194,7 @@ My solutions to SoftUni's DB problems:
 13. []()
 14. []()
 15. []()
+16. []()
 ### JavaScript Object Notation - JSON
 1. []()
 2. []()
