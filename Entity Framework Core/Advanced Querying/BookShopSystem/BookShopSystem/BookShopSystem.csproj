@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BookShop.Initializer\BookShopSystem.Initializer.csproj" />
     <ProjectReference Include="..\BookShopSystem.Data\BookShopSystem.Data.csproj" />
     <ProjectReference Include="..\BookShopSystem.Models\BookShopSystem.Models.csproj" />
   </ItemGroup>

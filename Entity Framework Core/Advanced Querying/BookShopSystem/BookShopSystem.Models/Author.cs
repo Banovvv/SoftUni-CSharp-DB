@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BookShopSystem.Models
+﻿namespace BookShopSystem.Models
 {
     public class Author
     {

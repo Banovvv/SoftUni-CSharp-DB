@@ -17,6 +17,8 @@ namespace BookShopSystem.Data
 
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<BookCategory> BooksCategories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -52,6 +54,20 @@ namespace BookShopSystem.Data
                     .IsRequired(true)
                     .HasMaxLength(100)
                     .IsUnicode(true);
+            });
+
+            modelBuilder.Entity<Category>(category =>
+            {
+                category.Property(x => x.Name)
+                    .IsRequired(true)
+                    .HasMaxLength(50)
+                    .IsUnicode(true);
+            });
+
+            modelBuilder.Entity<BookCategory>(bookCategory =>
+            {
+                bookCategory
+                    .HasKey(x => new { x.CategoryId, x.BookId });
             });
         }
     }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BookShopSystem.Initializer;
+using BookShopSystem.Data;
+using System;
 
 namespace BookShopSystem
 {
@@ -6,7 +8,10 @@ namespace BookShopSystem
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            using(var context = new BookShopContext())
+            {
+                DbInitializer.ResetDatabase(context);
+            }
         }
     }
 }
