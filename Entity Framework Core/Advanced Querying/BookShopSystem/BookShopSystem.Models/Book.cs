@@ -8,7 +8,7 @@ namespace BookShopSystem.Models
     {
         public Book()
         {
-
+            BookCategories = new HashSet<BookCategory>();
         }
 
         public int Id { get; set; }

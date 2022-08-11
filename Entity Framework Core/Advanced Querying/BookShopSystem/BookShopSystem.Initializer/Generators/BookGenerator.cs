@@ -7,15 +7,7 @@ namespace BookShopSystem.Initializer.Generators
 {
     internal class BookGenerator
     {
-        #region Book Description
-        private static string bookDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
-            "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
-            "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
-            "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit " +
-            "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. " +
-            "Excepteur sint occaecat cupidatat non proident, " +
-            "sunt in culpa qui officia deserunt mollit anim id est laborum.";
-        #endregion
+        private static string bookDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
 
         internal static Book[] CreateBooks()
         {
@@ -244,7 +236,7 @@ namespace BookShopSystem.Initializer.Generators
                     Price = price,
                     Copies = copies,
                     AgeRestriction = (AgeRestriction)ageRestriction,
-                    Author = author,
+                    Author = author,                     
                 };
 
                 BookCategory bookCategory = new BookCategory()

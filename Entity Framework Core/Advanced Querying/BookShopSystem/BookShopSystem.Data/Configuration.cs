@@ -6,7 +6,7 @@ namespace BookShopSystem.Data
     {
         internal static string GetConnectionString()
         {
-            return ConfigurationManager.ConnectionStrings["BookShopConnectionString"].ConnectionString;
+            return @"Server=.\SQLEXPRESS;Database=BookShop;Integrated Security=true;";
         }
     }
 }

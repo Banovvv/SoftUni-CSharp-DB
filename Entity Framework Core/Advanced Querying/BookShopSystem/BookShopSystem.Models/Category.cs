@@ -6,7 +6,7 @@ namespace BookShopSystem.Models
     {
         public Category()
         {
-
+            CategoryBooks = new HashSet<BookCategory>();
         }
 
         public int Id { get; set; }
