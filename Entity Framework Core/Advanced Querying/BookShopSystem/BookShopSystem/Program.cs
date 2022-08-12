@@ -1,9 +1,8 @@
-﻿using BookShopSystem.Initializer;
-using BookShopSystem.Data;
-using System;
-using System.Text;
-using System.Linq;
+﻿using BookShopSystem.Data;
 using BookShopSystem.Models.Enums;
+using System;
+using System.Linq;
+using System.Text;
 
 namespace BookShopSystem
 {
@@ -11,7 +10,7 @@ namespace BookShopSystem
     {
         static void Main(string[] args)
         {
-            using(var context = new BookShopContext())
+            using (var context = new BookShopContext())
             {
                 //DbInitializer.ResetDatabase(context);
 
@@ -22,7 +21,10 @@ namespace BookShopSystem
                 //Console.WriteLine(GetGoldenBooks(context));
 
                 // 4. Books by Price
-                Console.WriteLine(GetBooksByPrice(context));
+                //Console.WriteLine(GetBooksByPrice(context));
+
+                // 5. Not Released in
+                Console.WriteLine(GetBooksNotReleasedIn(context, 2000));
             }
         }
 
@@ -56,7 +58,7 @@ namespace BookShopSystem
 
             StringBuilder sb = new StringBuilder();
 
-            foreach(var book in books)
+            foreach (var book in books)
             {
                 sb.AppendLine(book);
             }
@@ -71,14 +73,35 @@ namespace BookShopSystem
                     x.Title,
                     x.Price
                 })
-                .OrderByDescending(x=>x.Price)
+                .OrderByDescending(x => x.Price)
                 .ToList();
 
             StringBuilder sb = new StringBuilder();
-            
+
             foreach (var book in books)
             {
                 sb.AppendLine($"{book.Title} - ${book.Price:F2}");
+            }
+
+            return sb.ToString().Trim();
+        }
+        public static string GetBooksNotReleasedIn(BookShopContext context, int year = 0)
+        {
+            if (year == 0)
+            {
+                year = int.Parse(Console.ReadLine());
+            }
+
+            var books = context.Books.Where(x => x.ReleaseDate.Value.Year != year)
+                .OrderBy(x => x.Id)
+                .Select(x => x.Title)
+                .ToList();
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach(var book in books)
+            {
+                sb.AppendLine(book);
             }
 
             return sb.ToString().Trim();
