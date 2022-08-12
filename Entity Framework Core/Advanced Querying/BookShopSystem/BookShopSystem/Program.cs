@@ -27,7 +27,10 @@ namespace BookShopSystem
                 //Console.WriteLine(GetBooksNotReleasedIn(context, 2000));
 
                 // 6. Book Titles by Category
-                Console.WriteLine(GetBooksByCategory(context, "horror mystery drama"));
+                //Console.WriteLine(GetBooksByCategory(context, "horror mystery drama"));
+
+                // 7. Released Before Date
+                Console.WriteLine(GetBooksReleasedBefore(context, "12-04-1992"));
             }
         }
 
@@ -129,6 +132,34 @@ namespace BookShopSystem
             foreach (var book in books)
             {
                 sb.AppendLine(book);
+            }
+
+            return sb.ToString().Trim();
+        }
+        public static string GetBooksReleasedBefore(BookShopContext context, string date = null)
+        {
+            if (date == null)
+            {
+                date = Console.ReadLine();
+            }
+
+            var dateTime = DateTime.Parse(date);
+
+            var books = context.Books.Where(x => x.ReleaseDate < dateTime)
+                    .OrderByDescending(x => x.ReleaseDate)
+                    .Select(x => new
+                    {
+                        Title = x.Title,
+                        Edition = x.EditionType.ToString(),
+                        Price = x.Price
+                    })
+                    .ToList();
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var book in books)
+            {
+                sb.AppendLine($"{book.Title} - {book.Edition} - ${book.Price:F2}");
             }
 
             return sb.ToString().Trim();
