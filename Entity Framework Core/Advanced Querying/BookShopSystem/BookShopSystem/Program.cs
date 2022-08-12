@@ -36,7 +36,10 @@ namespace BookShopSystem
                 //Console.WriteLine(GetAuthorNamesEndingIn(context, "e"));
 
                 // 9. Book Search
-                Console.WriteLine(GetBookTitlesContaining(context, "sK"));
+                //Console.WriteLine(GetBookTitlesContaining(context, "sK"));
+
+                // 10. Book Search by Author
+                Console.WriteLine(GetBooksByAuthor(context, "R"));
             }
         }
 
@@ -211,6 +214,31 @@ namespace BookShopSystem
             foreach (var book in books)
             {
                 sb.AppendLine(book);
+            }
+
+            return sb.ToString().Trim();
+        }
+        public static string GetBooksByAuthor(BookShopContext context, string input = null)
+        {
+            if (input == null)
+            {
+                input = Console.ReadLine();
+            }
+
+            var books = context.Books.Where(x => x.Author.LastName.ToLower().StartsWith(input.ToLower()))
+                .OrderBy(x => x.Id)
+                .Select(x => new
+                {
+                    Title = x.Title,
+                    Author = x.Author.FirstName + " " + x.Author.LastName
+                })
+                .ToList();
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach(var book in books)
+            {
+                sb.AppendLine($"{book.Title} ({book.Author})");
             }
 
             return sb.ToString().Trim();
