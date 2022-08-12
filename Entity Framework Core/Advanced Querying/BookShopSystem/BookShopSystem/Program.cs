@@ -33,7 +33,10 @@ namespace BookShopSystem
                 //Console.WriteLine(GetBooksReleasedBefore(context, "12-04-1992"));
 
                 // 8. Author Search
-                Console.WriteLine(GetAuthorNamesEndingIn(context, "e"));
+                //Console.WriteLine(GetAuthorNamesEndingIn(context, "e"));
+
+                // 9. Book Search
+                Console.WriteLine(GetBookTitlesContaining(context, "sK"));
             }
         }
 
@@ -187,6 +190,27 @@ namespace BookShopSystem
             foreach (var author in authors)
             {
                 sb.AppendLine(author.FullName);
+            }
+
+            return sb.ToString().Trim();
+        }
+        public static string GetBookTitlesContaining(BookShopContext context, string input = null)
+        {
+            if (input == null)
+            {
+                input = Console.ReadLine();
+            }
+
+            var books = context.Books.Where(x => x.Title.ToLower().Contains(input.ToLower()))
+                .Select(x => x.Title)
+                .OrderBy(x => x)
+                .ToArray();
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var book in books)
+            {
+                sb.AppendLine(book);
             }
 
             return sb.ToString().Trim();
