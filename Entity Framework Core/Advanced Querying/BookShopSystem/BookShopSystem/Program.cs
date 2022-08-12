@@ -39,7 +39,10 @@ namespace BookShopSystem
                 //Console.WriteLine(GetBookTitlesContaining(context, "sK"));
 
                 // 10. Book Search by Author
-                Console.WriteLine(GetBooksByAuthor(context, "R"));
+                //Console.WriteLine(GetBooksByAuthor(context, "R"));
+
+                // 11. Count Books
+                Console.WriteLine(CountBooks(context, 12));
             }
         }
 
@@ -242,6 +245,15 @@ namespace BookShopSystem
             }
 
             return sb.ToString().Trim();
+        }
+        public static int CountBooks(BookShopContext context, int lengthCheck = 0)
+        {
+            if (lengthCheck == 0)
+            {
+                lengthCheck = int.Parse(Console.ReadLine());
+            }
+
+            return context.Books.Count(x => x.Title.Length > lengthCheck);
         }
     }
 }
