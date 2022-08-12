@@ -46,7 +46,10 @@ namespace BookShopSystem
                 //Console.WriteLine(CountBooks(context, 12));
 
                 // 12. Total Book Copies
-                Console.WriteLine(CountCopiesByAuthor(context));
+                //Console.WriteLine(CountCopiesByAuthor(context));
+
+                // 13. Profit by Category
+                Console.WriteLine(GetTotalProfitByCategory(context));
             }
         }
 
@@ -275,6 +278,29 @@ namespace BookShopSystem
             foreach(var author in authors)
             {
                 sb.AppendLine($"{author.Name}  - {author.BookCopies}");
+            }
+
+            return sb.ToString().Trim();
+        }
+        public static string GetTotalProfitByCategory(BookShopContext context)
+        {
+            var categories = context.Categories
+                .Select(x => new
+                {
+                    Name = x.Name,
+                    TotalProfit =  x.CategoryBooks
+                        .Select(b => b.Book.Price * b.Book.Copies)
+                        .Sum()
+                })
+                .OrderByDescending(x => x.TotalProfit)
+                .ThenBy(x => x.Name)
+                .ToList();
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var category in categories)
+            {
+                sb.AppendLine($"{category.Name} ${category.TotalProfit:F2}");
             }
 
             return sb.ToString().Trim();
