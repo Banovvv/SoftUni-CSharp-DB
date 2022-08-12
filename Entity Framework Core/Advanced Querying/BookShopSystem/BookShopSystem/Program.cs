@@ -30,7 +30,10 @@ namespace BookShopSystem
                 //Console.WriteLine(GetBooksByCategory(context, "horror mystery drama"));
 
                 // 7. Released Before Date
-                Console.WriteLine(GetBooksReleasedBefore(context, "12-04-1992"));
+                //Console.WriteLine(GetBooksReleasedBefore(context, "12-04-1992"));
+
+                // 8. Author Search
+                Console.WriteLine(GetAuthorNamesEndingIn(context, "e"));
             }
         }
 
@@ -160,6 +163,30 @@ namespace BookShopSystem
             foreach (var book in books)
             {
                 sb.AppendLine($"{book.Title} - {book.Edition} - ${book.Price:F2}");
+            }
+
+            return sb.ToString().Trim();
+        }
+        public static string GetAuthorNamesEndingIn(BookShopContext context, string input = null)
+        {
+            if (input == null)
+            {
+                input = Console.ReadLine();
+            }
+
+            var authors = context.Authors.Where(x => x.FirstName.EndsWith(input))
+                    .Select(x => new
+                    {
+                        FullName = x.FirstName + " " + x.LastName
+                    })
+                    .OrderBy(x => x.FullName)
+                    .ToList();
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var author in authors)
+            {
+                sb.AppendLine(author.FullName);
             }
 
             return sb.ToString().Trim();
