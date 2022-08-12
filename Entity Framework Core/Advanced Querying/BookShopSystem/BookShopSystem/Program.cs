@@ -1,4 +1,5 @@
 ﻿using BookShopSystem.Data;
+using BookShopSystem.Initializer;
 using BookShopSystem.Models.Enums;
 using System;
 using System.Linq;
@@ -42,7 +43,10 @@ namespace BookShopSystem
                 //Console.WriteLine(GetBooksByAuthor(context, "R"));
 
                 // 11. Count Books
-                Console.WriteLine(CountBooks(context, 12));
+                //Console.WriteLine(CountBooks(context, 12));
+
+                // 12. Total Book Copies
+                Console.WriteLine(CountCopiesByAuthor(context));
             }
         }
 
@@ -254,6 +258,26 @@ namespace BookShopSystem
             }
 
             return context.Books.Count(x => x.Title.Length > lengthCheck);
+        }
+        public static string CountCopiesByAuthor(BookShopContext context)
+        {
+            var authors = context.Authors
+                .Select(x => new
+                {
+                    Name = x.FirstName + " " + x.LastName,
+                    BookCopies = x.Books.Sum(b=>b.Copies)
+                })
+                .OrderByDescending(x => x.BookCopies)
+                .ToList();
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach(var author in authors)
+            {
+                sb.AppendLine($"{author.Name}  - {author.BookCopies}");
+            }
+
+            return sb.ToString().Trim();
         }
     }
 }
