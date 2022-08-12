@@ -24,7 +24,10 @@ namespace BookShopSystem
                 //Console.WriteLine(GetBooksByPrice(context));
 
                 // 5. Not Released in
-                Console.WriteLine(GetBooksNotReleasedIn(context, 2000));
+                //Console.WriteLine(GetBooksNotReleasedIn(context, 2000));
+
+                // 6. Book Titles by Category
+                Console.WriteLine(GetBooksByCategory(context, "horror mystery drama"));
             }
         }
 
@@ -99,7 +102,31 @@ namespace BookShopSystem
 
             StringBuilder sb = new StringBuilder();
 
-            foreach(var book in books)
+            foreach (var book in books)
+            {
+                sb.AppendLine(book);
+            }
+
+            return sb.ToString().Trim();
+        }
+        public static string GetBooksByCategory(BookShopContext context, string input = null)
+        {
+            if (input == null)
+            {
+                input = Console.ReadLine();
+            }
+
+            var categories = input.ToLower().Split(new[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
+            var books = context.BooksCategories
+                .Where(x => categories.Contains(x.Category.Name.ToLower()))
+                .Select(x => x.Book.Title)
+                .OrderBy(x => x)
+                .ToList();
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var book in books)
             {
                 sb.AppendLine(book);
             }
