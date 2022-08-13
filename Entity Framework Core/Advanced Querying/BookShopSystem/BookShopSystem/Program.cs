@@ -52,7 +52,10 @@ namespace BookShopSystem
                 //Console.WriteLine(GetTotalProfitByCategory(context));
 
                 // 14. Most Recent Books
-                Console.WriteLine(GetMostRecentBooks(context));
+                //Console.WriteLine(GetMostRecentBooks(context));
+
+                // 15. Increase Prices
+                IncreasePrices(context);
             }
         }
 
@@ -340,6 +343,17 @@ namespace BookShopSystem
             }
 
             return sb.ToString().Trim();
+        }
+        public static void IncreasePrices(BookShopContext context)
+        {
+            var books = context.Books.Where(x => x.ReleaseDate.Value.Year < 2010).ToList();
+
+            foreach (var book in books)
+            {
+                book.Price += 5;
+            }
+
+            context.SaveChanges();
         }
     }
 }
