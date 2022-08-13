@@ -49,7 +49,10 @@ namespace BookShopSystem
                 //Console.WriteLine(CountCopiesByAuthor(context));
 
                 // 13. Profit by Category
-                Console.WriteLine(GetTotalProfitByCategory(context));
+                //Console.WriteLine(GetTotalProfitByCategory(context));
+
+                // 14. Most Recent Books
+                Console.WriteLine(GetMostRecentBooks(context));
             }
         }
 
@@ -246,7 +249,7 @@ namespace BookShopSystem
 
             StringBuilder sb = new StringBuilder();
 
-            foreach(var book in books)
+            foreach (var book in books)
             {
                 sb.AppendLine($"{book.Title} ({book.Author})");
             }
@@ -268,14 +271,14 @@ namespace BookShopSystem
                 .Select(x => new
                 {
                     Name = x.FirstName + " " + x.LastName,
-                    BookCopies = x.Books.Sum(b=>b.Copies)
+                    BookCopies = x.Books.Sum(b => b.Copies)
                 })
                 .OrderByDescending(x => x.BookCopies)
                 .ToList();
 
             StringBuilder sb = new StringBuilder();
 
-            foreach(var author in authors)
+            foreach (var author in authors)
             {
                 sb.AppendLine($"{author.Name}  - {author.BookCopies}");
             }
@@ -288,7 +291,7 @@ namespace BookShopSystem
                 .Select(x => new
                 {
                     Name = x.Name,
-                    TotalProfit =  x.CategoryBooks
+                    TotalProfit = x.CategoryBooks
                         .Select(b => b.Book.Price * b.Book.Copies)
                         .Sum()
                 })
@@ -301,6 +304,39 @@ namespace BookShopSystem
             foreach (var category in categories)
             {
                 sb.AppendLine($"{category.Name} ${category.TotalProfit:F2}");
+            }
+
+            return sb.ToString().Trim();
+        }
+        public static string GetMostRecentBooks(BookShopContext context)
+        {
+            var categories = context.Categories
+                .OrderBy(c => c.Name)
+                .Select(c => new
+                {
+                    Name = c.Name,
+                    Books = c.CategoryBooks
+                                .OrderByDescending(b => b.Book.ReleaseDate)
+                                .Take(3)
+                                .Select(b => new
+                                {
+                                    Title = b.Book.Title,
+                                    ReleaseDate = b.Book.ReleaseDate
+                                })
+                                .ToList()
+                })
+                .ToList();
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var category in categories)
+            {
+                sb.AppendLine($"--{category.Name}");
+
+                foreach (var book in category.Books)
+                {
+                    sb.AppendLine($"{book.Title} ({book.ReleaseDate.Value.Year})");
+                }
             }
 
             return sb.ToString().Trim();
