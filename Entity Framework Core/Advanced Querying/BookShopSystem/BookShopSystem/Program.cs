@@ -55,7 +55,10 @@ namespace BookShopSystem
                 //Console.WriteLine(GetMostRecentBooks(context));
 
                 // 15. Increase Prices
-                IncreasePrices(context);
+                //IncreasePrices(context);
+
+                // 16. Remove Books
+                RemoveBooks(context);
             }
         }
 
@@ -354,6 +357,16 @@ namespace BookShopSystem
             }
 
             context.SaveChanges();
+        }
+        public static int RemoveBooks(BookShopContext context)
+        {
+            var books = context.Books.Where(x => x.Copies < 4200).ToList();
+
+            context.Books.RemoveRange(books);
+
+            context.SaveChanges();
+
+            return books.Count();
         }
     }
 }
