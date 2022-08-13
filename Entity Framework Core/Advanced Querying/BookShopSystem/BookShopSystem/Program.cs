@@ -13,49 +13,49 @@ namespace BookShopSystem
         {
             using (var context = new BookShopContext())
             {
-                //DbInitializer.ResetDatabase(context);
+                DbInitializer.ResetDatabase(context);
 
                 // 2. Age Restriction
-                //Console.WriteLine(GetBooksByAgeRestriction(context, "miNor"));
+                Console.WriteLine(GetBooksByAgeRestriction(context, "miNor"));
 
                 // 3. Golden Books
-                //Console.WriteLine(GetGoldenBooks(context));
+                Console.WriteLine(GetGoldenBooks(context));
 
                 // 4. Books by Price
-                //Console.WriteLine(GetBooksByPrice(context));
+                Console.WriteLine(GetBooksByPrice(context));
 
                 // 5. Not Released in
-                //Console.WriteLine(GetBooksNotReleasedIn(context, 2000));
+                Console.WriteLine(GetBooksNotReleasedIn(context, 2000));
 
                 // 6. Book Titles by Category
-                //Console.WriteLine(GetBooksByCategory(context, "horror mystery drama"));
+                Console.WriteLine(GetBooksByCategory(context, "horror mystery drama"));
 
                 // 7. Released Before Date
-                //Console.WriteLine(GetBooksReleasedBefore(context, "12-04-1992"));
+                Console.WriteLine(GetBooksReleasedBefore(context, "12-04-1992"));
 
                 // 8. Author Search
-                //Console.WriteLine(GetAuthorNamesEndingIn(context, "e"));
+                Console.WriteLine(GetAuthorNamesEndingIn(context, "e"));
 
                 // 9. Book Search
-                //Console.WriteLine(GetBookTitlesContaining(context, "sK"));
+                Console.WriteLine(GetBookTitlesContaining(context, "sK"));
 
                 // 10. Book Search by Author
-                //Console.WriteLine(GetBooksByAuthor(context, "R"));
+                Console.WriteLine(GetBooksByAuthor(context, "R"));
 
                 // 11. Count Books
-                //Console.WriteLine(CountBooks(context, 12));
+                Console.WriteLine(CountBooks(context, 12));
 
                 // 12. Total Book Copies
-                //Console.WriteLine(CountCopiesByAuthor(context));
+                Console.WriteLine(CountCopiesByAuthor(context));
 
                 // 13. Profit by Category
-                //Console.WriteLine(GetTotalProfitByCategory(context));
+                Console.WriteLine(GetTotalProfitByCategory(context));
 
                 // 14. Most Recent Books
-                //Console.WriteLine(GetMostRecentBooks(context));
+                Console.WriteLine(GetMostRecentBooks(context));
 
                 // 15. Increase Prices
-                //IncreasePrices(context);
+                IncreasePrices(context);
 
                 // 16. Remove Books
                 RemoveBooks(context);
