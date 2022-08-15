@@ -15,6 +15,7 @@ namespace ProductsShop.Data
 
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,7 +29,7 @@ namespace ProductsShop.Data
         {
             modelBuilder.Entity<User>(user =>
             {
-                user.Property(x=>x.FirstName)
+                user.Property(x => x.FirstName)
                     .IsRequired(false)
                     .HasMaxLength(50)
                     .IsUnicode(true);
@@ -44,6 +45,14 @@ namespace ProductsShop.Data
                 product.Property(x => x.Name)
                     .IsRequired(true)
                     .HasMaxLength(100)
+                    .IsUnicode(true);
+            });
+
+            modelBuilder.Entity<Category>(category =>
+            {
+                category.Property(x => x.Name)
+                    .IsRequired(true)
+                    .HasMaxLength(15)
                     .IsUnicode(true);
             });
         }
