@@ -1,9 +1,12 @@
-﻿namespace ProductsShop.Models
+﻿using System.Collections.Generic;
+
+namespace ProductsShop.Models
 {
     public class Product
     {
         public Product()
         {
+            Categories = new HashSet<Category>();
         }
 
         public int Id { get; set; }
@@ -15,5 +18,7 @@
 
         public int SellerId { get; set; }
         public virtual User Seller { get; set; }
+
+        public virtual ICollection<Category> Categories { get; set; }
     }
 }
