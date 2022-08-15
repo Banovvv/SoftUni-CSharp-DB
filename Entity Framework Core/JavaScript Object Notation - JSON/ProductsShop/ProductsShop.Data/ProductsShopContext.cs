@@ -46,6 +46,14 @@ namespace ProductsShop.Data
                     .IsRequired(true)
                     .HasMaxLength(100)
                     .IsUnicode(true);
+
+                product.HasOne(x => x.Buyer)
+                    .WithMany(x => x.ProductsBought)
+                    .HasForeignKey(x => x.BuyerId);
+
+                product.HasOne(x => x.Seller)
+                    .WithMany(x => x.ProductsSold)
+                    .HasForeignKey(x => x.SellerId);
             });
 
             modelBuilder.Entity<Category>(category =>

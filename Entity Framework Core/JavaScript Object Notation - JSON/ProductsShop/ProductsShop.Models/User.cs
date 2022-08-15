@@ -6,8 +6,8 @@ namespace ProductsShop.Models
     {
         public User()
         {
-            ProductBought = new HashSet<Product>();
-            ProductSold = new HashSet<Product>();
+            ProductsBought = new HashSet<Product>();
+            ProductsSold = new HashSet<Product>();
         }
 
         public int Id { get; set; }
@@ -15,7 +15,7 @@ namespace ProductsShop.Models
         public string LastName { get; set; }
         public int? Age { get; set; }
 
-        public virtual ICollection<Product> ProductBought { get; set; }
-        public virtual ICollection<Product> ProductSold { get; }
+        public virtual ICollection<Product> ProductsBought { get; set; }
+        public virtual ICollection<Product> ProductsSold { get; }
     }
 }
