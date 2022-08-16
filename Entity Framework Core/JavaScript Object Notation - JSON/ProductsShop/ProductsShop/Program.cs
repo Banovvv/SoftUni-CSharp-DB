@@ -23,8 +23,9 @@ namespace ProductsShop
             {
                 //DbInitializer.Initialize(context);
 
+                // 1. Import Users
                 var inputJson = File.ReadAllText($"{DatasetsDirectoryPath}/users.json");
-                ImportUsers(context, inputJson);
+                Console.WriteLine(ImportUsers(context, inputJson));
             }
         }
 
@@ -37,17 +38,13 @@ namespace ProductsShop
                 Formatting = Formatting.Indented
             };
 
-            var usersDTO = JsonConvert.DeserializeObject<List<UserDTO>>(inputJson, serializerSettings);
+            var users = JsonConvert.DeserializeObject<List<User>>(inputJson, serializerSettings);
 
-            //var users = usersDTO
-            //    .Select(udto => Mapper.Map<User>(udto))
-            //    .ToList();
+            context.Users.AddRange(users);
 
-            //context.Users.AddRange(users);
+            context.SaveChanges();
 
-            //context.SaveChanges();
-
-            return $"Successfully imported {usersDTO.Count}";
+            return $"Successfully imported {users.Count}";
         }
     }
 }
