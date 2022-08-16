@@ -16,6 +16,7 @@ namespace ProductsShop.Data
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<CategoryProduct> CategoryProducts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -60,6 +61,12 @@ namespace ProductsShop.Data
                 category.Property(x => x.Name)
                     .IsRequired(true)
                     .IsUnicode(true);
+            });
+
+            modelBuilder.Entity<CategoryProduct>(categoryProduct =>
+            {
+                categoryProduct
+                    .HasKey(x => new { x.CategoryId, x.ProductId });
             });
         }
     }

@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.Json;
 
 namespace ProductsShop
 {
@@ -28,7 +27,7 @@ namespace ProductsShop
             {
                 //DbInitializer.Initialize(context);
 
-                // 1. Import Users
+                // 1.Import Users
                 //var inputJson = File.ReadAllText($"{DatasetsDirectoryPath}/users.json");
                 //Console.WriteLine(ImportUsers(context, inputJson));
 
@@ -37,8 +36,12 @@ namespace ProductsShop
                 //Console.WriteLine(ImportProducts(context, inputJson));
 
                 // 3. Import Categories
-                var inputJson = File.ReadAllText($"{DatasetsDirectoryPath}/products.json");
-                Console.WriteLine(ImportCategories(context, inputJson));
+                //var inputJson = File.ReadAllText($"{DatasetsDirectoryPath}/products.json");
+                //Console.WriteLine(ImportCategories(context, inputJson));
+
+                // 4. Import Categories and Products
+                var inputJson = File.ReadAllText($"{DatasetsDirectoryPath}/categories-products.json");
+                Console.WriteLine(ImportCategoryProducts(context, inputJson));
             }
         }
 
@@ -68,6 +71,15 @@ namespace ProductsShop
             context.SaveChanges();
 
             return $"Successfully imported {categories.Count}";
+        }
+        public static string ImportCategoryProducts(ProductsShopContext context, string inputJson)
+        {
+            var categoryProducts = JsonConvert.DeserializeObject<List<CategoryProduct>>(inputJson);
+
+            context.CategoryProducts.AddRange(categoryProducts);
+            context.SaveChanges();
+
+            return $"Successfully imported {categoryProducts.Count}";
         }
     }
 }
