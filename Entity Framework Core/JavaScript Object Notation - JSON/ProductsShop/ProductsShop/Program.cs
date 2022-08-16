@@ -15,6 +15,12 @@ namespace ProductsShop
     {
         private const string DatasetsDirectoryPath = "../../../Datasets";
         private const string ResultsDirectoryPath = "../../../Datasets/Results";
+        private static JsonSerializerSettings serializerSettings = new JsonSerializerSettings()
+        {
+            NullValueHandling = NullValueHandling.Ignore,
+            DefaultValueHandling = DefaultValueHandling.Ignore,
+            Formatting = Formatting.Indented
+        };
 
         static void Main(string[] args)
         {
@@ -27,44 +33,41 @@ namespace ProductsShop
                 //Console.WriteLine(ImportUsers(context, inputJson));
 
                 // 2. Import Products
+                //var inputJson = File.ReadAllText($"{DatasetsDirectoryPath}/products.json");
+                //Console.WriteLine(ImportProducts(context, inputJson));
+
+                // 3. Import Categories
                 var inputJson = File.ReadAllText($"{DatasetsDirectoryPath}/products.json");
-                Console.WriteLine(ImportProducts(context, inputJson));
+                Console.WriteLine(ImportCategories(context, inputJson));
             }
         }
 
         public static string ImportUsers(ProductsShopContext context, string inputJson)
         {
-            var serializerSettings = new JsonSerializerSettings()
-            {
-                NullValueHandling = NullValueHandling.Ignore,
-                DefaultValueHandling = DefaultValueHandling.Ignore,
-                Formatting = Formatting.Indented
-            };
-
             var users = JsonConvert.DeserializeObject<List<User>>(inputJson, serializerSettings);
 
             context.Users.AddRange(users);
-
             context.SaveChanges();
 
             return $"Successfully imported {users.Count}";
         }
         public static string ImportProducts(ProductsShopContext context, string inputJson)
         {
-            var serializerSettings = new JsonSerializerSettings()
-            {
-                NullValueHandling = NullValueHandling.Ignore,
-                DefaultValueHandling = DefaultValueHandling.Ignore,
-                Formatting = Formatting.Indented
-            };
-
             var products = JsonConvert.DeserializeObject<List<Product>>(inputJson, serializerSettings);
 
             context.Products.AddRange(products);
-
             context.SaveChanges();
 
             return $"Successfully imported {products.Count}";
+        }
+        public static string ImportCategories(ProductsShopContext context, string inputJson)
+        {          
+            var categories = JsonConvert.DeserializeObject<List<Category>>(inputJson, serializerSettings);
+            
+            context.Categories.AddRange(categories);
+            context.SaveChanges();
+
+            return $"Successfully imported {categories.Count}";
         }
     }
 }
