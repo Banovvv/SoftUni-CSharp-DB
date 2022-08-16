@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using ProductsShop.Data;
 using ProductsShop.Initializer;
 using ProductsShop.Models;
-using ProductsShop.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,8 +23,12 @@ namespace ProductsShop
                 //DbInitializer.Initialize(context);
 
                 // 1. Import Users
-                var inputJson = File.ReadAllText($"{DatasetsDirectoryPath}/users.json");
-                Console.WriteLine(ImportUsers(context, inputJson));
+                //var inputJson = File.ReadAllText($"{DatasetsDirectoryPath}/users.json");
+                //Console.WriteLine(ImportUsers(context, inputJson));
+
+                // 2. Import Products
+                var inputJson = File.ReadAllText($"{DatasetsDirectoryPath}/products.json");
+                Console.WriteLine(ImportProducts(context, inputJson));
             }
         }
 
@@ -45,6 +48,23 @@ namespace ProductsShop
             context.SaveChanges();
 
             return $"Successfully imported {users.Count}";
+        }
+        public static string ImportProducts(ProductsShopContext context, string inputJson)
+        {
+            var serializerSettings = new JsonSerializerSettings()
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                DefaultValueHandling = DefaultValueHandling.Ignore,
+                Formatting = Formatting.Indented
+            };
+
+            var products = JsonConvert.DeserializeObject<List<Product>>(inputJson, serializerSettings);
+
+            context.Products.AddRange(products);
+
+            context.SaveChanges();
+
+            return $"Successfully imported {products.Count}";
         }
     }
 }

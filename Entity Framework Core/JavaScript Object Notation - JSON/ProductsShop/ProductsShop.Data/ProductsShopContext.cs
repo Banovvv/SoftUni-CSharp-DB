@@ -44,7 +44,6 @@ namespace ProductsShop.Data
             {
                 product.Property(x => x.Name)
                     .IsRequired(true)
-                    .HasMaxLength(100)
                     .IsUnicode(true);
 
                 product.HasOne(x => x.Buyer)
@@ -60,7 +59,6 @@ namespace ProductsShop.Data
             {
                 category.Property(x => x.Name)
                     .IsRequired(true)
-                    .HasMaxLength(15)
                     .IsUnicode(true);
             });
         }
