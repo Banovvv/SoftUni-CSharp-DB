@@ -13,7 +13,7 @@ namespace ProductsShop
     public class Program
     {
         private const string DatasetsDirectoryPath = "../../../Datasets";
-        private const string ResultsDirectoryPath = "../../../Datasets/Results";
+        private const string ResultsDirectoryPath = "../../../Datasets/Exports";
         private static JsonSerializerSettings serializerSettings = new JsonSerializerSettings()
         {
             NullValueHandling = NullValueHandling.Ignore,
@@ -40,11 +40,15 @@ namespace ProductsShop
                 //Console.WriteLine(ImportCategories(context, inputJson));
 
                 // 4. Import Categories and Products
-                var inputJson = File.ReadAllText($"{DatasetsDirectoryPath}/categories-products.json");
-                Console.WriteLine(ImportCategoryProducts(context, inputJson));
+                //var inputJson = File.ReadAllText($"{DatasetsDirectoryPath}/categories-products.json");
+                //Console.WriteLine(ImportCategoryProducts(context, inputJson));
+
+                // 5. Export Products in Range
+                File.WriteAllText($"{ResultsDirectoryPath}/categories-products.json", GetProductsInRange(context));
             }
         }
 
+        #region Import Functions
         public static string ImportUsers(ProductsShopContext context, string inputJson)
         {
             var users = JsonConvert.DeserializeObject<List<User>>(inputJson, serializerSettings);
@@ -80,6 +84,22 @@ namespace ProductsShop
             context.SaveChanges();
 
             return $"Successfully imported {categoryProducts.Count}";
+        }
+        #endregion
+
+        public static string GetProductsInRange(ProductsShopContext context)
+        {
+            var products = context.Products.Where(x=>x.Price >= 500 && x.Price <= 1000)
+                    .OrderBy(x=>x.Price)
+                    .Select(x=> new
+                    {
+                        Name = x.Name,
+                        Price = x.Price,
+                        Seller = x.Seller.FirstName + " " + x.Seller.LastName
+                    })
+                    .ToList();
+
+            return JsonConvert.SerializeObject(products, Formatting.Indented);
         }
     }
 }

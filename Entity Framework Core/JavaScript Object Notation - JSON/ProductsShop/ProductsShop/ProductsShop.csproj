@@ -20,4 +20,8 @@
     <ProjectReference Include="..\ProductsShop.Initializer\ProductsShop.Initializer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Datasets\Exports\" />
+  </ItemGroup>
+
 </Project>
