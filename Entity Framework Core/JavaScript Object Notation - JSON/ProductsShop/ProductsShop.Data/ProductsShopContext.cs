@@ -39,6 +39,14 @@ namespace ProductsShop.Data
                     .IsRequired(true)
                     .HasMaxLength(50)
                     .IsUnicode(true);
+
+                user.HasMany(x => x.ProductsBought)
+                      .WithOne(x => x.Buyer)
+                      .HasForeignKey(x => x.BuyerId);
+
+                user.HasMany(x => x.ProductsSold)
+                      .WithOne(x => x.Seller)
+                      .HasForeignKey(x => x.SellerId);
             });
 
             modelBuilder.Entity<Product>(product =>
@@ -46,14 +54,6 @@ namespace ProductsShop.Data
                 product.Property(x => x.Name)
                     .IsRequired(true)
                     .IsUnicode(true);
-
-                product.HasOne(x => x.Buyer)
-                    .WithMany(x => x.ProductsBought)
-                    .HasForeignKey(x => x.BuyerId);
-
-                product.HasOne(x => x.Seller)
-                    .WithMany(x => x.ProductsSold)
-                    .HasForeignKey(x => x.SellerId);
             });
 
             modelBuilder.Entity<Category>(category =>

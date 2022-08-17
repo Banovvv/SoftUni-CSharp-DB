@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using ProductsShop.Data;
 using ProductsShop.Initializer;
 using ProductsShop.Models;
@@ -28,23 +27,26 @@ namespace ProductsShop
                 //DbInitializer.Initialize(context);
 
                 // 1.Import Users
-                //var inputJson = File.ReadAllText($"{DatasetsDirectoryPath}/users.json");
-                //Console.WriteLine(ImportUsers(context, inputJson));
+                //var inputJson1 = File.ReadAllText($"{DatasetsDirectoryPath}/users.json");
+                //Console.WriteLine(ImportUsers(context, inputJson1));
 
                 // 2. Import Products
-                //var inputJson = File.ReadAllText($"{DatasetsDirectoryPath}/products.json");
-                //Console.WriteLine(ImportProducts(context, inputJson));
+                //var inputJson2 = File.ReadAllText($"{DatasetsDirectoryPath}/products.json");
+                //Console.WriteLine(ImportProducts(context, inputJson2));
 
                 // 3. Import Categories
-                //var inputJson = File.ReadAllText($"{DatasetsDirectoryPath}/products.json");
-                //Console.WriteLine(ImportCategories(context, inputJson));
+                //var inputJson3 = File.ReadAllText($"{DatasetsDirectoryPath}/products.json");
+                //Console.WriteLine(ImportCategories(context, inputJson3));
 
                 // 4. Import Categories and Products
-                //var inputJson = File.ReadAllText($"{DatasetsDirectoryPath}/categories-products.json");
-                //Console.WriteLine(ImportCategoryProducts(context, inputJson));
+                //var inputJson4 = File.ReadAllText($"{DatasetsDirectoryPath}/categories-products.json");
+                //Console.WriteLine(ImportCategoryProducts(context, inputJson4));
 
                 // 5. Export Products in Range
-                File.WriteAllText($"{ResultsDirectoryPath}/categories-products.json", GetProductsInRange(context));
+                //File.WriteAllText($"{ResultsDirectoryPath}/categories-products.json", GetProductsInRange(context));
+
+                // 6.Export Successfully Sold Products
+                File.WriteAllText($"{ResultsDirectoryPath}/categories-by-products.json", GetSoldProducts(context));
             }
         }
 
@@ -68,9 +70,9 @@ namespace ProductsShop
             return $"Successfully imported {products.Count}";
         }
         public static string ImportCategories(ProductsShopContext context, string inputJson)
-        {          
+        {
             var categories = JsonConvert.DeserializeObject<List<Category>>(inputJson, serializerSettings);
-            
+
             context.Categories.AddRange(categories);
             context.SaveChanges();
 
@@ -89,9 +91,9 @@ namespace ProductsShop
 
         public static string GetProductsInRange(ProductsShopContext context)
         {
-            var products = context.Products.Where(x=>x.Price >= 500 && x.Price <= 1000)
-                    .OrderBy(x=>x.Price)
-                    .Select(x=> new
+            var products = context.Products.Where(x => x.Price >= 500 && x.Price <= 1000)
+                    .OrderBy(x => x.Price)
+                    .Select(x => new
                     {
                         Name = x.Name,
                         Price = x.Price,
@@ -100,6 +102,21 @@ namespace ProductsShop
                     .ToList();
 
             return JsonConvert.SerializeObject(products, Formatting.Indented);
+        }
+        public static string GetSoldProducts(ProductsShopContext context)
+        {
+            var categories = context.Categories
+                    .OrderByDescending(x => x.Products.Count())
+                    .Select(x => new
+                    {
+                        Category = x.Name,
+                        ProductsCount = x.Products.Count(),
+                        AveragePrice = $"{x.Products.Average(p => p.Price):F2}",
+                        TotalRevenue = $"{x.Products.Sum(p => p.Price):F2}"
+                    })
+                    .ToList();
+
+            return JsonConvert.SerializeObject(categories, Formatting.Indented);
         }
     }
 }
