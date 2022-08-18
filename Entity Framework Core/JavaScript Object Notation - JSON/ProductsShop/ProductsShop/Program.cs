@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using ProductsShop.Data;
-using ProductsShop.Initializer;
 using ProductsShop.Models;
 using System;
 using System.Collections.Generic;
@@ -45,8 +44,11 @@ namespace ProductsShop
                 // 5. Export Products in Range
                 //File.WriteAllText($"{ResultsDirectoryPath}/categories-products.json", GetProductsInRange(context));
 
-                // 6.Export Successfully Sold Products
-                File.WriteAllText($"{ResultsDirectoryPath}/categories-by-products.json", GetSoldProducts(context));
+                // 6. Export Successfully Sold Products
+                //File.WriteAllText($"{ResultsDirectoryPath}/categories-by-products.json", GetSoldProducts(context));
+
+                // 7. Export Users and Products
+                File.WriteAllText($"{ResultsDirectoryPath}/users-and-products.json", GetUsersWithProducts(context));
             }
         }
 
@@ -117,6 +119,31 @@ namespace ProductsShop
                     .ToList();
 
             return JsonConvert.SerializeObject(categories, Formatting.Indented);
+        }
+        public static string GetUsersWithProducts(ProductsShopContext context)
+        {
+            var users = context.Users.Where(x => x.ProductsSold.Count > 0)
+                .Select(x=> new
+                {
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    Age = x.Age,
+                    SoldProducts = new
+                        {
+                            Count = x.ProductsSold.Count,
+                            Products = x.ProductsSold.Where(p=>p.Buyer!=null)
+                                .Select(p => new
+                                {
+                                    Name = p.Name,
+                                    Price = p.Price
+                                })
+                                .ToList()
+                        }
+                })
+                .OrderByDescending(x=>x.SoldProducts.Count)
+                .ToList();
+
+            return JsonConvert.SerializeObject(new { UsersCount = users.Count, Users = users }, Formatting.Indented);
         }
     }
 }
