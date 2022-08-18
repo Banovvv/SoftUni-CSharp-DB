@@ -4,6 +4,7 @@ using CarDealer.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -43,8 +44,11 @@ namespace CarDealer
                 //Console.WriteLine(ImportCustomers(context, customersJson));
 
                 // 05. Import Sales
-                var salesJson = File.ReadAllText($"{DatasetsDirectoryPath}/sales.json");
-                Console.WriteLine(ImportSales(context, salesJson));
+                //var salesJson = File.ReadAllText($"{DatasetsDirectoryPath}/sales.json");
+                //Console.WriteLine(ImportSales(context, salesJson));
+
+                // 06. Export Ordered Customers
+                File.WriteAllText($"{ResultsDirectoryPath}/ordered-customers.json", GetOrderedCustomers(context));
             }
         }
 
@@ -96,6 +100,24 @@ namespace CarDealer
             context.SaveChanges();
 
             return $"Successfully imported {sales.Count}.";
+        }
+        #endregion
+
+        #region Export Methods
+        public static string GetOrderedCustomers(CarDealerContext context)
+        {
+            var customers = context.Customers
+                .OrderBy(x => x.BirthDate)
+                .ThenBy(x => x.IsYoungDriver)
+                .Select(x => new
+                {
+                    Name = x.Name,
+                    BirthDate = x.BirthDate.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    IsYoungDriver = x.IsYoungDriver
+                })
+                .ToList();
+
+            return JsonConvert.SerializeObject(customers, Formatting.Indented);
         }
         #endregion
     }

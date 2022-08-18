@@ -19,4 +19,8 @@
     <ProjectReference Include="..\CarDealer.Initializer\CarDealer.Initializer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Datasets\Exports\" />
+  </ItemGroup>
+
 </Project>
