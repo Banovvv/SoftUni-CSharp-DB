@@ -6,7 +6,7 @@ namespace CarDealer.Models
     {
         public Part()
         {
-            PartCars = new List<PartCar>();
+           Cars = new List<Car>();
         }
 
         public int Id { get; set; }
@@ -17,6 +17,6 @@ namespace CarDealer.Models
         public int SupplierId { get; set; }
         public virtual Supplier Supplier { get; set; }
 
-        public virtual ICollection<PartCar> PartCars { get; set; }
+        public virtual ICollection<Car> Cars { get; set; }
     }
 }

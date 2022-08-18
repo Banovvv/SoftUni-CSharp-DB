@@ -7,7 +7,7 @@ namespace CarDealer.Models
     {
         public Customer()
         {
-            Cars = new HashSet<Car>();
+            BoughtCars = new HashSet<Sale>();
         }
 
         public int Id { get; set; }
@@ -15,6 +15,6 @@ namespace CarDealer.Models
         public DateTime BirthDate { get; set; }
         public bool IsYoungDriver { get; set; }
 
-        public virtual ICollection<Car> Cars { get; set; }
+        public virtual ICollection<Sale> BoughtCars { get; set; }
     }
 }

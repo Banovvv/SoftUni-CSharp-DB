@@ -6,7 +6,7 @@ namespace CarDealer.Models
     {
         public Car()
         {
-            CarParts = new HashSet<PartCar>();
+            Parts = new HashSet<Part>();
         }
 
         public int Id { get; set; }
@@ -14,6 +14,6 @@ namespace CarDealer.Models
         public string Model { get; set; }
         public long TravelledDistance { get; set; }
 
-        public virtual ICollection<PartCar> CarParts { get; set; }
+        public virtual ICollection<Part> Parts { get; set; }
     }
 }
