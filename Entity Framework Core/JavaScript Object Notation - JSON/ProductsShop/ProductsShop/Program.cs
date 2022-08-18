@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using ProductsShop.Data;
+using ProductsShop.Initializer;
 using ProductsShop.Models;
 using System;
 using System.Collections.Generic;
@@ -23,29 +24,29 @@ namespace ProductsShop
         {
             using (var context = new ProductsShopContext())
             {
-                //DbInitializer.Initialize(context);
+                DbInitializer.Initialize(context);
 
                 // 1.Import Users
-                //var inputJson1 = File.ReadAllText($"{DatasetsDirectoryPath}/users.json");
-                //Console.WriteLine(ImportUsers(context, inputJson1));
+                var inputJson1 = File.ReadAllText($"{DatasetsDirectoryPath}/users.json");
+                Console.WriteLine(ImportUsers(context, inputJson1));
 
                 // 2. Import Products
-                //var inputJson2 = File.ReadAllText($"{DatasetsDirectoryPath}/products.json");
-                //Console.WriteLine(ImportProducts(context, inputJson2));
+                var inputJson2 = File.ReadAllText($"{DatasetsDirectoryPath}/products.json");
+                Console.WriteLine(ImportProducts(context, inputJson2));
 
                 // 3. Import Categories
-                //var inputJson3 = File.ReadAllText($"{DatasetsDirectoryPath}/products.json");
-                //Console.WriteLine(ImportCategories(context, inputJson3));
+                var inputJson3 = File.ReadAllText($"{DatasetsDirectoryPath}/products.json");
+                Console.WriteLine(ImportCategories(context, inputJson3));
 
                 // 4. Import Categories and Products
-                //var inputJson4 = File.ReadAllText($"{DatasetsDirectoryPath}/categories-products.json");
-                //Console.WriteLine(ImportCategoryProducts(context, inputJson4));
+                var inputJson4 = File.ReadAllText($"{DatasetsDirectoryPath}/categories-products.json");
+                Console.WriteLine(ImportCategoryProducts(context, inputJson4));
 
                 // 5. Export Products in Range
-                //File.WriteAllText($"{ResultsDirectoryPath}/categories-products.json", GetProductsInRange(context));
+                File.WriteAllText($"{ResultsDirectoryPath}/categories-products.json", GetProductsInRange(context));
 
                 // 6. Export Successfully Sold Products
-                //File.WriteAllText($"{ResultsDirectoryPath}/categories-by-products.json", GetSoldProducts(context));
+                File.WriteAllText($"{ResultsDirectoryPath}/categories-by-products.json", GetSoldProducts(context));
 
                 // 7. Export Users and Products
                 File.WriteAllText($"{ResultsDirectoryPath}/users-and-products.json", GetUsersWithProducts(context));
@@ -91,6 +92,7 @@ namespace ProductsShop
         }
         #endregion
 
+        #region Export Functions
         public static string GetProductsInRange(ProductsShopContext context)
         {
             var products = context.Products.Where(x => x.Price >= 500 && x.Price <= 1000)
@@ -123,27 +125,28 @@ namespace ProductsShop
         public static string GetUsersWithProducts(ProductsShopContext context)
         {
             var users = context.Users.Where(x => x.ProductsSold.Count > 0)
-                .Select(x=> new
+                .Select(x => new
                 {
                     FirstName = x.FirstName,
                     LastName = x.LastName,
                     Age = x.Age,
                     SoldProducts = new
-                        {
-                            Count = x.ProductsSold.Count,
-                            Products = x.ProductsSold.Where(p=>p.Buyer!=null)
+                    {
+                        Count = x.ProductsSold.Count,
+                        Products = x.ProductsSold.Where(p => p.Buyer != null)
                                 .Select(p => new
                                 {
                                     Name = p.Name,
                                     Price = p.Price
                                 })
                                 .ToList()
-                        }
+                    }
                 })
-                .OrderByDescending(x=>x.SoldProducts.Count)
+                .OrderByDescending(x => x.SoldProducts.Count)
                 .ToList();
 
             return JsonConvert.SerializeObject(new { UsersCount = users.Count, Users = users }, Formatting.Indented);
         }
+        #endregion
     }
 }
