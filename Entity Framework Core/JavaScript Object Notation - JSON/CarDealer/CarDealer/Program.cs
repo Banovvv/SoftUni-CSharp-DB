@@ -51,7 +51,10 @@ namespace CarDealer
                 //File.WriteAllText($"{ResultsDirectoryPath}/ordered-customers.json", GetOrderedCustomers(context));
 
                 // 07. Export Cars from Make Toyota
-                File.WriteAllText($"{ResultsDirectoryPath}/toyota-cars.json", GetCarsFromMakeToyota(context));
+                //File.WriteAllText($"{ResultsDirectoryPath}/toyota-cars.json", GetCarsFromMakeToyota(context));
+
+                // 08. Export Local Suppliers
+                File.WriteAllText($"{ResultsDirectoryPath}/local-suppliers.json", GetLocalSuppliers(context));
             }
         }
 
@@ -138,6 +141,19 @@ namespace CarDealer
                 .ToList();
 
             return JsonConvert.SerializeObject(cars, Formatting.Indented);
+        }
+        public static string GetLocalSuppliers(CarDealerContext context)
+        {
+            var suppliers = context.Suppliers.Where(x => !x.IsImporter)
+                .Select(x => new
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    PartsCount = x.Parts.Count
+                })
+                .ToList();
+
+            return JsonConvert.SerializeObject(suppliers, Formatting.Indented);
         }
         #endregion
     }
