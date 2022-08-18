@@ -19,7 +19,6 @@
 *.o
 *.so
 *.config
-*.json
 
 # Packages #
 ############
