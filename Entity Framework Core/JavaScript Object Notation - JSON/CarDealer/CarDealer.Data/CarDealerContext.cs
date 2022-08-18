@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CarDealer.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarDealer.Data
 {
@@ -12,6 +13,13 @@ namespace CarDealer.Data
         {
         }
 
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Part> Parts { get; set; }
+        public DbSet<PartCar> PartsCars { get; set; }
+        public DbSet<Sale> Sales { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -22,7 +30,10 @@ namespace CarDealer.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<PartCar>(partCar =>
+            {
+                partCar.HasKey(x => new { x.CarId, x.PartId });
+            });
         }
     }
 }

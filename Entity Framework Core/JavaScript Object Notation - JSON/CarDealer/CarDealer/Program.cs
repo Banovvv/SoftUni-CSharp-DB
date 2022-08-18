@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CarDealer.Data;
+using CarDealer.Initializer;
+using System;
 
 namespace CarDealer
 {
@@ -6,7 +8,10 @@ namespace CarDealer
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            using(var context = new CarDealerContext())
+            {
+                DbInitializer.Initialize(context);
+            }
         }
     }
 }
