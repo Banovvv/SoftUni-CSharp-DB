@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace CarDealer
 {
@@ -26,8 +27,12 @@ namespace CarDealer
                 //DbInitializer.Initialize(context);
 
                 // 01. Import Suppliers
-                var suppliersJson = File.ReadAllText($"{DatasetsDirectoryPath}/suppliers.json");
-                Console.WriteLine(ImportSuppliers(context, suppliersJson));
+                //var suppliersJson = File.ReadAllText($"{DatasetsDirectoryPath}/suppliers.json");
+                //Console.WriteLine(ImportSuppliers(context, suppliersJson));
+
+                // 02. Import Parts
+                var partsJson = File.ReadAllText($"{DatasetsDirectoryPath}/parts.json");
+                Console.WriteLine(ImportParts(context, partsJson));
             }
         }
 
@@ -40,6 +45,18 @@ namespace CarDealer
             context.SaveChanges();
 
             return $"Successfully imported {suppliers.Count}.";
+        }
+
+        public static string ImportParts(CarDealerContext context, string inputJson)
+        {
+            var parts = JsonConvert.DeserializeObject<List<Part>>(inputJson, serializerSettings)
+                    .Where(x=> context.Suppliers.Select(s=>s.Id).Contains(x.SupplierId))
+                    .ToList();
+
+            context.Parts.AddRange(parts);
+            context.SaveChanges();
+
+            return $"Successfully imported {parts.Count}.";
         }
         #endregion
     }
