@@ -13,4 +13,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.17" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ProductShop.Models\ProductShop.Models.csproj" />
+  </ItemGroup>
+
 </Project>

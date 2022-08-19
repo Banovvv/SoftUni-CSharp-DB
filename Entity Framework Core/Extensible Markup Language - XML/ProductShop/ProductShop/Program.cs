@@ -1,12 +1,17 @@
-﻿using System;
+﻿using ProductShop.Data;
+using ProductShop.Initializer;
+using System;
 
 namespace ProductShop
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            using(var context = new ProductShopContext())
+            {
+                DbInitializer.Initialize(context);
+            }
         }
     }
 }
