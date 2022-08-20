@@ -1,6 +1,7 @@
 ﻿using ProductShop.Data;
 using ProductShop.Initializer;
 using System;
+using System.Collections.Generic;
 using System.Xml.Linq;
 
 namespace ProductShop
@@ -15,8 +16,14 @@ namespace ProductShop
             {
                 //DbInitializer.Initialize(context);
 
-                XDocument document = XDocument.Load($"{DatasetsDirectoryPath}/users.xml");
+                XDocument users = XDocument.Load($"{DatasetsDirectoryPath}/users.xml");
             }
+        }
+
+        public static string ImportUsers(ProductShopContext context, string inputXml)
+        {
+            var users = new List<string>();
+            return $"Successfully imported {users.Count}";
         }
     }
 }
