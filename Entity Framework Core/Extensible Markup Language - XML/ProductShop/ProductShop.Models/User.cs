@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Xml.Serialization;
 
 namespace ProductShop.Models
 {
@@ -12,9 +13,12 @@ namespace ProductShop.Models
         }
 
         public int Id { get; set; }
+        [XmlElement("firstName")]
         public string FirstName { get; set; }
         [Required]
+        [XmlElement("lastName")]
         public string LastName { get; set; }
+        [XmlElement("age")]
         public int? Age { get; set; }
 
         public virtual ICollection<Product> ProductsBought { get; set; }
