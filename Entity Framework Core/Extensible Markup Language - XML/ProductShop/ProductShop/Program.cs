@@ -1,8 +1,12 @@
 ﻿using ProductShop.Data;
 using ProductShop.Initializer;
+using ProductShop.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace ProductShop
 {
@@ -22,8 +26,10 @@ namespace ProductShop
 
         public static string ImportUsers(ProductShopContext context, string inputXml)
         {
-            var users = new List<string>();
-            return $"Successfully imported {users.Count}";
+            var serializer = new XmlSerializer(typeof(User[]), new XmlRootAttribute("Users"));
+            IEnumerable<User> users = (User[])serializer.Deserialize(File.OpenRead($"{DatasetsDirectoryPath}/users.xml"));
+
+            return $"Successfully imported {users.Count()}";
         }
     }
 }
