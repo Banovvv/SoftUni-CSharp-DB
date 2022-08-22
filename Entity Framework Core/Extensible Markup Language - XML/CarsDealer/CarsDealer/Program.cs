@@ -29,8 +29,12 @@ namespace CarsDealer
                 //Console.WriteLine(ImportParts(context, parts));
 
                 // 3. Import Cars
-                var cars = File.ReadAllText($"{DatasetsDirectoryPath}/cars.xml");
-                Console.WriteLine(ImportCars(context, cars));
+                //var cars = File.ReadAllText($"{DatasetsDirectoryPath}/cars.xml");
+                //Console.WriteLine(ImportCars(context, cars));
+
+                // 4. Import Customers
+                var customers = File.ReadAllText($"{DatasetsDirectoryPath}/customers.xml");
+                Console.WriteLine(ImportCustomers(context, customers));
             }
         }
 
@@ -112,6 +116,20 @@ namespace CarsDealer
                 context.SaveChanges();
 
                 return $"Successfully imported {cars.Count}";
+            }
+        }
+        public static string ImportCustomers(CarDealerContext context, string inputXml)
+        {
+            var serializer = new XmlSerializer(typeof(Customer[]), new XmlRootAttribute("Customers"));
+
+            using (var stringReader = new StringReader(inputXml))
+            {
+                IEnumerable<Customer> customers = (Customer[])serializer.Deserialize(stringReader);
+
+                context.Customers.AddRange(customers);
+                context.SaveChanges();
+
+                return $"Successfully imported {customers.Count()}";
             }
         }
     }
