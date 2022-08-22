@@ -12,7 +12,6 @@ namespace ProductShop.Initializer
     public class DbInitializer
     {
         private const string DatasetsDirectoryPath = "../../../Datasets";
-        private const string ResultsDirectoryPath = "../../../Datasets/Exports";
 
         public static void Initialize(DbContext context)
         {

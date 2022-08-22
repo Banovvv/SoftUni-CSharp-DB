@@ -1,4 +1,5 @@
 ﻿using ProductShop.Data;
+using ProductShop.Initializer;
 using ProductShop.Models.DTOs;
 using System.Collections.Generic;
 using System.IO;
@@ -10,23 +11,25 @@ namespace ProductShop
 {
     public class Program
     {
-        private const string DatasetsDirectoryPath = "../../../Datasets";
         private const string ResultsDirectoryPath = "../../../Datasets/Exports";
         static void Main(string[] args)
         {
             using (var context = new ProductShopContext())
             {
-                //DbInitializer.Initialize(context);
-                //DbInitializer.Seed(context);
+                DbInitializer.Initialize(context);
+                DbInitializer.Seed(context);
 
                 // 5. Products In Range
-                //File.WriteAllText($"{ResultsDirectoryPath}/products-in-range.xml", GetProductsInRange(context));
+                File.WriteAllText($"{ResultsDirectoryPath}/products-in-range.xml", GetProductsInRange(context));
 
                 // 6. Sold Products
-                //File.WriteAllText($"{ResultsDirectoryPath}/users-sold-products.xml", GetSoldProducts(context));
+                File.WriteAllText($"{ResultsDirectoryPath}/users-sold-products.xml", GetSoldProducts(context));
 
                 // 7. Categories By Products Count
                 File.WriteAllText($"{ResultsDirectoryPath}/categories-by-products.xml", GetCategoriesByProductsCount(context));
+
+                // 8. Users and Products
+                File.WriteAllText($"{ResultsDirectoryPath}/users-and-products.xml", GetUsersWithProducts(context));
             }
         }
 
@@ -113,6 +116,41 @@ namespace ProductShop
             using (var writer = new StringWriter(sb))
             {
                 serializer.Serialize(writer, categories, namespaces);
+            }
+
+            return sb.ToString().Trim();
+        }
+        public static string GetUsersWithProducts(ProductShopContext context)
+        {
+            IEnumerable<UsersAndProductsDTO> users = context.Users.Where(x => x.ProductsSold.Any())
+                .OrderByDescending(x => x.ProductsSold.Count())
+                .Take(10)
+                .Select(x => new UsersAndProductsDTO
+                {
+                    FisrtName = x.FirstName,
+                    LastName = x.LastName,
+                    Age = x.Age,
+                    Count = x.ProductsSold.Count,
+                    SoldProducts = x.ProductsSold.Select(p => new ProductSoldDTO
+                    {
+                        Name = p.Name,
+                        Price = p.Price
+                    })
+                    .OrderByDescending(p => p.Price)
+                    .ToList()
+                })
+                .ToList();
+
+            var serializer = new XmlSerializer(typeof(List<UsersAndProductsDTO>), new XmlRootAttribute("Users"));
+
+            var namespaces = new XmlSerializerNamespaces();
+            namespaces.Add("", "");
+
+            StringBuilder sb = new StringBuilder();
+
+            using (var writer = new StringWriter(sb))
+            {
+                serializer.Serialize(writer, users, namespaces);
             }
 
             return sb.ToString().Trim();
