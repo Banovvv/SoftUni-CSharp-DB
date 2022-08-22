@@ -24,7 +24,10 @@ namespace ProductShop
                 //Console.WriteLine(ImportUsers(context, $"{DatasetsDirectoryPath}/users.xml"));
 
                 // 2. Import Products
-                Console.WriteLine(ImportProducts(context, $"{DatasetsDirectoryPath}/products.xml"));
+                //Console.WriteLine(ImportProducts(context, $"{DatasetsDirectoryPath}/products.xml"));
+
+                // 3. Import Categories
+                Console.WriteLine(ImportCategories(context, $"{DatasetsDirectoryPath}/categories.xml"));
             }
         }
 
@@ -48,6 +51,17 @@ namespace ProductShop
             context.SaveChanges();
 
             return $"Successfully imported {products.Count()}";
+        }
+
+        public static string ImportCategories(ProductShopContext context, string inputXml)
+        {
+            var serializer = new XmlSerializer(typeof(Category[]), new XmlRootAttribute("Categories"));
+            IEnumerable<Category> categories = (Category[])serializer.Deserialize(File.OpenRead(inputXml));
+
+            context.Categories.AddRange(categories);
+            context.SaveChanges();
+
+            return $"Successfully imported {categories.Count()}";
         }
     }
 }
