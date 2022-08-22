@@ -1,8 +1,5 @@
 ﻿using ProductShop.Data;
-using ProductShop.Initializer;
-using ProductShop.Models;
 using ProductShop.Models.DTOs;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,7 +20,10 @@ namespace ProductShop
                 //DbInitializer.Seed(context);
 
                 // 5. Products In Range
-                File.WriteAllText($"{ResultsDirectoryPath}/products-in-range.xml", GetProductsInRange(context));
+                //File.WriteAllText($"{ResultsDirectoryPath}/products-in-range.xml", GetProductsInRange(context));
+
+                // 6. Sold Products
+                File.WriteAllText($"{ResultsDirectoryPath}/users-sold-products.xml", GetSoldProducts(context));
             }
         }
 
@@ -50,6 +50,38 @@ namespace ProductShop
             using (var writer = new StringWriter(sb))
             {
                 serializer.Serialize(writer, products, namespaces);
+            }
+
+            return sb.ToString().Trim();
+        }
+        public static string GetSoldProducts(ProductShopContext context)
+        {
+            IEnumerable<UsersWithSoldProductsDTO> users = context.Users.Where(x => x.ProductsSold.Any())
+                .OrderBy(x => x.LastName)
+                .ThenBy(x => x.FirstName)
+                .Select(x => new UsersWithSoldProductsDTO
+                {
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    SoldProducts = x.ProductsSold.Select(p => new ProductSoldDTO
+                    {
+                        Name = p.Name,
+                        Price = p.Price
+                    })
+                    .ToList()
+                })
+                .ToList();
+
+            var serializer = new XmlSerializer(typeof(List<UsersWithSoldProductsDTO>), new XmlRootAttribute("Users"));
+
+            var namespaces = new XmlSerializerNamespaces();
+            namespaces.Add("", "");
+
+            StringBuilder sb = new StringBuilder();
+
+            using (var writer = new StringWriter(sb))
+            {
+                serializer.Serialize(writer, users, namespaces);
             }
 
             return sb.ToString().Trim();
