@@ -1,5 +1,6 @@
 ﻿using CarsDealer.Data;
 using CarsDealer.Models;
+using CarsDealer.Models.DTOs;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,18 +25,22 @@ namespace CarsDealer
                 //Console.WriteLine(ImportSuppliers(context, suppliers));
 
                 // 2. Import Parts
-                var parts = File.ReadAllText($"{DatasetsDirectoryPath}/parts.xml");
-                Console.WriteLine(ImportParts(context, parts));
+                //var parts = File.ReadAllText($"{DatasetsDirectoryPath}/parts.xml");
+                //Console.WriteLine(ImportParts(context, parts));
+
+                // 3. Import Cars
+                var cars = File.ReadAllText($"{DatasetsDirectoryPath}/cars.xml");
+                Console.WriteLine(ImportCars(context, cars));
             }
         }
 
         public static string ImportSuppliers(CarDealerContext context, string inputXml)
         {
-            var serialzier = new XmlSerializer(typeof(Supplier[]), new XmlRootAttribute("Suppliers"));
+            var serializer = new XmlSerializer(typeof(Supplier[]), new XmlRootAttribute("Suppliers"));
 
             using (var stringReader = new StringReader(inputXml))
             {
-                IEnumerable<Supplier> suppliers = (Supplier[])serialzier.Deserialize(stringReader);
+                IEnumerable<Supplier> suppliers = (Supplier[])serializer.Deserialize(stringReader);
 
                 context.Suppliers.AddRange(suppliers);
                 context.SaveChanges();
@@ -61,6 +66,52 @@ namespace CarsDealer
                 context.SaveChanges();
 
                 return $"Successfully imported {parts.Count()}";
+            }
+        }
+        public static string ImportCars(CarDealerContext context, string inputXml)
+        {
+            var serializer = new XmlSerializer(typeof(ImportCarDTO[]), new XmlRootAttribute("Cars"));
+
+            using (var stringReader = new StringReader(inputXml))
+            {
+                var carDtos = (ImportCarDTO[])serializer.Deserialize(stringReader);
+
+                var cars = new List<Car>();
+                var partCars = new List<PartCar>();
+
+                foreach (var carDto in carDtos)
+                {
+                    var car = new Car()
+                    {
+                        Make = carDto.Make,
+                        Model = carDto.Model,
+                        TravelledDistance = carDto.TravelledDistance,
+                    };
+
+                    var parts = carDto.Parts
+                        .Where(pdto => context.Parts.Any(p => p.Id == pdto.Id))
+                        .Select(p => p.Id)
+                        .Distinct();
+
+                    foreach (var part in parts)
+                    {
+                        var partCar = new PartCar()
+                        {
+                            PartId = part,
+                            Car = car
+                        };
+
+                        partCars.Add(partCar);
+                    }
+
+                    cars.Add(car);
+                }
+
+                context.AddRange(cars);
+                context.AddRange(partCars);
+                context.SaveChanges();
+
+                return $"Successfully imported {cars.Count}";
             }
         }
     }
