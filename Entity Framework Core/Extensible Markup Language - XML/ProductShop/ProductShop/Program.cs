@@ -23,7 +23,10 @@ namespace ProductShop
                 //File.WriteAllText($"{ResultsDirectoryPath}/products-in-range.xml", GetProductsInRange(context));
 
                 // 6. Sold Products
-                File.WriteAllText($"{ResultsDirectoryPath}/users-sold-products.xml", GetSoldProducts(context));
+                //File.WriteAllText($"{ResultsDirectoryPath}/users-sold-products.xml", GetSoldProducts(context));
+
+                // 7. Categories By Products Count
+                File.WriteAllText($"{ResultsDirectoryPath}/categories-by-products.xml", GetCategoriesByProductsCount(context));
             }
         }
 
@@ -82,6 +85,34 @@ namespace ProductShop
             using (var writer = new StringWriter(sb))
             {
                 serializer.Serialize(writer, users, namespaces);
+            }
+
+            return sb.ToString().Trim();
+        }
+        public static string GetCategoriesByProductsCount(ProductShopContext context)
+        {
+            IEnumerable<CategoryByProductDTO> categories = context.Categories
+                .Select(x => new CategoryByProductDTO
+                {
+                    Name = x.Name,
+                    Count = x.CategoryProducts.Count(),
+                    AveragePrice = x.CategoryProducts.Where(cp => cp.CategoryId == x.Id).Average(cp => cp.Product.Price),
+                    TotalRevenue = x.CategoryProducts.Where(cp => cp.CategoryId == x.Id).Sum(cp => cp.Product.Price)
+                })
+                .OrderByDescending(x => x.Count)
+                .ThenBy(x => x.TotalRevenue)
+                .ToList();
+
+            var serializer = new XmlSerializer(typeof(List<CategoryByProductDTO>), new XmlRootAttribute("Categories"));
+
+            var namespaces = new XmlSerializerNamespaces();
+            namespaces.Add("", "");
+
+            StringBuilder sb = new StringBuilder();
+
+            using (var writer = new StringWriter(sb))
+            {
+                serializer.Serialize(writer, categories, namespaces);
             }
 
             return sb.ToString().Trim();
