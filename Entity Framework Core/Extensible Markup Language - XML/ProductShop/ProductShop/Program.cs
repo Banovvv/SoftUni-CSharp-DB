@@ -17,7 +17,7 @@ namespace ProductShop
         {
             using (var context = new ProductShopContext())
             {
-                DbInitializer.Initialize(context);
+                //DbInitializer.Initialize(context);
 
                 // 1. Import Users
                 //var users = File.ReadAllText($"{DatasetsDirectoryPath}/users.xml");
@@ -27,17 +27,17 @@ namespace ProductShop
                 //var products = File.ReadAllText($"{DatasetsDirectoryPath}/products.xml");
                 //Console.WriteLine(ImportProducts(context, products));
 
-
                 // 3. Import Categories
                 //var categories = File.ReadAllText($"{DatasetsDirectoryPath}/categories.xml");
                 //Console.WriteLine(ImportCategories(context, categories));
 
                 // 4. Import Categories and Products
-                var categoryProducts = File.ReadAllText($"{DatasetsDirectoryPath}/categories-products.xml");
-                Console.WriteLine(ImportCategoryProducts(context, categoryProducts));
+                //var categoryProducts = File.ReadAllText($"{DatasetsDirectoryPath}/categories-products.xml");
+                //Console.WriteLine(ImportCategoryProducts(context, categoryProducts));
             }
         }
 
+        #region Import Functions
         public static string ImportUsers(ProductShopContext context, string inputXml)
         {
             var serializer = new XmlSerializer(typeof(User[]), new XmlRootAttribute("Users"));
@@ -54,7 +54,6 @@ namespace ProductShop
                 return $"Successfully imported {users.Count()}";
             }
         }
-
         public static string ImportProducts(ProductShopContext context, string inputXml)
         {
             var serializer = new XmlSerializer(typeof(Product[]), new XmlRootAttribute("Products"));
@@ -71,7 +70,6 @@ namespace ProductShop
                 return $"Successfully imported {products.Count()}";
             }
         }
-
         public static string ImportCategories(ProductShopContext context, string inputXml)
         {
             var serializer = new XmlSerializer(typeof(Category[]), new XmlRootAttribute("Categories"));
@@ -88,7 +86,6 @@ namespace ProductShop
                 return $"Successfully imported {categories.Count()}";
             }
         }
-
         public static string ImportCategoryProducts(ProductShopContext context, string inputXml)
         {
             var serializer = new XmlSerializer(typeof(CategoryProduct[]), new XmlRootAttribute("CategoryProducts"));
@@ -112,5 +109,6 @@ namespace ProductShop
                 return $"Successfully imported {categoryProducts.Count()}";
             }
         }
+        #endregion
     }
 }
