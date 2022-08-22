@@ -21,7 +21,9 @@ namespace ProductShop.Models
         [XmlElement("age")]
         public int? Age { get; set; }
 
+        [XmlIgnore]
         public virtual ICollection<Product> ProductsBought { get; set; }
+        [XmlIgnore]
         public virtual ICollection<Product> ProductsSold { get; set; }
     }
 }

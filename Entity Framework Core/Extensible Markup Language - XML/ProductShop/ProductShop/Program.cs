@@ -20,7 +20,9 @@ namespace ProductShop
             {
                 //DbInitializer.Initialize(context);
 
+                // 1. Import Users
                 XDocument users = XDocument.Load($"{DatasetsDirectoryPath}/users.xml");
+                Console.WriteLine(ImportUsers(context, users.ToString()));
             }
         }
 
@@ -28,6 +30,9 @@ namespace ProductShop
         {
             var serializer = new XmlSerializer(typeof(User[]), new XmlRootAttribute("Users"));
             IEnumerable<User> users = (User[])serializer.Deserialize(File.OpenRead($"{DatasetsDirectoryPath}/users.xml"));
+
+            context.Users.AddRange(users);
+            context.SaveChanges();
 
             return $"Successfully imported {users.Count()}";
         }
