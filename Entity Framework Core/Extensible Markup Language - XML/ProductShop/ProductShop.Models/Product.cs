@@ -8,7 +8,7 @@ namespace ProductShop.Models
     {
         public Product()
         {
-            Categories = new HashSet<Category>();
+            ProductCategories = new HashSet<CategoryProduct>();
         }
 
         public int Id { get; set; }
@@ -29,6 +29,6 @@ namespace ProductShop.Models
         public virtual User Buyer { get; set; }
 
         [XmlIgnore]
-        public virtual ICollection<Category> Categories { get; }
+        public virtual ICollection<CategoryProduct> ProductCategories { get; }
     }
 }

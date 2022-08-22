@@ -16,7 +16,7 @@ namespace ProductShop.Data
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<CategoryProduct> CategoryProducts { get; set; }
+        public virtual DbSet<CategoryProduct> CategoryProduct { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
