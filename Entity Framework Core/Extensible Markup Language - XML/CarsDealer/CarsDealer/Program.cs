@@ -1,5 +1,4 @@
 ﻿using CarsDealer.Data;
-using CarsDealer.Initializer;
 using CarsDealer.Models;
 using System;
 using System.Collections.Generic;
@@ -21,8 +20,12 @@ namespace CarsDealer
                 //DbInitializer.Initialize(context);
 
                 // 1. Import Suppliers
-                var suppliers = File.ReadAllText($"{DatasetsDirectoryPath}/suppliers.xml");
-                Console.WriteLine(ImportSuppliers(context, suppliers));
+                //var suppliers = File.ReadAllText($"{DatasetsDirectoryPath}/suppliers.xml");
+                //Console.WriteLine(ImportSuppliers(context, suppliers));
+
+                // 2. Import Parts
+                var parts = File.ReadAllText($"{DatasetsDirectoryPath}/parts.xml");
+                Console.WriteLine(ImportParts(context, parts));
             }
         }
 
@@ -30,7 +33,7 @@ namespace CarsDealer
         {
             var serialzier = new XmlSerializer(typeof(Supplier[]), new XmlRootAttribute("Suppliers"));
 
-            using(var stringReader = new StringReader(inputXml))
+            using (var stringReader = new StringReader(inputXml))
             {
                 IEnumerable<Supplier> suppliers = (Supplier[])serialzier.Deserialize(stringReader);
 
@@ -38,6 +41,26 @@ namespace CarsDealer
                 context.SaveChanges();
 
                 return $"Successfully imported {suppliers.Count()}";
+            }
+        }
+        public static string ImportParts(CarDealerContext context, string inputXml)
+        {
+            var serializer = new XmlSerializer(typeof(Part[]), new XmlRootAttribute("Parts"));
+
+            using (var stringReader = new StringReader(inputXml))
+            {
+                IEnumerable<Part> parts = (Part[])serializer.Deserialize(stringReader);
+
+                foreach (var part in parts)
+                {
+                    if (context.Suppliers.Any(x => x.Id == part.SupplierId))
+                    {
+                        context.Parts.Add(part);
+                    }
+                }
+                context.SaveChanges();
+
+                return $"Successfully imported {parts.Count()}";
             }
         }
     }
