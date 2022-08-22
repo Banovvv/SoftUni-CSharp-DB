@@ -21,20 +21,33 @@ namespace ProductShop
                 //DbInitializer.Initialize(context);
 
                 // 1. Import Users
-                XDocument users = XDocument.Load($"{DatasetsDirectoryPath}/users.xml");
-                Console.WriteLine(ImportUsers(context, users.ToString()));
+                //Console.WriteLine(ImportUsers(context, $"{DatasetsDirectoryPath}/users.xml"));
+
+                // 2. Import Products
+                Console.WriteLine(ImportProducts(context, $"{DatasetsDirectoryPath}/products.xml"));
             }
         }
 
         public static string ImportUsers(ProductShopContext context, string inputXml)
         {
             var serializer = new XmlSerializer(typeof(User[]), new XmlRootAttribute("Users"));
-            IEnumerable<User> users = (User[])serializer.Deserialize(File.OpenRead($"{DatasetsDirectoryPath}/users.xml"));
+            IEnumerable<User> users = (User[])serializer.Deserialize(File.OpenRead(inputXml));
 
             context.Users.AddRange(users);
             context.SaveChanges();
 
             return $"Successfully imported {users.Count()}";
+        }
+
+        public static string ImportProducts(ProductShopContext context, string inputXml)
+        {
+            var serializer = new XmlSerializer(typeof(Product[]), new XmlRootAttribute("Products"));
+            IEnumerable<Product> products = (Product[])serializer.Deserialize(File.OpenRead(inputXml));
+
+            context.Products.AddRange(products);
+            context.SaveChanges();
+
+            return $"Successfully imported {products.Count()}";
         }
     }
 }
