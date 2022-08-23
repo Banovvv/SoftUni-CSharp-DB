@@ -23,7 +23,10 @@ namespace CarsDealer
                 //DbInitializer.Seed(context);
 
                 // 6. Cars With Distance
-                File.WriteAllText($"{ResultsDirectoryPath}/cars.xml", GetCarsWithDistance(context));
+                //File.WriteAllText($"{ResultsDirectoryPath}/cars.xml", GetCarsWithDistance(context));
+
+                // 7. Cars from make BMW
+                File.WriteAllText($"{ResultsDirectoryPath}/bmw-cars.xml", GetCarsFromMakeBmw(context));
             }
         }
 
@@ -42,6 +45,32 @@ namespace CarsDealer
                 .ToList();
 
             var serializer = new XmlSerializer(typeof(List<ExportCarWithDistanceDTO>), new XmlRootAttribute("cars"));
+
+            StringBuilder sb = new StringBuilder();
+            var namespaces = new XmlSerializerNamespaces();
+            namespaces.Add("", "");
+
+            using (StringWriter writer = new StringWriter(sb))
+            {
+                serializer.Serialize(writer, cars, namespaces);
+            }
+
+            return sb.ToString().Trim();
+        }
+        public static string GetCarsFromMakeBmw(CarDealerContext context)
+        {
+            IEnumerable<ExportCarBMWDTO> cars = context.Cars.Where(x => x.Make == "BMW")
+                .OrderBy(x => x.Model)
+                .ThenByDescending(x => x.TravelledDistance)
+                .Select(x => new ExportCarBMWDTO
+                {
+                    Id = x.Id,
+                    Model = x.Model,
+                    TravelledDistance = x.TravelledDistance
+                })
+                .ToList();
+
+            var serializer = new XmlSerializer(typeof(List<ExportCarBMWDTO>), new XmlRootAttribute("cars"));
 
             StringBuilder sb = new StringBuilder();
             var namespaces = new XmlSerializerNamespaces();
