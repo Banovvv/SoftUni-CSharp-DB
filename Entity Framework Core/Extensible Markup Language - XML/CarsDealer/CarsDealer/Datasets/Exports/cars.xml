@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-16"?>
+<cars>
+  <ExportCarWithDistanceDTO>
+    <make>BMW</make>
+    <model>1M Coupe</model>
+    <travelled-distance>39826890</travelled-distance>
+  </ExportCarWithDistanceDTO>
+  <ExportCarWithDistanceDTO>
+    <make>BMW</make>
+    <model>E67</model>
+    <travelled-distance>476830509</travelled-distance>
+  </ExportCarWithDistanceDTO>
+  <ExportCarWithDistanceDTO>
+    <make>BMW</make>
+    <model>E88</model>
+    <travelled-distance>27453411</travelled-distance>
+  </ExportCarWithDistanceDTO>
+</cars>
