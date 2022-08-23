@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-16"?>
+<suppliers>
+  <supplier>
+    <id>2</id>
+    <name>VF Corporation</name>
+    <parts-count>3</parts-count>
+  </supplier>
+  <supplier>
+    <id>5</id>
+    <name>Saks Inc</name>
+    <parts-count>2</parts-count>
+  </supplier>
+  <supplier>
+    <id>8</id>
+    <name>Nicor Inc</name>
+    <parts-count>1</parts-count>
+  </supplier>
+  <supplier>
+    <id>10</id>
+    <name>Level 3 Communications Inc.</name>
+    <parts-count>1</parts-count>
+  </supplier>
+  <supplier>
+    <id>12</id>
+    <name>GenCorp Inc.</name>
+    <parts-count>19</parts-count>
+  </supplier>
+  <supplier>
+    <id>16</id>
+    <name>E.I. Du Pont de Nemours and Company</name>
+    <parts-count>6</parts-count>
+  </supplier>
+  <supplier>
+    <id>17</id>
+    <name>The Clorox Co.</name>
+    <parts-count>4</parts-count>
+  </supplier>
+  <supplier>
+    <id>20</id>
+    <name>Cintas Corp.</name>
+    <parts-count>1</parts-count>
+  </supplier>
+  <supplier>
+    <id>22</id>
+    <name>Cintas Corp.</name>
+    <parts-count>4</parts-count>
+  </supplier>
+  <supplier>
+    <id>24</id>
+    <name>Caterpillar Inc.</name>
+    <parts-count>1</parts-count>
+  </supplier>
+  <supplier>
+    <id>27</id>
+    <name>Airgas, Inc.</name>
+    <parts-count>1</parts-count>
+  </supplier>
+  <supplier>
+    <id>29</id>
+    <name>Agway Inc.</name>
+    <parts-count>1</parts-count>
+  </supplier>
+  <supplier>
+    <id>31</id>
+    <name>Zale</name>
+    <parts-count>5</parts-count>
+  </supplier>
+</suppliers>

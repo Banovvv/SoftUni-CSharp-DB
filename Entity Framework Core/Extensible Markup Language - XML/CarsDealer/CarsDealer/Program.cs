@@ -26,7 +26,10 @@ namespace CarsDealer
                 //File.WriteAllText($"{ResultsDirectoryPath}/cars.xml", GetCarsWithDistance(context));
 
                 // 7. Cars from make BMW
-                File.WriteAllText($"{ResultsDirectoryPath}/bmw-cars.xml", GetCarsFromMakeBmw(context));
+                //File.WriteAllText($"{ResultsDirectoryPath}/bmw-cars.xml", GetCarsFromMakeBmw(context));
+
+                // 8. Local Suppliers
+                File.WriteAllText($"{ResultsDirectoryPath}/local-suppliers.xml", GetLocalSuppliers(context));
             }
         }
 
@@ -79,6 +82,30 @@ namespace CarsDealer
             using (StringWriter writer = new StringWriter(sb))
             {
                 serializer.Serialize(writer, cars, namespaces);
+            }
+
+            return sb.ToString().Trim();
+        }
+        public static string GetLocalSuppliers(CarDealerContext context)
+        {
+            IEnumerable<ExportLocalSupplierDTO> suppliers = context.Suppliers.Where(x => !x.IsImporter)
+                .Select(x => new ExportLocalSupplierDTO
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    PartsCount = x.Parts.Count
+                })
+                .ToList();
+
+            var serializer = new XmlSerializer(typeof(List<ExportLocalSupplierDTO>), new XmlRootAttribute("suppliers"));
+
+            var sb = new StringBuilder();
+            var namespaces = new XmlSerializerNamespaces();
+            namespaces.Add("", "");
+
+            using (var writer = new StringWriter(sb))
+            {
+                serializer.Serialize(writer, suppliers, namespaces);
             }
 
             return sb.ToString().Trim();
