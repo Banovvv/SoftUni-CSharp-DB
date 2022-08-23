@@ -29,7 +29,10 @@ namespace CarsDealer
                 //File.WriteAllText($"{ResultsDirectoryPath}/bmw-cars.xml", GetCarsFromMakeBmw(context));
 
                 // 8. Local Suppliers
-                File.WriteAllText($"{ResultsDirectoryPath}/local-suppliers.xml", GetLocalSuppliers(context));
+                //File.WriteAllText($"{ResultsDirectoryPath}/local-suppliers.xml", GetLocalSuppliers(context));
+
+                // 9. Cars with Their List of Parts
+                File.WriteAllText($"{ResultsDirectoryPath}/cars-and-parts.xml", GetCarsWithTheirListOfParts(context));
             }
         }
 
@@ -106,6 +109,41 @@ namespace CarsDealer
             using (var writer = new StringWriter(sb))
             {
                 serializer.Serialize(writer, suppliers, namespaces);
+            }
+
+            return sb.ToString().Trim();
+        }
+        public static string GetCarsWithTheirListOfParts(CarDealerContext context)
+        {
+            IEnumerable<ExportCarWithPartsDTO> cars = context.Cars
+                .Select(x => new ExportCarWithPartsDTO
+                {
+                    Make = x.Make,
+                    Model = x.Model,
+                    TravelledDistance = x.TravelledDistance,
+                    Parts = x.CarParts.Where(p => p.CarId == x.Id)
+                        .Select(p => new ExportPartDTO
+                        {
+                            Name = p.Part.Name,
+                            Price = p.Part.Price
+                        })
+                        .OrderByDescending(p => p.Price)
+                        .ToList()
+                })
+                .OrderByDescending(x => x.TravelledDistance)
+                .ThenBy(x => x.Make)
+                .Take(5)
+                .ToList();
+            
+            var serializer = new XmlSerializer(typeof(List<ExportCarWithPartsDTO>), new XmlRootAttribute("cars"));
+
+            var sb = new StringBuilder();
+            var namespaces = new XmlSerializerNamespaces();
+            namespaces.Add("", "");
+
+            using (var writer = new StringWriter(sb))
+            {
+                serializer.Serialize(writer, cars, namespaces);
             }
 
             return sb.ToString().Trim();
