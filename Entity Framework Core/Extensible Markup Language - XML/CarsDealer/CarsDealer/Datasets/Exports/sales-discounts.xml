@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-16"?>
+<sales>
+  <sale>
+    <car>
+      <make>BMW</make>
+      <model>M5 F10</model>
+      <travelled-distance>435603343</travelled-distance>
+    </car>
+    <discount>30.00</discount>
+    <customer-name>Hipolito Lamoreaux</customer-name>
+    <price>707.97</price>
+    <price-with-discount>495.58</price-with-discount>
+  </sale>
+  <sale>
+    <car>
+      <make>Opel</make>
+      <model>Astra</model>
+      <travelled-distance>31468479</travelled-distance>
+    </car>
+    <discount>0.00</discount>
+    <customer-name>Garret Capron</customer-name>
+    <price>295.38</price>
+    <price-with-discount>295.38</price-with-discount>
+  </sale>
+  <sale>
+    <car>
+      <make>Opel</make>
+      <model>Insignia</model>
+      <travelled-distance>339785118</travelled-distance>
+    </car>
+    <discount>10.00</discount>
+    <customer-name>Emmitt Benally</customer-name>
+    <price>1337.88</price>
+    <price-with-discount>1204.09</price-with-discount>
+  </sale>
+  <sale>
+    <car>
+      <make>BMW</make>
+      <model>F25</model>
+      <travelled-distance>476132712</travelled-distance>
+    </car>
+    <discount>0.00</discount>
+    <customer-name>Sylvie Mcelravy</customer-name>
+    <price>578.20</price>
+    <price-with-discount>578.20</price-with-discount>
+  </sale>
+  <sale>
+    <car>
+      <make>BMW</make>
+      <model>F04</model>
+      <travelled-distance>443756363</travelled-distance>
+    </car>
+    <discount>50.00</discount>
+    <customer-name>Marcelle Griego</customer-name>
+    <price>400.22</price>
+    <price-with-discount>200.11</price-with-discount>
+  </sale>
+  <sale>
+    <car>
+      <make>Opel</make>
+      <model>Vectra</model>
+      <travelled-distance>238042093</travelled-distance>
+    </car>
+    <discount>30.00</discount>
+    <customer-name>Cinthia Lasala</customer-name>
+    <price>604.38</price>
+    <price-with-discount>423.07</price-with-discount>
+  </sale>
+  <sale>
+    <car>
+      <make>Opel</make>
+      <model>Insignia</model>
+      <travelled-distance>225253817</travelled-distance>
+    </car>
+    <discount>15.00</discount>
+    <customer-name>Donnetta Soliz</customer-name>
+    <price>3201.30</price>
+    <price-with-discount>2721.11</price-with-discount>
+  </sale>
+  <sale>
+    <car>
+      <make>Opel</make>
+      <model>Omega</model>
+      <travelled-distance>109910837</travelled-distance>
+    </car>
+    <discount>20.00</discount>
+    <customer-name>Teddy Hobby</customer-name>
+    <price>1476.83</price>
+    <price-with-discount>1181.46</price-with-discount>
+  </sale>
+  <sale>
+    <car>
+      <make>BMW</make>
+      <model>E67</model>
+      <travelled-distance>476830509</travelled-distance>
+    </car>
+    <discount>15.00</discount>
+    <customer-name>Johnette Derryberry</customer-name>
+    <price>3492.18</price>
+    <price-with-discount>2968.35</price-with-discount>
+  </sale>
+</sales>

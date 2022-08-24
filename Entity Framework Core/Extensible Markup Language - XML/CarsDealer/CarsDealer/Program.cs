@@ -1,6 +1,5 @@
 ﻿using CarsDealer.Data;
 using CarsDealer.Initializer;
-using CarsDealer.Models;
 using CarsDealer.Models.DTOs;
 using System;
 using System.Collections.Generic;
@@ -19,23 +18,26 @@ namespace CarsDealer
         {
             using (var context = new CarDealerContext())
             {
-                //DbInitializer.Initialize(context);
-                //DbInitializer.Seed(context);
+                DbInitializer.Initialize(context);
+                DbInitializer.Seed(context);
 
                 // 6. Cars With Distance
-                //File.WriteAllText($"{ResultsDirectoryPath}/cars.xml", GetCarsWithDistance(context));
+                File.WriteAllText($"{ResultsDirectoryPath}/cars.xml", GetCarsWithDistance(context));
 
                 // 7. Cars from make BMW
-                //File.WriteAllText($"{ResultsDirectoryPath}/bmw-cars.xml", GetCarsFromMakeBmw(context));
+                File.WriteAllText($"{ResultsDirectoryPath}/bmw-cars.xml", GetCarsFromMakeBmw(context));
 
                 // 8. Local Suppliers
-                //File.WriteAllText($"{ResultsDirectoryPath}/local-suppliers.xml", GetLocalSuppliers(context));
+                File.WriteAllText($"{ResultsDirectoryPath}/local-suppliers.xml", GetLocalSuppliers(context));
 
                 // 9. Cars with Their List of Parts
-                //File.WriteAllText($"{ResultsDirectoryPath}/cars-and-parts.xml", GetCarsWithTheirListOfParts(context));
+                File.WriteAllText($"{ResultsDirectoryPath}/cars-and-parts.xml", GetCarsWithTheirListOfParts(context));
 
                 // 10. Total Sales by Customer
                 File.WriteAllText($"{ResultsDirectoryPath}/customers-total-sales.xml", GetTotalSalesByCustomer(context));
+
+                // 11. Total Sales by Customer
+                File.WriteAllText($"{ResultsDirectoryPath}/sales-discounts.xml", GetSalesWithAppliedDiscount(context));
             }
         }
 
@@ -45,7 +47,7 @@ namespace CarsDealer
                 .OrderBy(x => x.Make)
                 .OrderBy(x => x.Model)
                 .Take(10)
-                .Select(x=> new ExportCarWithDistanceDTO
+                .Select(x => new ExportCarWithDistanceDTO
                 {
                     Make = x.Make,
                     Model = x.Model,
@@ -137,7 +139,7 @@ namespace CarsDealer
                 .ThenBy(x => x.Make)
                 .Take(5)
                 .ToList();
-            
+
             var serializer = new XmlSerializer(typeof(List<ExportCarWithPartsDTO>), new XmlRootAttribute("cars"));
 
             var sb = new StringBuilder();
@@ -177,6 +179,38 @@ namespace CarsDealer
             using (var writer = new StringWriter(sb))
             {
                 serializer.Serialize(writer, customers, namespaces);
+            }
+
+            return sb.ToString().Trim();
+        }
+        public static string GetSalesWithAppliedDiscount(CarDealerContext context)
+        {
+            IEnumerable<ExportSalesWithDiscountDTO> sales = context.Sales
+                    .Select(x => new ExportSalesWithDiscountDTO()
+                    {
+                        Car = new ExportCarWithDistanceDTO()
+                        {
+                            Make = x.Car.Make,
+                            Model = x.Car.Model,
+                            TravelledDistance = x.Car.TravelledDistance
+                        },
+                        Discount = x.Discount,
+                        CustomerName = x.Customer.Name,
+                        Price = x.Car.CarParts.Sum(cp => cp.Part.Price),
+                        PriceWithDiscount = x.Car.CarParts.Sum(cp => cp.Part.Price) -
+                                            x.Car.CarParts.Sum(cp => cp.Part.Price) * x.Discount / 100
+                    })
+                    .ToList();
+
+            var serializer = new XmlSerializer(typeof(List<ExportSalesWithDiscountDTO>), new XmlRootAttribute("sales"));
+
+            var sb = new StringBuilder();
+            var namespaces = new XmlSerializerNamespaces();
+            namespaces.Add("", "");
+
+            using (var writer = new StringWriter(sb))
+            {
+                serializer.Serialize(writer, sales, namespaces);
             }
 
             return sb.ToString().Trim();
