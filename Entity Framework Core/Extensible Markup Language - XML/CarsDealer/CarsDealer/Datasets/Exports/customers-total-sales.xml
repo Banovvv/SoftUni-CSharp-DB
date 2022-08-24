@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-16"?>
+<customers>
+  <customers>
+    <full-name>Johnette Derryberry</full-name>
+    <bought-cars>1</bought-cars>
+    <spent-money>3492.18</spent-money>
+  </customers>
+  <customers>
+    <full-name>Donnetta Soliz</full-name>
+    <bought-cars>1</bought-cars>
+    <spent-money>3201.30</spent-money>
+  </customers>
+  <customers>
+    <full-name>Teddy Hobby</full-name>
+    <bought-cars>1</bought-cars>
+    <spent-money>1476.83</spent-money>
+  </customers>
+  <customers>
+    <full-name>Emmitt Benally</full-name>
+    <bought-cars>1</bought-cars>
+    <spent-money>1337.88</spent-money>
+  </customers>
+  <customers>
+    <full-name>Hipolito Lamoreaux</full-name>
+    <bought-cars>1</bought-cars>
+    <spent-money>707.97</spent-money>
+  </customers>
+  <customers>
+    <full-name>Cinthia Lasala</full-name>
+    <bought-cars>1</bought-cars>
+    <spent-money>604.38</spent-money>
+  </customers>
+  <customers>
+    <full-name>Sylvie Mcelravy</full-name>
+    <bought-cars>1</bought-cars>
+    <spent-money>578.20</spent-money>
+  </customers>
+  <customers>
+    <full-name>Marcelle Griego</full-name>
+    <bought-cars>1</bought-cars>
+    <spent-money>400.22</spent-money>
+  </customers>
+  <customers>
+    <full-name>Garret Capron</full-name>
+    <bought-cars>1</bought-cars>
+    <spent-money>295.38</spent-money>
+  </customers>
+</customers>

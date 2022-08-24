@@ -32,7 +32,10 @@ namespace CarsDealer
                 //File.WriteAllText($"{ResultsDirectoryPath}/local-suppliers.xml", GetLocalSuppliers(context));
 
                 // 9. Cars with Their List of Parts
-                File.WriteAllText($"{ResultsDirectoryPath}/cars-and-parts.xml", GetCarsWithTheirListOfParts(context));
+                //File.WriteAllText($"{ResultsDirectoryPath}/cars-and-parts.xml", GetCarsWithTheirListOfParts(context));
+
+                // 10. Total Sales by Customer
+                File.WriteAllText($"{ResultsDirectoryPath}/customers-total-sales.xml", GetTotalSalesByCustomer(context));
             }
         }
 
@@ -144,6 +147,36 @@ namespace CarsDealer
             using (var writer = new StringWriter(sb))
             {
                 serializer.Serialize(writer, cars, namespaces);
+            }
+
+            return sb.ToString().Trim();
+        }
+        public static string GetTotalSalesByCustomer(CarDealerContext context)
+        {
+            IEnumerable<ExportCustomerSalestDTO> customers = context.Customers.Where(x => x.BoughtCars.Any())
+                .Select(x => new ExportCustomerSalestDTO
+                {
+                    FullName = x.Name,
+                    BoughtCars = x.BoughtCars.Count(),
+                    SpentMoney = context.PartCars
+                        .Where(pc => x.BoughtCars
+                            .Where(bc => bc.CustomerId == x.Id)
+                            .Select(bc => bc.CarId)
+                            .Contains(pc.CarId))
+                        .Sum(pc => pc.Part.Price)
+                })
+                .OrderByDescending(x => x.SpentMoney)
+                .ToList();
+
+            var serializer = new XmlSerializer(typeof(List<ExportCustomerSalestDTO>), new XmlRootAttribute("customers"));
+
+            var sb = new StringBuilder();
+            var namespaces = new XmlSerializerNamespaces();
+            namespaces.Add("", "");
+
+            using (var writer = new StringWriter(sb))
+            {
+                serializer.Serialize(writer, customers, namespaces);
             }
 
             return sb.ToString().Trim();
