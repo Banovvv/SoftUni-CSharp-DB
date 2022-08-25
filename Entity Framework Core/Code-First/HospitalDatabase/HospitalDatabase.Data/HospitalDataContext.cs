@@ -30,7 +30,57 @@ namespace HospitalDatabase.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Patient>(patient =>
+            {
+                patient.Property(x => x.FirstName)
+                    .IsRequired(true)
+                    .HasMaxLength(50)
+                    .IsUnicode(true);
 
+                patient.Property(x => x.LastName)
+                    .IsRequired(true)
+                    .HasMaxLength(50)
+                    .IsUnicode(true);
+
+                patient.Property(x => x.Address)
+                    .IsRequired(true)
+                    .HasMaxLength(250)
+                    .IsUnicode(true);
+
+                patient.Property(x => x.FirstName)
+                    .IsRequired(true)
+                    .HasMaxLength(80)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Visitation>(visitation =>
+            {
+                visitation.Property(x => x.Comments)
+                    .IsRequired(false)
+                    .HasMaxLength(250)
+                    .IsUnicode(true);
+            });
+
+            modelBuilder.Entity<Diagnose>(diagnose =>
+            {
+                diagnose.Property(x => x.Name)
+                    .IsRequired(true)
+                    .HasMaxLength(50)
+                    .IsUnicode(true);
+
+                diagnose.Property(x => x.Comments)
+                    .IsRequired(false)
+                    .HasMaxLength(250)
+                    .IsUnicode(true);
+            });
+
+            modelBuilder.Entity<Medicament>(medicament =>
+            {
+                medicament.Property(x => x.Name)
+                    .IsRequired(true)
+                    .HasMaxLength(50)
+                    .IsUnicode(true);
+            });
         }
     }
 }
