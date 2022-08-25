@@ -6,6 +6,8 @@ namespace HospitalDatabase.Models
     {
         public Patient()
         {
+            Diagnoses = new HashSet<Diagnose>();
+            Visitations = new HashSet<Visitation>();
             Prescriptions = new HashSet<PatientMedicament>();
         }
 
@@ -16,6 +18,8 @@ namespace HospitalDatabase.Models
         public string Email { get; set; }
         public bool HasInsurance { get; set; }
 
+        public virtual ICollection<Diagnose> Diagnoses { get; set; }
+        public virtual ICollection<Visitation> Visitations { get; set; }
         public virtual ICollection<PatientMedicament> Prescriptions { get; set; }
     }
 }
