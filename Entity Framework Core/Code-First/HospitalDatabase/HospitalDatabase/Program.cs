@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalDatabase.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace HospitalDatabase
 {
@@ -6,7 +7,8 @@ namespace HospitalDatabase
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var context = new HospitalDataContext();
+            context.Database.Migrate();
         }
     }
 }

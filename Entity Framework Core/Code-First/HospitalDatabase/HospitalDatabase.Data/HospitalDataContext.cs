@@ -81,6 +81,12 @@ namespace HospitalDatabase.Data
                     .HasMaxLength(50)
                     .IsUnicode(true);
             });
+
+            modelBuilder.Entity<PatientMedicament>(patientMedicament =>
+            {
+                patientMedicament
+                    .HasKey(x => new { x.PatientId, x.MedicamentId });
+            });
         }
     }
 }
