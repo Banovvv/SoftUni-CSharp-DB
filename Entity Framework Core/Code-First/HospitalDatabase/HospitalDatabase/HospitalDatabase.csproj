@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HospitalDatabase.Data\HospitalDatabase.Data.csproj" />
+    <ProjectReference Include="..\HospitalDatabase.Services\HospitalDatabase.Services.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
 ﻿using HospitalDatabase.Data;
+using HospitalDatabase.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -23,65 +24,72 @@ namespace HospitalDatabase
                 Console.WriteLine("5. Add diagnose");
                 Console.WriteLine("6. Remove diagnose");
                 Console.WriteLine("7. Add visitation");
+                Console.WriteLine("0. Exit");
 
                 Console.Write("What would you like to do: ");
                 bool isParsed = int.TryParse(Console.ReadLine(), out int choice);
+
+                if (isParsed && choice == 0)
+                {
+                    break;
+                }
 
                 if (isParsed && (choice >= 1 && choice <= 7))
                 {
                     switch (choice)
                     {
                         case 1:
-                            AddPatient();
+                            AddPatient(context);
                             break;
                         case 2:
-                            RemovePatient();
+                            RemovePatient(context);
                             break;
                         case 3:
-                            PrescribeMedication();
+                            PrescribeMedication(context);
                             break;
                         case 4:
-                            RemoveMedication(); 
+                            RemoveMedication(context);
                             break;
                         case 5:
-                            AddDiagnose();
+                            AddDiagnose(context);
                             break;
                         case 6:
-                            RemoveDiagnose();
+                            RemoveDiagnose(context);
                             break;
                         case 7:
-                            AddVisitation();
+                            AddVisitation(context);
                             break;
                     }
                 }
             }
         }
 
-        private static void AddPatient()
+        private static void AddPatient(HospitalDataContext context)
+        {
+            IPatientService service = new PatientService(context);
+            throw new NotImplementedException();
+        }
+        private static void RemovePatient(HospitalDataContext context)
         {
             throw new NotImplementedException();
         }
-        private static void RemovePatient()
+        private static void PrescribeMedication(HospitalDataContext context)
         {
             throw new NotImplementedException();
         }
-        private static void PrescribeMedication()
+        private static void RemoveMedication(HospitalDataContext context)
         {
             throw new NotImplementedException();
         }
-        private static void RemoveMedication()
+        private static void AddDiagnose(HospitalDataContext context)
         {
             throw new NotImplementedException();
         }
-        private static void AddDiagnose()
+        private static void RemoveDiagnose(HospitalDataContext context)
         {
             throw new NotImplementedException();
         }
-        private static void RemoveDiagnose()
-        {
-            throw new NotImplementedException();
-        }
-        private static void AddVisitation()
+        private static void AddVisitation(HospitalDataContext context)
         {
             throw new NotImplementedException();
         }
