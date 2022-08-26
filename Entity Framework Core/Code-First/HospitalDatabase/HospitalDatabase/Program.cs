@@ -10,7 +10,7 @@ namespace HospitalDatabase
         static void Main(string[] args)
         {
             var context = new HospitalDataContext();
-            context.Database.Migrate();
+            //context.Database.Migrate();
 
             while (true)
             {
@@ -67,7 +67,19 @@ namespace HospitalDatabase
         private static void AddPatient(HospitalDataContext context)
         {
             IPatientService service = new PatientService(context);
-            throw new NotImplementedException();
+
+            Console.Write("Enter patient's first name: ");
+            string firstName = Console.ReadLine();
+            Console.Write("Enter patient's last name: ");
+            string lastName = Console.ReadLine();
+            Console.Write("Enter patient's address: ");
+            string address = Console.ReadLine();
+            Console.Write("Enter patient's email: ");
+            string email = Console.ReadLine();
+            Console.Write("Does the patient has insurance (true/false): ");
+            bool hasInsurance = bool.Parse(Console.ReadLine());
+
+            service.Add(firstName, lastName, address, email, hasInsurance);
         }
         private static void RemovePatient(HospitalDataContext context)
         {

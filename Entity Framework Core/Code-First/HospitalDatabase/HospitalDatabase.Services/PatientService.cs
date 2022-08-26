@@ -1,4 +1,5 @@
 ﻿using HospitalDatabase.Data;
+using HospitalDatabase.Models;
 using HospitalDatabase.Services.Models;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,18 @@ namespace HospitalDatabase.Services
 
         public void Add(string firstName, string lastName, string address, string email, bool hasInsurance)
         {
-            throw new NotImplementedException();
+            Patient patient = new Patient()
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                Address = address,
+                Email = email,
+                HasInsurance = hasInsurance
+            };
+
+            context.Patients.Add(patient);
+
+            context.SaveChanges();
         }
 
         public IEnumerable<DiagnoseDto> ListDiagnoses()
