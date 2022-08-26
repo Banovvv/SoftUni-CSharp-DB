@@ -24,8 +24,8 @@ namespace HospitalDatabase
                 Console.WriteLine("5. Add diagnose");
                 Console.WriteLine("6. Remove diagnose");
                 Console.WriteLine("7. Add visitation");
-                Console.WriteLine("8. Add medication");
-                Console.WriteLine("9. Remove medication");
+                Console.WriteLine("8. Add medicament");
+                Console.WriteLine("9. Remove medicament");
                 Console.WriteLine("0. Exit");
 
                 Console.Write("What would you like to do: ");
@@ -122,11 +122,21 @@ namespace HospitalDatabase
         }
         private static void AddMedicament(HospitalDataContext context)
         {
-            throw new NotImplementedException();
+            IMedicamentService service = new MedicamentService(context);
+
+            Console.Write("Enter medicament's name to add: ");
+            string medicamentName = Console.ReadLine();
+
+            service.Add(medicamentName);
         }
         private static void RemoveMedicament(HospitalDataContext context)
         {
-            throw new NotImplementedException();
+            IMedicamentService service = new MedicamentService(context);
+
+            Console.Write("Enter medicament's name to remove: ");
+            string medicamentName = Console.ReadLine();
+
+            service.Remove(medicamentName);
         }
     }
 }
