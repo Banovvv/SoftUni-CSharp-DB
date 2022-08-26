@@ -102,11 +102,29 @@ namespace HospitalDatabase
         }
         private static void PrescribeMedication(HospitalDataContext context)
         {
-            throw new NotImplementedException();
+            IPatientService service = new PatientService(context);
+
+            Console.Write("Enter patient's first name: ");
+            string firstName = Console.ReadLine();
+            Console.Write("Enter patient's last name: ");
+            string lastName = Console.ReadLine();
+            Console.Write("Enter medicament's name: ");
+            string medicamentName = Console.ReadLine();
+
+            service.PrescribeMedication(firstName, lastName, medicamentName);
         }
         private static void RemoveMedication(HospitalDataContext context)
         {
-            throw new NotImplementedException();
+            IPatientService service = new PatientService(context);
+
+            Console.Write("Enter patient's first name: ");
+            string firstName = Console.ReadLine();
+            Console.Write("Enter patient's last name: ");
+            string lastName = Console.ReadLine();
+            Console.Write("Enter medicament's name: ");
+            string medicamentName = Console.ReadLine();
+
+            service.RemoveMedication(firstName, lastName, medicamentName);
         }
         private static void AddDiagnose(HospitalDataContext context)
         {
