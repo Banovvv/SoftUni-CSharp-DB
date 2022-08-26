@@ -1,7 +1,7 @@
 ﻿using HospitalDatabase.Services.Models;
 using System.Collections.Generic;
 
-namespace HospitalDatabase.Services
+namespace HospitalDatabase.Services.Contracts
 {
     public interface IPatientService
     {

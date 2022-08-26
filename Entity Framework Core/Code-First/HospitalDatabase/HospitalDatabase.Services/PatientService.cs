@@ -1,5 +1,6 @@
 ﻿using HospitalDatabase.Data;
 using HospitalDatabase.Models;
+using HospitalDatabase.Services.Contracts;
 using HospitalDatabase.Services.Models;
 using System;
 using System.Collections.Generic;

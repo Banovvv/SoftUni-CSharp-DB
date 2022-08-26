@@ -1,4 +1,4 @@
-﻿namespace HospitalDatabase.Services
+﻿namespace HospitalDatabase.Services.Contracts
 {
     public interface IDiagnoseService
     {

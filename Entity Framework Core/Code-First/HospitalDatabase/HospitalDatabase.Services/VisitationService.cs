@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalDatabase.Services.Contracts;
+using System;
 
 namespace HospitalDatabase.Services
 {

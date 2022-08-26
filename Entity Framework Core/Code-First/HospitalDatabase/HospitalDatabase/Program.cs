@@ -1,5 +1,6 @@
 ﻿using HospitalDatabase.Data;
 using HospitalDatabase.Services;
+using HospitalDatabase.Services.Contracts;
 using System;
 
 namespace HospitalDatabase
@@ -23,6 +24,8 @@ namespace HospitalDatabase
                 Console.WriteLine("5. Add diagnose");
                 Console.WriteLine("6. Remove diagnose");
                 Console.WriteLine("7. Add visitation");
+                Console.WriteLine("8. Add medication");
+                Console.WriteLine("9. Remove medication");
                 Console.WriteLine("0. Exit");
 
                 Console.Write("What would you like to do: ");
@@ -33,7 +36,7 @@ namespace HospitalDatabase
                     break;
                 }
 
-                if (isParsed && (choice >= 1 && choice <= 7))
+                if (isParsed && (choice >= 1 && choice <= 9))
                 {
                     switch (choice)
                     {
@@ -57,6 +60,12 @@ namespace HospitalDatabase
                             break;
                         case 7:
                             AddVisitation(context);
+                            break;
+                        case 8:
+                            AddMedicament(context);
+                            break;
+                        case 9:
+                            RemoveMedicament(context);
                             break;
                     }
                 }
@@ -108,6 +117,14 @@ namespace HospitalDatabase
             throw new NotImplementedException();
         }
         private static void AddVisitation(HospitalDataContext context)
+        {
+            throw new NotImplementedException();
+        }
+        private static void AddMedicament(HospitalDataContext context)
+        {
+            throw new NotImplementedException();
+        }
+        private static void RemoveMedicament(HospitalDataContext context)
         {
             throw new NotImplementedException();
         }
