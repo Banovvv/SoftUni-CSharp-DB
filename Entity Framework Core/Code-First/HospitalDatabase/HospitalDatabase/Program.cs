@@ -1,6 +1,5 @@
 ﻿using HospitalDatabase.Data;
 using HospitalDatabase.Services;
-using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace HospitalDatabase
@@ -83,7 +82,14 @@ namespace HospitalDatabase
         }
         private static void RemovePatient(HospitalDataContext context)
         {
-            throw new NotImplementedException();
+            IPatientService service = new PatientService(context);
+
+            Console.Write("Enter patient's first name: ");
+            string firstName = Console.ReadLine();
+            Console.Write("Enter patient's last name: ");
+            string lastName = Console.ReadLine();
+
+            service.Remove(firstName, lastName);
         }
         private static void PrescribeMedication(HospitalDataContext context)
         {
