@@ -2,15 +2,17 @@
 
 namespace SalesDatabase.Models
 {
-    public class Store
+    public class Product
     {
-        public Store()
+        public Product()
         {
             Sales = new HashSet<Sale>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
+        public double Quantity { get; set; }
+        public decimal Price { get; set; }
 
         public virtual ICollection<Sale> Sales { get; set; }
     }
