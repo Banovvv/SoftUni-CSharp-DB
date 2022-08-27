@@ -1,6 +1,7 @@
 ﻿using HospitalDatabase.Data;
 using HospitalDatabase.Services;
 using HospitalDatabase.Services.Contracts;
+using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace HospitalDatabase
