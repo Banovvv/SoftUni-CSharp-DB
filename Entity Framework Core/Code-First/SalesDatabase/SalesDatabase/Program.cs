@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using SalesDatabase.Data;
 
 namespace SalesDatabase
 {
@@ -6,7 +7,8 @@ namespace SalesDatabase
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var context = new SalesDataContext();
+            context.Database.Migrate();
         }
     }
 }

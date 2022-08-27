@@ -5,4 +5,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SalesDatabase.Data\SalesDatabase.Data.csproj" />
+  </ItemGroup>
+
 </Project>
