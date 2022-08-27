@@ -156,7 +156,16 @@ namespace HospitalDatabase
         }
         private static void AddVisitation(HospitalDataContext context)
         {
-            throw new NotImplementedException();
+            IVisitationService service = new VisitationService(context);
+
+            Console.Write("Enter visitation date in the format day-month-year: ");
+            string date = Console.ReadLine();
+            Console.Write("Enter doctor ID: ");
+            int doctorId = int.Parse(Console.ReadLine());
+            Console.Write("Enter patient ID: ");
+            int patientId = int.Parse(Console.ReadLine());
+
+            service.Add(date, doctorId, patientId);
         }
         private static void AddMedicament(HospitalDataContext context)
         {
