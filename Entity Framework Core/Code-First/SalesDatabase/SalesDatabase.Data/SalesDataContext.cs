@@ -43,6 +43,12 @@ namespace SalesDatabase.Data
                        .HasMaxLength(50)
                        .IsUnicode(true);
 
+                product.Property(x => x.Description)
+                       .IsRequired(true)
+                       .HasMaxLength(50)
+                       .IsUnicode(true)
+                       .HasDefaultValue("No description");
+
             });
 
             modelBuilder.Entity<Customer>(customer =>

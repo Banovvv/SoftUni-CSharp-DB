@@ -30,7 +30,8 @@ namespace SalesDatabase.Data
                     {
                         Name = GenerateName(_random.Next(4, 11)),
                         Quantity = _random.Next(1, 100),
-                        Price = decimal.Parse($"{_random.Next(1, 100)}.{_random.Next(1, 100)}")
+                        Price = decimal.Parse($"{_random.Next(1, 100)}.{_random.Next(1, 100)}"),
+                        Description = "No description"
                     });
 
                 stores.Add(
