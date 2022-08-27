@@ -9,6 +9,7 @@ namespace SalesDatabase
         {
             var context = new SalesDataContext();
             context.Database.Migrate();
+            DbInitializer.Seed(context);
         }
     }
 }
