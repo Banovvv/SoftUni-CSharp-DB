@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SalesDatabase.Models;
 
 namespace SalesDatabase.Data
 {
@@ -12,6 +13,11 @@ namespace SalesDatabase.Data
         {
         }
 
+        public virtual DbSet<Sale> Sales { get; set; }
+        public virtual DbSet<Store> Stores { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -22,6 +28,36 @@ namespace SalesDatabase.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Store>(store =>
+            {
+                store.Property(x => x.Name)
+                    .IsRequired(true)
+                    .HasMaxLength(80)
+                    .IsUnicode(true);
+            });
+
+            modelBuilder.Entity<Product>(product =>
+            {
+                product.Property(x => x.Name)
+                       .IsRequired(true)
+                       .HasMaxLength(50)
+                       .IsUnicode(true);
+
+            });
+
+            modelBuilder.Entity<Customer>(customer =>
+            {
+                customer.Property(x => x.Name)
+                       .IsRequired(true)
+                       .HasMaxLength(100)
+                       .IsUnicode(true);
+
+                customer.Property(x => x.Email)
+                       .IsRequired(true)
+                       .HasMaxLength(80)
+                       .IsUnicode(true);
+
+            });
         }
     }
 }
