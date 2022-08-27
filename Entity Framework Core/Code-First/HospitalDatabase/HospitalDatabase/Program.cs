@@ -143,7 +143,16 @@ namespace HospitalDatabase
         }
         private static void RemoveDiagnose(HospitalDataContext context)
         {
-            throw new NotImplementedException();
+            IDiagnoseService service = new DiagnoseService(context);
+
+            Console.Write("Enter diagnose name: ");
+            string diagnose = Console.ReadLine();
+            Console.Write("Enter patient's first name: ");
+            string firstName = Console.ReadLine();
+            Console.Write("Enter patient's last name: ");
+            string lastName = Console.ReadLine();
+
+            service.Remove(diagnose, firstName, lastName);
         }
         private static void AddVisitation(HospitalDataContext context)
         {
