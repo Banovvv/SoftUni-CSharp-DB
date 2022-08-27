@@ -1,6 +1,7 @@
 ﻿using HospitalDatabase.Data;
 using HospitalDatabase.Services;
 using HospitalDatabase.Services.Contracts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading;
 
@@ -11,7 +12,7 @@ namespace HospitalDatabase
         static void Main(string[] args)
         {
             var context = new HospitalDataContext();
-            //context.Database.Migrate();
+            context.Database.Migrate();
 
             while (true)
             {
