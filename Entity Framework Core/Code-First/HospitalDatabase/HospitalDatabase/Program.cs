@@ -128,7 +128,18 @@ namespace HospitalDatabase
         }
         private static void AddDiagnose(HospitalDataContext context)
         {
-            throw new NotImplementedException();
+            IDiagnoseService service = new DiagnoseService(context);
+
+            Console.Write("Enter diagnose name: ");
+            string diagnose = Console.ReadLine();
+            Console.Write("Enter patient's first name: ");
+            string firstName = Console.ReadLine();
+            Console.Write("Enter patient's last name: ");
+            string lastName = Console.ReadLine();
+            Console.Write("Enter any comments: ");
+            string comments = Console.ReadLine();
+
+            service.Add(diagnose, firstName, lastName, comments);
         }
         private static void RemoveDiagnose(HospitalDataContext context)
         {
