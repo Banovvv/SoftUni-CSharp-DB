@@ -53,6 +53,29 @@ namespace HospitalDatabase.Data
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<Doctor>(doctor =>
+            {
+                doctor.Property(x => x.Name)
+                    .IsRequired(true)
+                    .HasMaxLength(100)
+                    .IsUnicode(true);
+
+                doctor.Property(x => x.Speciality)
+                    .IsRequired(true)
+                    .HasMaxLength(100)
+                    .IsUnicode(true);
+
+                doctor.Property(x => x.Email)
+                    .IsRequired(true)
+                    .HasMaxLength(50)
+                    .IsUnicode(true);
+
+                doctor.Property(x => x.Password)
+                    .IsRequired(true)
+                    .HasMaxLength(100)
+                    .IsUnicode(true);
+            });
+
             modelBuilder.Entity<Visitation>(visitation =>
             {
                 visitation.Property(x => x.Comments)
